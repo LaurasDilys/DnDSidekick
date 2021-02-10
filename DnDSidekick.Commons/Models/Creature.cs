@@ -6,14 +6,12 @@ namespace DnDSidekick.Commons.Models
 {
     public abstract class Creature
     {
-        public Creature()
-        {
-            
-        }
-
         public string Name { get; set; }
-
         public int ProficiencyBonus { get; set; }
+        public int ArmorClass { get; set; }
+        public int HitPoints { get; set; }
+
+
 
         //Ability Scores
         public int Strength { get; set; }
@@ -22,6 +20,7 @@ namespace DnDSidekick.Commons.Models
         public int Intelligence { get; set; }
         public int Wisdom { get; set; }
         public int Charisma { get; set; }
+
 
         //Skills
         //Strength based skills
@@ -59,12 +58,5 @@ namespace DnDSidekick.Commons.Models
         public int Intimidation { get; set; }
         public int Performance { get; set; }
         public int Persuasion { get; set; }
-
-
-
-
-
-
-
     }
 }
