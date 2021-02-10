@@ -11,21 +11,6 @@ namespace DnDSidekick.Data.InitialData
     {
         public static readonly Beast[] DataSeed =
         {
-            //new Beast { Name = "Baboon", Environs = new List<Environ> {
-            //    new Environ { Name = "Forest" },
-            //    new Environ { Name = "Hill" },} },
-
-            //new Beast { Name = "Badger", Environs = new List<Environ> {
-            //    new Environ { Name = "Forest" },} },
-
-            //new Beast { Name = "Bat" },
-
-            //new Beast { Name = "Cat", Environs = new List<Environ> {
-            //    new Environ { Name = "Desert" },
-            //    new Environ { Name = "Forest" },
-            //    new Environ { Name = "Grassland" },
-            //    new Environ { Name = "Urban" },} },
-
             new Beast { BeastId = 1, Name = "Baboon", Environs = new List<Environ> {
                 new Environ { Name = "Forest" },
                 new Environ { Name = "Hill" },} },
