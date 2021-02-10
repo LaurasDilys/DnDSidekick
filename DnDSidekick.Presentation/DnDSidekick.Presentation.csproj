@@ -95,9 +95,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DnDSidekick.Business\DnDSidekick.Business.csproj">
+      <Project>{35d9ee82-7d76-4403-9f7c-6bded07ef746}</Project>
+      <Name>DnDSidekick.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DnDSidekick.Commons\DnDSidekick.Commons.csproj">
       <Project>{a8869b2d-c125-487a-9be7-ed9714d01dc3}</Project>
       <Name>DnDSidekick.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DnDSidekick.Data\DnDSidekick.Data.csproj">
+      <Project>{e6404d15-1511-4e74-a36a-8ec0ab357ac8}</Project>
+      <Name>DnDSidekick.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,5 +11,7 @@ namespace DnDSidekick.Data.Models
         public int SenseId { get; set; }
         public string Type { get; set; }
         public int Distance { get; set; }
+
+        public List<Beast> Beasts { get; set; }
     }
 }

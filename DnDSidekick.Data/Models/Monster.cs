@@ -19,7 +19,7 @@ namespace DnDSidekick.Data.Models
         public List<Trait> Traits { get; set; }
         public string Actions { get; set; }
         public string Tags { get; set; }
-        public List<string> Environments { get; set; }
+        public List<Environ> Environs { get; set; }
 
 
         //Monster type is the child class - one that inherits the Monster class

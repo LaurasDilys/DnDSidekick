@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DnDSidekick.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace DnDSidekick.Presentation
         public MainWindow()
         {
             InitializeComponent();
+            this.Hide();
+            ManageDb.GenerateInitialData();
+            this.Show();
         }
     }
 }

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DnDSidekick.Commons", "DnDS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDSidekick.Data", "DnDSidekick.Data\DnDSidekick.Data.csproj", "{E6404D15-1511-4E74-A36A-8EC0AB357AC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDSidekick.Business", "DnDSidekick.Business\DnDSidekick.Business.csproj", "{35D9EE82-7D76-4403-9F7C-6BDED07EF746}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E6404D15-1511-4E74-A36A-8EC0AB357AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6404D15-1511-4E74-A36A-8EC0AB357AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6404D15-1511-4E74-A36A-8EC0AB357AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35D9EE82-7D76-4403-9F7C-6BDED07EF746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D9EE82-7D76-4403-9F7C-6BDED07EF746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D9EE82-7D76-4403-9F7C-6BDED07EF746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D9EE82-7D76-4403-9F7C-6BDED07EF746}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

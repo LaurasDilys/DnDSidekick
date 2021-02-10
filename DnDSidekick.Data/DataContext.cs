@@ -12,26 +12,33 @@ namespace DnDSidekick.Data
     {
         public DataContext() : base("DnDSidekick")
         {
+            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
             Database.SetInitializer(new DataContextInitializer());
         }
 
+        public DbSet<Environ> Environs { get; set; }
         public DbSet<Beast> Beasts { get; set; }
-        public DbSet<Sense> Senses { get; set; }
-        public DbSet<Trait> Traits { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Environ>()
+                        .ToTable("Environs")
+                        .HasKey(k => k.EnvironId);
+
             modelBuilder.Entity<Beast>()
                         .ToTable("Beasts")
                         .HasKey(k => k.BeastId);
 
-            modelBuilder.Entity<Sense>()
-                        .ToTable("Senses")
-                        .HasKey(k => k.SenseId);
 
-            modelBuilder.Entity<Trait>()
-                        .ToTable("Traits")
-                        .HasKey(k => k.TraitId);
+
+            ////
+            //modelBuilder.Entity<Sense>()
+            //            .ToTable("Senses")
+            //            .HasKey(k => k.SenseId);
+            ////
+            //modelBuilder.Entity<Trait>()
+            //            .ToTable("Traits")
+            //            .HasKey(k => k.TraitId);
 
             // Fluent API examples
             //modelBuilder.Entity<Course>()

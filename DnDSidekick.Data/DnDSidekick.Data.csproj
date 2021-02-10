@@ -54,7 +54,10 @@
     <Compile Include="DataContext.cs" />
     <Compile Include="DataContextInitializer.cs" />
     <Compile Include="InitialData\BeastsInitialData.cs" />
+    <Compile Include="InitialData\EnvironsInitialData.cs" />
+    <Compile Include="ManageDb.cs" />
     <Compile Include="Models\Beast.cs" />
+    <Compile Include="Models\Environ.cs" />
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Sense.cs" />
     <Compile Include="Models\Trait.cs" />
@@ -65,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DnDSidekick.Business\DnDSidekick.Business.csproj">
+      <Project>{35d9ee82-7d76-4403-9f7c-6bded07ef746}</Project>
+      <Name>DnDSidekick.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DnDSidekick.Commons\DnDSidekick.Commons.csproj">
       <Project>{a8869b2d-c125-487a-9be7-ed9714d01dc3}</Project>
       <Name>DnDSidekick.Commons</Name>

@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace DnDSidekick.Data.Models
 {
-    public class Beast : Monster
+    public class Beast //: Monster
     {
         public int BeastId { get; set; }
-
+        public string Name { get; set; }
+        public List<Environ> Environs { get; set; }
     }
 }
