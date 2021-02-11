@@ -6,57 +6,78 @@ namespace DnDSidekick.Commons.Models
 {
     public abstract class Creature
     {
+        public Creature(int id, string name)
+        {
+            Id = id;
+            Name = name;
+
+            Strength.Skills.Add(Athletics);
+
+            Dexterity.Skills.Add(Acrobatics);
+            Dexterity.Skills.Add(SleightOfHand);
+            Dexterity.Skills.Add(Stealth);
+
+            Intelligence.Skills.Add(Arcana);
+            Intelligence.Skills.Add(History);
+            Intelligence.Skills.Add(Investigation);
+            Intelligence.Skills.Add(Nature);
+            Intelligence.Skills.Add(Religion);
+
+            Wisdom.Skills.Add(AnimalHandling);
+            Wisdom.Skills.Add(Insight);
+            Wisdom.Skills.Add(Medicine);
+            Wisdom.Skills.Add(Perception);
+            Wisdom.Skills.Add(Survival);
+
+            Charisma.Skills.Add(Deception);
+            Charisma.Skills.Add(Intimidation);
+            Charisma.Skills.Add(Performance);
+            Charisma.Skills.Add(Persuasion);
+        }
+
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int ProficiencyBonus { get; set; }
-        public int ArmorClass { get; set; }
-        public int HitPoints { get; set; }
+        public int ArmorClass { get; set; } = 0;
+        public int HitPoints { get; set; } = 1;
+        public int ProficiencyBonus { get; set; } = 2;
 
 
-
-        //Ability Scores
-        public int Strength { get; set; }
-        public int Dexterity { get; set; }
-        public int Constitution { get; set; }
-        public int Intelligence { get; set; }
-        public int Wisdom { get; set; }
-        public int Charisma { get; set; }
+        //Abilities
+        public Ability Strength { get; set; } = new Ability();
+        public Ability Dexterity { get; set; } = new Ability();
+        public Ability Constitution { get; set; } = new Ability();
+        public Ability Intelligence { get; set; } = new Ability();
+        public Ability Wisdom { get; set; } = new Ability();
+        public Ability Charisma { get; set; } = new Ability();
 
 
         //Skills
-        //Strength based skills
-        public int StrengthSavingThrow { get; set; }
-        public int Athletics { get; set; }
+        //Strength based
+        public Skill Athletics { get; set; } = new Skill();
 
         //Dexterity based skills
-        public int DexteritySavingThrow { get; set; }
-        public int Acrobatics { get; set; }
-        public int SleightOfHand { get; set; }
-        public int Stealth { get; set; }
-
-        //Constitution based skills
-        public int ConstitutionSavingThrow { get; set; }
+        public Skill Acrobatics { get; set; } = new Skill();
+        public Skill SleightOfHand { get; set; } = new Skill();
+        public Skill Stealth { get; set; } = new Skill();
 
         //Intelligence based skills
-        public int IntelligenceSavingThrow { get; set; }
-        public int Arcana { get; set; }
-        public int History { get; set; }
-        public int Investigation { get; set; }
-        public int Nature { get; set; }
-        public int Religion { get; set; }
+        public Skill Arcana { get; set; } = new Skill();
+        public Skill History { get; set; } = new Skill();
+        public Skill Investigation { get; set; } = new Skill();
+        public Skill Nature { get; set; } = new Skill();
+        public Skill Religion { get; set; } = new Skill();
 
         //Wisdom based skills
-        public int WisdomSavingThrow { get; set; }
-        public int AnimalHandling { get; set; }
-        public int Insight { get; set; }
-        public int Medicine { get; set; }
-        public int Perception { get; set; }
-        public int Survival { get; set; }
+        public Skill AnimalHandling { get; set; } = new Skill();
+        public Skill Insight { get; set; } = new Skill();
+        public Skill Medicine { get; set; } = new Skill();
+        public Skill Perception { get; set; } = new Skill();
+        public Skill Survival { get; set; } = new Skill();
 
         //Charisma based skills
-        public int CharismaSavingThrow { get; set; }
-        public int Deception { get; set; }
-        public int Intimidation { get; set; }
-        public int Performance { get; set; }
-        public int Persuasion { get; set; }
+        public Skill Deception { get; set; } = new Skill();
+        public Skill Intimidation { get; set; } = new Skill();
+        public Skill Performance { get; set; } = new Skill();
+        public Skill Persuasion { get; set; } = new Skill();
     }
 }
