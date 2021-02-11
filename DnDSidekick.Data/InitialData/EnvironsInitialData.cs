@@ -9,9 +9,11 @@ namespace DnDSidekick.Data.InitialData
 {
     public static class EnvironsInitialData
     {
-        public static readonly Environ[] DataSeed =
+        public static readonly string[] DataSeed =
         {
-
+            "1,Forest,Hill",
+            "2,Forest",
+            "4,Desert,Forest,Grassland,Urban"
         };
     }
 }

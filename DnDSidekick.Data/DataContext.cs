@@ -12,7 +12,6 @@ namespace DnDSidekick.Data
     {
         public DataContext() : base("DnDSidekick")
         {
-            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
             Database.SetInitializer(new DataContextInitializer());
         }
 
@@ -21,13 +20,24 @@ namespace DnDSidekick.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Beast>()
+                        .ToTable("Beasts")
+                        .HasKey(k => k.BeastId);
+
             modelBuilder.Entity<Environ>()
                         .ToTable("Environs")
                         .HasKey(k => k.EnvironId);
 
             modelBuilder.Entity<Beast>()
-                        .ToTable("Beasts")
-                        .HasKey(k => k.BeastId);
+                        .HasMany<Environ>(b => b.Environs)
+                        .WithMany(e => e.Beasts)
+                        .Map(be =>
+                        {
+                            be.MapLeftKey("BeastId");
+                            be.MapRightKey("EnvironId");
+                            be.ToTable("BeastEnvirons");
+                        });
+
 
 
 

@@ -11,6 +11,7 @@ namespace DnDSidekick.Data.Models
     {
         public int BeastId { get; set; }
         public string Name { get; set; }
-        public List<Environ> Environs { get; set; }
+
+        public virtual ICollection<Environ> Environs { get; set; }
     }
 }
