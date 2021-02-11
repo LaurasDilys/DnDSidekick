@@ -12,6 +12,6 @@ namespace DnDSidekick.Data.Models
         public string Type { get; set; }
         public int Distance { get; set; }
 
-        public List<Beast> Beasts { get; set; }
+        public ICollection<Monster> Monsters { get; set; }
     }
 }

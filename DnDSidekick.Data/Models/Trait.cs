@@ -12,6 +12,6 @@ namespace DnDSidekick.Data.Models
         public string Type { get; set; }
         public string Description { get; set; }
 
-        public List<Beast> Beasts { get; set; }
+        public virtual ICollection<Monster> Monsters { get; set; }
     }
 }

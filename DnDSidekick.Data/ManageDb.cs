@@ -12,7 +12,7 @@ namespace DnDSidekick.Data
         {
             using (var context = new DataContext())
             {
-                var first = context.Beasts.First();
+                var first = context.Monsters.First();
             }
         }
     }

@@ -53,15 +53,15 @@
   <ItemGroup>
     <Compile Include="DataContext.cs" />
     <Compile Include="DataContextInitializer.cs" />
-    <Compile Include="InitialData\BeastsInitialData.cs" />
+    <Compile Include="InitialData\MonstersInitialData.cs" />
     <Compile Include="InitialData\EnvironsInitialData.cs" />
     <Compile Include="ManageDb.cs" />
-    <Compile Include="Models\Beast.cs" />
     <Compile Include="Models\Environ.cs" />
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Sense.cs" />
     <Compile Include="Models\Trait.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelToData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
