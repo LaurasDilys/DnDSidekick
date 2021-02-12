@@ -11,6 +11,6 @@ namespace DnDSidekick.Data.Models
         public int EnvironId { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Monster> Monsters { get; set; }
+        public virtual ICollection<MonsterDataModel> Monsters { get; set; }
     }
 }

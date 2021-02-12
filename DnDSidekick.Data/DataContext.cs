@@ -15,12 +15,12 @@ namespace DnDSidekick.Data
             Database.SetInitializer(new DataContextInitializer());
         }
 
-        public DbSet<Monster> Monsters { get; set; }
+        public DbSet<MonsterDataModel> Monsters { get; set; }
         public DbSet<Environ> Environs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Monster>()
+            modelBuilder.Entity<MonsterDataModel>()
                         .ToTable("Monsters")
                         .HasKey(k => k.MonsterId);
 
@@ -28,7 +28,7 @@ namespace DnDSidekick.Data
                         .ToTable("Environs")
                         .HasKey(k => k.EnvironId);
 
-            modelBuilder.Entity<Monster>()
+            modelBuilder.Entity<MonsterDataModel>()
                         .HasMany<Environ>(b => b.Environs)
                         .WithMany(e => e.Monsters)
                         .Map(be =>

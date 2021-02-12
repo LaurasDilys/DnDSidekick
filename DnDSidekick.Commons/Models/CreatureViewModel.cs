@@ -11,12 +11,7 @@ namespace DnDSidekick.Commons.Models
         public int ArmorClass { get; set; }
         public int HitPoints { get; set; }
 
-        //public string Speed { get; set; }
-        public int WalkSpeed { get; set; }
-        public int BurrowSpeed { get; set; }
-        public int ClimbSpeed { get; set; }
-        public int FlySpeed { get; set; }
-        public int SwimSpeed { get; set; }
+        public string Speed { get; set; }
 
         public int Strength { get; set; }
         public int Dexterity { get; set; }

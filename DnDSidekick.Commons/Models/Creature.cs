@@ -6,8 +6,12 @@ namespace DnDSidekick.Commons.Models
 {
     public abstract class Creature
     {
+        //public event EventHandler<string> Smth;
+
         public Creature(int id, string name)
         {
+            //Smth?.Invoke(this, "42");
+
             Id = id;
             Name = name;
 
