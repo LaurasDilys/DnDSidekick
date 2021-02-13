@@ -26,7 +26,7 @@ namespace DnDSidekick.Data
 
             modelBuilder.Entity<Environ>()
                         .ToTable("Environs")
-                        .HasKey(k => k.EnvironId);
+                        .HasKey(k => k.Id);
 
             modelBuilder.Entity<MonsterDataModel>()
                         .HasMany<Environ>(b => b.Environs)

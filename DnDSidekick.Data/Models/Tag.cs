@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace DnDSidekick.Data.Models
 {
-    public class Trait : IShared
+    public class Tag : IShared
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        //public string Description { get; set; }
 
         public virtual ICollection<MonsterDataModel> Monsters { get; set; }
     }

@@ -65,11 +65,18 @@ namespace DnDSidekick.Data.Models
         public int Tremorsense { get; set; } = 0;
         public int Truesight { get; set; } = 0;
 
-        public string Languages { get; set; } = "";
-        public int ChallengeRating { get; set; }
+        public double ChallengeRating { get; set; }
         public int ProficiencyBonus { get; set; }
         public virtual ICollection<Trait> Traits { get; set; }
-        public string Tag { get; set; } = "";
+        public virtual ICollection<Language> Languages { get; set; }
+        public bool CanSpeak { get; set; }
         public virtual ICollection<Environ> Environs { get; set; }
+        public Tag Tag { get; set; }
+
+        public virtual ICollection<DamageType> DamageVulnerabilities { get; set; }
+        public virtual ICollection<DamageType> DamageResistances { get; set; }
+        public virtual ICollection<DamageType> DamageImmunities { get; set; }
+        public virtual ICollection<Condition> ConditionImmunities { get; set; }
+
     }
 }

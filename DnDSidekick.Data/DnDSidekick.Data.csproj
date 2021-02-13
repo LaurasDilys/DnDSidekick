@@ -55,9 +55,14 @@
     <Compile Include="DataContextInitializer.cs" />
     <Compile Include="InitialData\MonstersInitialData.cs" />
     <Compile Include="InitialData\EnvironsInitialData.cs" />
+    <Compile Include="Interfaces\IShared.cs" />
     <Compile Include="ManageDb.cs" />
+    <Compile Include="Models\Condition.cs" />
+    <Compile Include="Models\DamageType.cs" />
     <Compile Include="Models\Environ.cs" />
+    <Compile Include="Models\Language.cs" />
     <Compile Include="Models\MonsterDataModel.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\Trait.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelToDataAdapter.cs" />
@@ -76,6 +81,7 @@
       <Name>DnDSidekick.Commons</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
