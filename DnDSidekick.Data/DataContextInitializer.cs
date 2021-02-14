@@ -17,11 +17,32 @@ namespace DnDSidekick.Data
             context.Monsters.AddRange(MonstersInitialData.DataSeed);
 
             //
+            context.Languages.AddRange(LanguagesInitialData.DataSeed);
             context.Environs.AddRange(EnvironsInitialData.DataSeed);
             context.SaveChanges();
 
             //
+            AddMonsterLanguages();
             AddMonsterEnvirons();
+        }
+
+        private void AddMonsterLanguages()
+        {
+            using (var context = new DataContext())
+            {
+                var monsters = context.Monsters;
+                var languages = context.Languages;
+                foreach (string[] substrings in SplitStrings(MonsterLanguagesInitialData.DataSeed))
+                {
+                    int monsterId = Convert.ToInt32(substrings[0]);
+                    for (int i = 1; i < substrings.Length; i++)
+                    {
+                        string language = substrings[i];
+                        monsters.Find(monsterId).Languages.Add(languages.Single(l => l.Name == language));
+                    }
+                }
+                context.SaveChanges();
+            }
         }
 
         private void AddMonsterEnvirons()

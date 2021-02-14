@@ -54,6 +54,8 @@
     <Compile Include="DataContext.cs" />
     <Compile Include="DataContextInitializer.cs" />
     <Compile Include="InitialData\EnvironsInitialData.cs" />
+    <Compile Include="InitialData\LanguagesInitialData.cs" />
+    <Compile Include="InitialData\MonsterLanguagesInitialData.cs" />
     <Compile Include="InitialData\MonstersInitialData.cs" />
     <Compile Include="InitialData\MonsterEnvironsInitialData.cs" />
     <Compile Include="Interfaces\IShared.cs" />

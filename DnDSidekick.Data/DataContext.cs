@@ -16,6 +16,7 @@ namespace DnDSidekick.Data
         }
 
         public DbSet<MonsterDataModel> Monsters { get; set; }
+        public DbSet<Language> Languages { get; set; }
         public DbSet<Environ> Environs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -35,6 +36,19 @@ namespace DnDSidekick.Data
                             me.MapLeftKey("MonsterId");
                             me.MapRightKey("EnvironId");
                             me.ToTable("MonsterEnvirons");
+                        });
+
+            modelBuilder.Entity<Language>()
+                        .ToTable("Languages")
+                        .HasKey(k => k.Id);
+            modelBuilder.Entity<MonsterDataModel>()
+                        .HasMany<Language>(m => m.Languages)
+                        .WithMany(l => l.Monsters)
+                        .Map(ml =>
+                        {
+                            ml.MapLeftKey("MonsterId");
+                            ml.MapRightKey("LanguageId");
+                            ml.ToTable("MonsterLanguages");
                         });
 
 
