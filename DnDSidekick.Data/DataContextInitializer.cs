@@ -15,52 +15,87 @@ namespace DnDSidekick.Data
         protected override void Seed(DataContext context)
         {
             context.Monsters.AddRange(MonstersInitialData.DataSeed);
+
+            //
+            context.Environs.AddRange(EnvironsInitialData.DataSeed);
             context.SaveChanges();
-            AddEnvironsAndMonsterEnvirons(EnvironsInitialData.DataSeed);
+
+            //
+            AddMonsterEnvirons();
         }
 
-        private void AddEnvironsAndMonsterEnvirons(string[] environsAsStrings)
+        private void AddMonsterEnvirons()
         {
-            List<string[]> splitStrings = new List<string[]>();
-            List<string> onlyEnvirons = new List<string>();
-            foreach (string line in environsAsStrings)
-            {
-                string[] substrings = line.Split(',');
-                splitStrings.Add(substrings);
-                foreach (string sub in substrings)
-                {
-                    if (!Int32.TryParse(sub, out _)) onlyEnvirons.Add(sub);
-                }
-            }
-
-            //Actual EnvironsInitialData
-            List<Environ> environsInitialData = new List<Environ>();
-            foreach (string environ in onlyEnvirons.Distinct())
-            {
-                environsInitialData.Add(new Environ() { Name = environ });
-            }
             using (var context = new DataContext())
             {
-                context.Environs.AddRange(environsInitialData);
-                context.SaveChanges();
-            }
-
-            //Actual BeastEnvironsInitialData
-            using (var context = new DataContext())
-            {
-                var beasts = context.Monsters;
+                var monsters = context.Monsters;
                 var environs = context.Environs;
-                foreach (string[] substrings in splitStrings)
+                foreach (string[] substrings in SplitStrings(MonsterEnvironsInitialData.DataSeed))
                 {
-                    int beastId = Convert.ToInt32(substrings[0]);
+                    int monsterId = Convert.ToInt32(substrings[0]);
                     for (int i = 1; i < substrings.Length; i++)
                     {
                         string environ = substrings[i];
-                        beasts.Find(beastId).Environs.Add(environs.Single(e => e.Name == environ));
+                        monsters.Find(monsterId).Environs.Add(environs.Single(e => e.Name == environ));
                     }
                 }
                 context.SaveChanges();
             }
         }
+
+        private static List<string[]> SplitStrings(string[] initialDataAsStrings)
+        {
+            List<string[]> splitStrings = new List<string[]>();
+            foreach (string line in initialDataAsStrings)
+            {
+                string[] substrings = line.Split(',');
+                splitStrings.Add(substrings);
+            }
+            return splitStrings;
+        }
+
+        //private void AddEnvironsAndMonsterEnvirons(string[] initialDataAsStrings)
+        //{
+        //    List<string[]> splitStrings = new List<string[]>();
+        //    List<string> onlyEnvirons = new List<string>();
+        //    foreach (string line in initialDataAsStrings)
+        //    {
+        //        string[] substrings = line.Split(',');
+        //        splitStrings.Add(substrings);
+        //        foreach (string sub in substrings)
+        //        {
+        //            if (!Int32.TryParse(sub, out _)) onlyEnvirons.Add(sub);
+        //        }
+        //    }
+
+        //    //Actual EnvironsInitialData
+        //    List<Environ> environsInitialData = new List<Environ>();
+        //    foreach (string environ in onlyEnvirons.Distinct())
+        //    {
+        //        environsInitialData.Add(new Environ() { Name = environ });
+        //    }
+        //    using (var context = new DataContext())
+        //    {
+        //        context.Environs.AddRange(environsInitialData);
+        //        context.SaveChanges();
+        //    }
+
+        //    //Actual MonsterEnvironsInitialData
+        //    using (var context = new DataContext())
+        //    {
+        //        var beasts = context.Monsters;
+        //        var environs = context.Environs;
+        //        foreach (string[] substrings in splitStrings)
+        //        {
+        //            int beastId = Convert.ToInt32(substrings[0]);
+        //            for (int i = 1; i < substrings.Length; i++)
+        //            {
+        //                string environ = substrings[i];
+        //                beasts.Find(beastId).Environs.Add(environs.Single(e => e.Name == environ));
+        //            }
+        //        }
+        //        context.SaveChanges();
+        //    }
+        //}
     }
 }

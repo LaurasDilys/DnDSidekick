@@ -27,15 +27,14 @@ namespace DnDSidekick.Data
             modelBuilder.Entity<Environ>()
                         .ToTable("Environs")
                         .HasKey(k => k.Id);
-
             modelBuilder.Entity<MonsterDataModel>()
-                        .HasMany<Environ>(b => b.Environs)
+                        .HasMany<Environ>(m => m.Environs)
                         .WithMany(e => e.Monsters)
-                        .Map(be =>
+                        .Map(me =>
                         {
-                            be.MapLeftKey("MonsterId");
-                            be.MapRightKey("EnvironId");
-                            be.ToTable("MonsterEnvirons");
+                            me.MapLeftKey("MonsterId");
+                            me.MapRightKey("EnvironId");
+                            me.ToTable("MonsterEnvirons");
                         });
 
 
