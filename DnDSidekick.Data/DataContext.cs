@@ -30,6 +30,9 @@ namespace DnDSidekick.Data
                         .ToTable("Monsters")
                         .HasKey(k => k.MonsterId);
 
+            modelBuilder.Entity<CreatureType>()
+                        .ToTable("Types");
+
             modelBuilder.Entity<Trait>()
                         .ToTable("Traits")
                         .HasKey(k => k.Id);
