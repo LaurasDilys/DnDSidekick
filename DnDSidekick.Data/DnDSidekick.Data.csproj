@@ -58,6 +58,9 @@
     <Compile Include="InitialData\MonsterLanguagesInitialData.cs" />
     <Compile Include="InitialData\MonstersInitialData.cs" />
     <Compile Include="InitialData\MonsterEnvironsInitialData.cs" />
+    <Compile Include="InitialData\MonsterTagsInitialData.cs" />
+    <Compile Include="InitialData\TagsInitialData.cs" />
+    <Compile Include="InitialData\TraitsInitialData.cs" />
     <Compile Include="Interfaces\IShared.cs" />
     <Compile Include="ManageDb.cs" />
     <Compile Include="Models\Condition.cs" />

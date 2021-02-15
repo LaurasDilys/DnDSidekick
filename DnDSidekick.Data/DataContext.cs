@@ -16,8 +16,11 @@ namespace DnDSidekick.Data
         }
 
         public DbSet<MonsterDataModel> Monsters { get; set; }
+        public DbSet<Trait> Traits { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Environ> Environs { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -25,17 +28,17 @@ namespace DnDSidekick.Data
                         .ToTable("Monsters")
                         .HasKey(k => k.MonsterId);
 
-            modelBuilder.Entity<Environ>()
-                        .ToTable("Environs")
+            modelBuilder.Entity<Trait>()
+                        .ToTable("Traits")
                         .HasKey(k => k.Id);
             modelBuilder.Entity<MonsterDataModel>()
-                        .HasMany<Environ>(m => m.Environs)
-                        .WithMany(e => e.Monsters)
-                        .Map(me =>
+                        .HasMany<Trait>(m => m.Traits)
+                        .WithMany(t => t.Monsters)
+                        .Map(mt =>
                         {
-                            me.MapLeftKey("MonsterId");
-                            me.MapRightKey("EnvironId");
-                            me.ToTable("MonsterEnvirons");
+                            mt.MapLeftKey("MonsterId");
+                            mt.MapRightKey("TraitId");
+                            mt.ToTable("MonsterTraits");
                         });
 
             modelBuilder.Entity<Language>()
@@ -51,17 +54,24 @@ namespace DnDSidekick.Data
                             ml.ToTable("MonsterLanguages");
                         });
 
+            modelBuilder.Entity<Environ>()
+                        .ToTable("Environs")
+                        .HasKey(k => k.Id);
+            modelBuilder.Entity<MonsterDataModel>()
+                        .HasMany<Environ>(m => m.Environs)
+                        .WithMany(e => e.Monsters)
+                        .Map(me =>
+                        {
+                            me.MapLeftKey("MonsterId");
+                            me.MapRightKey("EnvironId");
+                            me.ToTable("MonsterEnvirons");
+                        });
+
+            modelBuilder.Entity<MonsterDataModel>()
+                        .HasOptional<Tag>(m => m.Tag)
+                        .WithMany(t => t.Monsters);
 
 
-
-            ////
-            //modelBuilder.Entity<Sense>()
-            //            .ToTable("Senses")
-            //            .HasKey(k => k.SenseId);
-            ////
-            //modelBuilder.Entity<Trait>()
-            //            .ToTable("Traits")
-            //            .HasKey(k => k.TraitId);
 
             // Fluent API examples
             //modelBuilder.Entity<Course>()

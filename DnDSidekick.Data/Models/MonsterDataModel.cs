@@ -73,10 +73,10 @@ namespace DnDSidekick.Data.Models
         public virtual ICollection<Environ> Environs { get; set; }
         public Tag Tag { get; set; }
 
-        public virtual ICollection<DamageType> DamageVulnerabilities { get; set; }
-        public virtual ICollection<DamageType> DamageResistances { get; set; }
-        public virtual ICollection<DamageType> DamageImmunities { get; set; }
-        public virtual ICollection<Condition> ConditionImmunities { get; set; }
+        //public virtual ICollection<DamageType> DamageVulnerabilities { get; set; }
+        //public virtual ICollection<DamageType> DamageResistances { get; set; }
+        //public virtual ICollection<DamageType> DamageImmunities { get; set; }
+        //public virtual ICollection<Condition> ConditionImmunities { get; set; }
 
     }
 }

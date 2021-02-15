@@ -19,12 +19,16 @@ namespace DnDSidekick.Data
             //
             context.Languages.AddRange(LanguagesInitialData.DataSeed);
             context.Environs.AddRange(EnvironsInitialData.DataSeed);
+            context.Tags.AddRange(TagsInitialData.DataSeed);
             context.SaveChanges();
 
             //
             AddMonsterLanguages();
             AddMonsterEnvirons();
+            AddMonsterTags();
         }
+
+        
 
         private void AddMonsterLanguages()
         {
@@ -38,7 +42,7 @@ namespace DnDSidekick.Data
                     for (int i = 1; i < substrings.Length; i++)
                     {
                         string language = substrings[i];
-                        monsters.Find(monsterId).Languages.Add(languages.Single(l => l.Name == language));
+                        monsters.Find(monsterId).Languages.Add(languages.Single(x => x.Name == language));
                     }
                 }
                 context.SaveChanges();
@@ -57,8 +61,24 @@ namespace DnDSidekick.Data
                     for (int i = 1; i < substrings.Length; i++)
                     {
                         string environ = substrings[i];
-                        monsters.Find(monsterId).Environs.Add(environs.Single(e => e.Name == environ));
+                        monsters.Find(monsterId).Environs.Add(environs.Single(x => x.Name == environ));
                     }
+                }
+                context.SaveChanges();
+            }
+        }
+
+        private void AddMonsterTags()
+        {
+            using (var context = new DataContext())
+            {
+                var monsters = context.Monsters;
+                var tags = context.Tags;
+                foreach (string[] substrings in SplitStrings(MonsterTagsInitialData.DataSeed))
+                {
+                    int monsterId = Convert.ToInt32(substrings[0]);
+                    string tag = substrings[1];
+                    monsters.Find(monsterId).Tag = tags.Single(x => x.Name == tag);
                 }
                 context.SaveChanges();
             }
