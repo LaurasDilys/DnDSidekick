@@ -58,6 +58,20 @@ namespace DnDSidekick.Presentation
             //custom bonus
             //[-][0][+]
 
+            btnCombat.Click += BtnCombat_Click;
+            btnCreate.Click += BtnCreate_Click;
+        }
+
+        private void BtnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow createWindow = new CreateWindow();
+            createWindow.Show();
+        }
+
+        private void BtnCombat_Click(object sender, RoutedEventArgs e)
+        {
+            CombatWindow combatWindow = new CombatWindow();
+            combatWindow.Show();
         }
     }
 }

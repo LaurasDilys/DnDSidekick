@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnDSidekick.Presentation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="D&amp;D Sidekick" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnCreate" Grid.Row="0" Margin="10 10 10 10" FontSize="25">Create Character</Button>
+        <Button x:Name="btnCombat" Grid.Row="1" Margin="10 10 10 10" FontSize="25">Begin Combat</Button>
     </Grid>
 </Window>
