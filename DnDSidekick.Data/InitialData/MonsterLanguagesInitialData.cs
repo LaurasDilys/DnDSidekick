@@ -17,7 +17,7 @@ namespace DnDSidekick.Data.InitialData
             "90,Auran",
             "91,Terran",
             "92,Ignan",
-            "93,Aquan",
+            "93,Aquan"
         };
     }
 }

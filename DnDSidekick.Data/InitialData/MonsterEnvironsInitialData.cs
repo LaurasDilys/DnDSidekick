@@ -97,8 +97,7 @@ namespace DnDSidekick.Data.InitialData
             "90,Desert,Mountain",
             "91,Underdark",
             "92,Desert",
-            "93,Coastal,Swamp,Underwater",
-
+            "93,Coastal,Swamp,Underwater"
         };
     }
 }

@@ -21,7 +21,7 @@ namespace DnDSidekick.Data.InitialData
             new Environ { Id = 8, Name = "Swamp" },
             new Environ { Id = 9, Name = "Underdark" },
             new Environ { Id = 10, Name = "Underwater" },
-            new Environ { Id = 11, Name = "Urban" },
+            new Environ { Id = 11, Name = "Urban" }
         };
     }
 }
