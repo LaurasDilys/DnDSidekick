@@ -16,6 +16,9 @@ namespace DnDSidekick.Data
         }
 
         public DbSet<MonsterDataModel> Monsters { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<CreatureType> Types { get; set; }
+        public DbSet<Alignment> Alignments { get; set; }
         public DbSet<Trait> Traits { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Environ> Environs { get; set; }

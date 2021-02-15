@@ -16,16 +16,70 @@ namespace DnDSidekick.Data
         {
             context.Monsters.AddRange(MonstersInitialData.DataSeed);
 
+            context.Sizes.AddRange(SizesInitialData.DataSeed);
+            context.Types.AddRange(TypesInitialData.DataSeed);
+            context.Alignments.AddRange(AlignmentsInitialData.DataSeed);
             context.Traits.AddRange(TraitsInitialData.DataSeed);
             context.Languages.AddRange(LanguagesInitialData.DataSeed);
             context.Environs.AddRange(EnvironsInitialData.DataSeed);
             context.Tags.AddRange(TagsInitialData.DataSeed);
             context.SaveChanges();
 
+            AddMonsterSizes();
+            AddMonsterTypes();
+            AddMonsterAlignments();
             AddMonsterTraits();
             AddMonsterLanguages();
             AddMonsterEnvirons();
             AddMonsterTags();
+        }
+
+        private void AddMonsterSizes()
+        {
+            using (var context = new DataContext())
+            {
+                var monsters = context.Monsters;
+                var sizes = context.Sizes;
+                foreach (string[] substrings in SplitStrings(MonsterSizesInitialData.DataSeed))
+                {
+                    int monsterId = Convert.ToInt32(substrings[0]);
+                    string size = substrings[1];
+                    monsters.Find(monsterId).Size = sizes.Single(x => x.Name == size);
+                }
+                context.SaveChanges();
+            }
+        }
+
+        private void AddMonsterTypes()
+        {
+            using (var context = new DataContext())
+            {
+                var monsters = context.Monsters;
+                var types = context.Types;
+                foreach (string[] substrings in SplitStrings(MonsterTypesInitialData.DataSeed))
+                {
+                    int monsterId = Convert.ToInt32(substrings[0]);
+                    string type = substrings[1];
+                    monsters.Find(monsterId).Type = types.Single(x => x.Name == type);
+                }
+                context.SaveChanges();
+            }
+        }
+
+        private void AddMonsterAlignments()
+        {
+            using (var context = new DataContext())
+            {
+                var monsters = context.Monsters;
+                var alignments = context.Alignments;
+                foreach (string[] substrings in SplitStrings(MonsterAlignmentsInitialData.DataSeed))
+                {
+                    int monsterId = Convert.ToInt32(substrings[0]);
+                    string alignment = substrings[1];
+                    monsters.Find(monsterId).Alignment = alignments.Single(x => x.Name == alignment);
+                }
+                context.SaveChanges();
+            }
         }
 
         private void AddMonsterTraits()

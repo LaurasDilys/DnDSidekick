@@ -11,9 +11,9 @@ namespace DnDSidekick.Data.Models
     {
         public int MonsterId { get; set; }
         public string Name { get; set; }
-        public string Size { get; set; }
-        public string Type { get; set; }
-        public string Alignment { get; set; }
+        public Size Size { get; set; }
+        public CreatureType Type { get; set; }
+        public Alignment Alignment { get; set; }
         public int ArmorClass { get; set; }
         public int HitPoints { get; set; }
 
