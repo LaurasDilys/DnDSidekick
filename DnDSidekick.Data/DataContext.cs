@@ -21,7 +21,6 @@ namespace DnDSidekick.Data
         public DbSet<Environ> Environs { get; set; }
         public DbSet<Tag> Tags { get; set; }
 
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MonsterDataModel>()

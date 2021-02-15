@@ -16,19 +16,36 @@ namespace DnDSidekick.Data
         {
             context.Monsters.AddRange(MonstersInitialData.DataSeed);
 
-            //
+            context.Traits.AddRange(TraitsInitialData.DataSeed);
             context.Languages.AddRange(LanguagesInitialData.DataSeed);
             context.Environs.AddRange(EnvironsInitialData.DataSeed);
             context.Tags.AddRange(TagsInitialData.DataSeed);
             context.SaveChanges();
 
-            //
+            AddMonsterTraits();
             AddMonsterLanguages();
             AddMonsterEnvirons();
             AddMonsterTags();
         }
 
-        
+        private void AddMonsterTraits()
+        {
+            using (var context = new DataContext())
+            {
+                var monsters = context.Monsters;
+                var traits = context.Traits;
+                foreach (string[] substrings in SplitStrings(MonsterTraitsInitialData.DataSeed))
+                {
+                    int monsterId = Convert.ToInt32(substrings[0]);
+                    for (int i = 1; i < substrings.Length; i++)
+                    {
+                        string trait = substrings[i];
+                        monsters.Find(monsterId).Traits.Add(traits.Single(x => x.Name == trait));
+                    }
+                }
+                context.SaveChanges();
+            }
+        }
 
         private void AddMonsterLanguages()
         {

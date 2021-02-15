@@ -59,6 +59,7 @@
     <Compile Include="InitialData\MonstersInitialData.cs" />
     <Compile Include="InitialData\MonsterEnvironsInitialData.cs" />
     <Compile Include="InitialData\MonsterTagsInitialData.cs" />
+    <Compile Include="InitialData\MonsterTraitsInitialData.cs" />
     <Compile Include="InitialData\TagsInitialData.cs" />
     <Compile Include="InitialData\TraitsInitialData.cs" />
     <Compile Include="Interfaces\IShared.cs" />

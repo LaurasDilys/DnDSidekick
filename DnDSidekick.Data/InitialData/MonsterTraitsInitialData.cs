@@ -1,0 +1,87 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DnDSidekick.Data.InitialData
+{
+    public static class MonsterTraitsInitialData
+    {
+        public static readonly string[] DataSeed =
+        {
+            "1,Pack Tactics",
+            "2,Keen Smell",
+            "3,Echolocation,Keen Hearing",
+            "4,Keen Smell",
+            "5,Amphibious",
+            "7,Keen Sight",
+            "8,Amphibious,Standing Leap",
+            "9,Illumination",
+            "10,Charge,Sure-Footed",
+            "11,Keen Sight",
+            "12,Pack Tactics",
+            "13,Keen Hearing,Keen Smell,Pack Tactics",
+            "15,Hold Breath,Underwater Camouflage,Water Breathing",
+            "16,Flyby,Keen Hearing,Keen Sight",
+            "17,Blood Frenzy,Water Breathing",
+            "18,Keen Smell",
+            "19,Mimicry",
+            "21,Water Breathing",
+            "22,Spider Climb,Web Sense,Web Walker",
+            "23,Keen Sight,Keen Smell,Pack Tactics",
+            "24,Keen Hearing,Keen Smell",
+            "25,Keen Sight,Pack Tactics",
+            "27,Flyby",
+            "28,Amphibious",
+            "29,Keen Smell,Pack Tactics",
+            "30,Keen Hearing,Keen Smell",
+            "31,Keen Hearing,Keen Smell",
+            "32,Beast of Burden,Sure-Footed",
+            "37,Charge,Relentless",
+            "40,Charge",
+            "41,Keen Smell",
+            "42,Echolocation,Keen Hearing",
+            "44,Amphibious,Standing Leap",
+            "46,Flyby,Keen Hearing,Keen Sight",
+            "48,Spider Climb,Web Sense,Web Walker",
+            "49,Keen Smell,Pounce",
+            "50,Flyby",
+            "52,Keen Hearing,Keen Smell,Pack Tactics",
+            "54,Keen Smell",
+            "55,Hold Breath",
+            "56,Charge,Sure-Footed",
+            "57,Charge,Water Breathing",
+            "59,Pack Tactics,Water Breathing",
+            "60,Trampling Charge",
+            "61,Keen Smell",
+            "62,Keen Hearing,Keen Smell,Pack Tactics",
+            "63,Keen Sight",
+            "64,Rampage",
+            "65,Hold Breath,Underwater Camouflage,Water Breathing",
+            "66,Spider Climb,Web Sense,Web Walker",
+            "67,Amphibious,Standing Leap",
+            "68,Keen Sight,Keen Smell,Pack Tactics",
+            "69,Keen Smell,Pack Tactics,Pounce,Running Leap",
+            "70,Keen Smell,Pounce",
+            "71,Pounce",
+            "72,Charge,Relentless",
+            "74,Charge",
+            "75,Blood Frenzy,Water Breathing",
+            "76,Hold Breath",
+            "77,Keen Smell",
+            "78,Charge",
+            "79,Keen Smell,Pounce",
+            "82,Echolocation,Hold Breath,Keen Hearing",
+            "83,Trampling Charge",
+            "84,Hold Breath",
+            "85,Blood Frenzy,Water Breathing",
+            "86,Trampling Charge",
+            "87,Trampling Charge",
+            "90,Air Form",
+            "91,Earth Glide,Siege Monster",
+            "92,Fire Form,Illumination,Water Susceptibility",
+            "93,Water Form,Freeze"
+        };
+    }
+}
