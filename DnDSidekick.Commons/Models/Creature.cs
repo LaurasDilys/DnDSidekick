@@ -6,12 +6,8 @@ namespace DnDSidekick.Commons.Models
 {
     public abstract class Creature
     {
-        //public event EventHandler<string> Smth;
-
         public Creature(int id, string name)
         {
-            //Smth?.Invoke(this, "42");
-
             Id = id;
             Name = name;
 
@@ -41,9 +37,10 @@ namespace DnDSidekick.Commons.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public int ArmorClass { get; set; } = 0;
+        public int ArmorClass { get; set; }
         public int HitPoints { get; set; } = 1;
         public int ProficiencyBonus { get; set; } = 2;
+        public int Inspiration { get; set; }
 
 
         //Abilities

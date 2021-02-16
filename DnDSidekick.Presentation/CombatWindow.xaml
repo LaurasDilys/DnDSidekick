@@ -28,8 +28,8 @@
         <TextBox x:Name="box1" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden">Hidden1</TextBox>
         <Label x:Name="txt1" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalContentAlignment="Center">Visible1</Label>
         
-        <TextBox x:Name="box2" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden">Hidden2</TextBox>
-        <Label x:Name="txt2" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalContentAlignment="Center">Visible2</Label>
-
+        
+        <TextBlock x:Name="txt2" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center">Visible2</TextBlock>
+        <ComboBox x:Name="box2" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalContentAlignment="Center">Hidden2</ComboBox>
     </Grid>
 </Window>

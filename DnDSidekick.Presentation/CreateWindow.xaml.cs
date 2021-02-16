@@ -22,6 +22,9 @@ namespace DnDSidekick.Presentation
         public CreateWindow()
         {
             InitializeComponent();
+            Main.Content = new CharacterSheetPage();
         }
+
+
     }
 }

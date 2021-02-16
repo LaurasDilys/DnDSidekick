@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DnDSidekick.Business.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace DnDSidekick.Presentation
         public CharacterSheetPage()
         {
             InitializeComponent();
+            this.DataContext = Character;
         }
+
+        public Character Character { get; set; } = new Character(0, "Name");
     }
 }
