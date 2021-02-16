@@ -6,10 +6,9 @@ namespace DnDSidekick.Commons.Models
 {
     public abstract class Creature
     {
-        public Creature(int id, string name)
+        public Creature(int id)
         {
             Id = id;
-            Name = name;
 
             Strength.Skills.Add(Athletics);
 
@@ -40,7 +39,6 @@ namespace DnDSidekick.Commons.Models
         public int ArmorClass { get; set; }
         public int HitPoints { get; set; } = 1;
         public int ProficiencyBonus { get; set; } = 2;
-        public int Inspiration { get; set; }
 
 
         //Abilities

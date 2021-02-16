@@ -9,8 +9,12 @@ namespace DnDSidekick.Business.Models
 {
     public class Character : Creature
     {
-        public Character(int id, string name) : base(id, name)
+        public Character() : base(0) { }
+
+        public Character(int id) : base(id)
         {
         }
+
+        public int Inspiration { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace DnDSidekick.Commons.Models
     public class PassiveSkill
     {
         public int Modifier { get; private set; }
-        public int Advantage { get; set; } // (-1 – 1)
+        //public int Advantage { get; set; } // (-1 – 1)
     }
 }

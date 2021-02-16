@@ -27,6 +27,6 @@ namespace DnDSidekick.Presentation
             this.DataContext = Character;
         }
 
-        public Character Character { get; set; } = new Character(0, "Name");
+        public Character Character { get; set; } = new Character();
     }
 }
