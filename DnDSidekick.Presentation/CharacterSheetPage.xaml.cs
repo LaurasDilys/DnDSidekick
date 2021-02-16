@@ -24,9 +24,35 @@ namespace DnDSidekick.Presentation
         public CharacterSheetPage()
         {
             InitializeComponent();
-            this.DataContext = Character;
+            DataContext = Character;
+
+
+
+
+
+            
+
+
+
+
+
+            test.Click += Test_Click;
         }
 
         public Character Character { get; set; } = new Character();
+
+
+
+
+
+
+
+
+        
+
+        private void Test_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(Character.Strength.SavingThrow.Modifier.ToString());
+        }
     }
 }

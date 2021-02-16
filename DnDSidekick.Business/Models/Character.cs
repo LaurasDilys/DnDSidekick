@@ -1,25 +1,33 @@
 ﻿using DnDSidekick.Business.Interfaces;
+using DnDSidekick.Commons;
 using DnDSidekick.Commons.Models;
+using DnDSidekick.Commons.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DnDSidekick.Business.Models
 {
-    public class Character : ICreature
+    public class Character : INotifyPropertyChanged, ICreature
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public Character() : this(0) { }
 
         public Character(int id)
         {
             Id = id;
 
-            if (Id == 1)
-            {
-                ProficiencyBonus = 100;
-            }
+            BuildListsOfSkills();
+            BuildListOfAbilities();
+            SetInitialAbilityScoreValues();
+
+            if (Id == 0) Level = 1;
+            else BuildFromDataBase();
         }
 
         public int Id { get; set; }
@@ -28,10 +36,49 @@ namespace DnDSidekick.Business.Models
         public string Race { get; set; }
         public string Background { get; set; }
         public string Alignment { get; set; }
-        public int Level { get; set; } = 1;
-        public int ExperiencePoints { get; set; }
-        public int ProficiencyBonus { get; set; } = 2;
-        public int Inspiration { get; set; }
+
+
+        private int level;
+        public int Level
+        {
+            get { return level; }
+            set
+            {
+                level = value.Between(StaticValues.MinLevel, StaticValues.MaxLevel);
+                ProficiencyBonus = StaticValues.ProfBonusFromLvl[level];
+                int xp = StaticValues.XPfromLvl[level];
+                if (ExperiencePoints < xp) ExperiencePoints = xp;
+                else if (level != 20 && ExperiencePoints >= StaticValues.XPfromLvl[level + 1]) ExperiencePoints = xp;
+                OnPropertyChanged();
+            }
+        }
+
+        private int experiencePoints;
+        public int ExperiencePoints
+        {
+            get { return experiencePoints; }
+            set
+            {
+                if (value < 0) { experiencePoints = 0; }
+                else { experiencePoints = value; }
+                int lvl = experiencePoints.ConvertToLvl();
+                if (Level != lvl) Level = lvl;
+                OnPropertyChanged();
+            }
+        }
+
+        private int proficiencyBonus;
+        public int ProficiencyBonus
+        {
+            get { return proficiencyBonus; }
+            set
+            {
+                proficiencyBonus = value;
+                SendNewProficiencyBonusToSkillsAndSavingThrows();
+                OnPropertyChanged();
+            }
+        }
+        public string Inspiration { get; set; }
 
 
         public int ArmorClass { get; set; }
@@ -54,16 +101,17 @@ namespace DnDSidekick.Business.Models
         public int UsedHitDice { get; set; }
 
 
-        public bool DeathSaveSuccess1 { get; set; } = false;
-        public bool DeathSaveSuccess2 { get; set; } = false;
-        public bool DeathSaveSuccess3 { get; set; } = false;
-        public bool DeathSaveFailure1 { get; set; } = false;
-        public bool DeathSaveFailure2 { get; set; } = false;
-        public bool DeathSaveFailure3 { get; set; } = false;
+        public bool DeathSaveSuccess1 { get; set; }
+        public bool DeathSaveSuccess2 { get; set; }
+        public bool DeathSaveSuccess3 { get; set; }
+        public bool DeathSaveFailure1 { get; set; }
+        public bool DeathSaveFailure2 { get; set; }
+        public bool DeathSaveFailure3 { get; set; }
 
 
 
         //Abilities
+        public List<Ability> Abilities { get; set; } = new List<Ability>();
         public Ability Strength { get; set; } = new Ability();
         public Ability Dexterity { get; set; } = new Ability();
         public Ability Constitution { get; set; } = new Ability();
@@ -100,5 +148,72 @@ namespace DnDSidekick.Business.Models
         public Skill Intimidation { get; set; } = new Skill();
         public Skill Performance { get; set; } = new Skill();
         public Skill Persuasion { get; set; } = new Skill();
+
+
+        private void BuildFromDataBase()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BuildListsOfSkills()
+        {
+            Strength.Skills.Add(Athletics);
+
+            Dexterity.Skills.Add(Acrobatics);
+            Dexterity.Skills.Add(SleightOfHand);
+            Dexterity.Skills.Add(Stealth);
+
+            Intelligence.Skills.Add(Arcana);
+            Intelligence.Skills.Add(History);
+            Intelligence.Skills.Add(Investigation);
+            Intelligence.Skills.Add(Nature);
+            Intelligence.Skills.Add(Religion);
+
+            Wisdom.Skills.Add(AnimalHandling);
+            Wisdom.Skills.Add(Insight);
+            Wisdom.Skills.Add(Medicine);
+            Wisdom.Skills.Add(Perception);
+            Wisdom.Skills.Add(Survival);
+
+            Charisma.Skills.Add(Deception);
+            Charisma.Skills.Add(Intimidation);
+            Charisma.Skills.Add(Performance);
+            Charisma.Skills.Add(Persuasion);
+        }
+
+        private void BuildListOfAbilities()
+        {
+            Abilities.Add(Strength);
+            Abilities.Add(Dexterity);
+            Abilities.Add(Constitution);
+            Abilities.Add(Intelligence);
+            Abilities.Add(Wisdom);
+            Abilities.Add(Charisma);
+        }
+
+        private void SendNewProficiencyBonusToSkillsAndSavingThrows()
+        {
+            foreach (Ability ability in Abilities)
+            {
+                ability.SavingThrow.ProficiencyBonus = ProficiencyBonus;
+                foreach (Skill skill in ability.Skills)
+                {
+                    skill.ProficiencyBonus = ProficiencyBonus;
+                }
+            }
+        }
+
+        private void SetInitialAbilityScoreValues()
+        {
+            foreach (Ability ability in Abilities)
+            {
+                ability.Score = StaticValues.InitialAbilityScoreValue;
+            }
+        }
+
+        public void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }

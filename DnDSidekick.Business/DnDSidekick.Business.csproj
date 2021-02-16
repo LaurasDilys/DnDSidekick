@@ -42,7 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\ICreature.cs" />
+    <Compile Include="Models\Ability.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\SavingThrow.cs" />
+    <Compile Include="Models\Skill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

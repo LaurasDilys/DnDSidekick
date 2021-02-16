@@ -74,12 +74,12 @@
 
 
 
-        <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding ProficiencyBonus}" TextAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding ProficiencyBonus}" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center"/>
         <Label Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="3" >Proficiency Bonus</Label>
         <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding Inspiration}" Margin="0,0,0,10" TextAlignment="Center" VerticalContentAlignment="Center"/>
         <Label Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3" Margin="0,0,0,10">Inspiration</Label>
         <StackPanel Grid.Column="1" Grid.Row="7" Grid.RowSpan="8">
-            <TextBlock Text="{Binding Strength.Modifier}" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
+            <TextBox Text="{Binding Strength.Modifier}" IsReadOnly="True" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
             <TextBox Text="{Binding Strength.Score}" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
             <Label FontSize="10">Strength</Label>
         </StackPanel>
@@ -93,7 +93,7 @@
             <CheckBox Height="16"/>
         </StackPanel>
         <StackPanel Grid.Column="3" Grid.Row="7" Margin="0,5,0,0">
-            <TextBlock Height="16" Width="16" FontSize="10" TextAlignment="Center"/>
+            <TextBlock Text="{Binding Strength.SavingThrow.Modifier}" Height="16" Width="16" FontSize="10" TextAlignment="Center"/>
             <TextBlock Height="16" Width="16" FontSize="10" TextAlignment="Center"/>
             <TextBlock Height="16" Width="16" FontSize="10" TextAlignment="Center"/>
             <TextBlock Height="16" Width="16" FontSize="10" TextAlignment="Center"/>
@@ -101,13 +101,17 @@
             <TextBlock Height="16" Width="16" FontSize="10" TextAlignment="Center"/>
         </StackPanel>
         <StackPanel Grid.Column="4" Grid.Row="7" Margin="0,5,0,0">
-            <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Test</TextBlock>
+            <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">SavingThrow</TextBlock>
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Test</TextBlock>
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Test</TextBlock>
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Test</TextBlock>
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Test</TextBlock>
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Test</TextBlock>
         </StackPanel>
+
+
+        <Button x:Name="test" Grid.Column="8" Grid.Row="5">test</Button>
+        
 
     </Grid>
 </Page>
