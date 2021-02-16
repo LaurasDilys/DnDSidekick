@@ -15,6 +15,15 @@ namespace DnDSidekick.Business.Models
         {
         }
 
+        public string Class { get; set; }
+        public string Race { get; set; }
+        public string MyProperty { get; set; }
+        public string Background { get; set; }
+        public int Level { get; set; } = 1;
+        public int ExperiencePoints { get; set; }
         public int Inspiration { get; set; }
+
+
+
     }
 }
