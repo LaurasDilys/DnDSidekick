@@ -88,6 +88,58 @@ namespace DnDSidekick.Presentation.Adapters
             characterDb.PersuasionProficiency = characterProficiencies[i++];
 
             return 0;
+
+
+
+
+
+
+
+
+            ICharacter characterA = new Character();
+            ICharacterDataModel characterB = new CharacterDataModel();
+
+            characterA.Id = characterB.Id;
+            characterA.Name = characterB.Name;
+            characterA.Class = characterB.Class;
+            characterA.Race = characterB.Race;
+            characterA.Background = characterB.Background;
+            characterA.Alignment = characterB.Alignment;
+
+
+            characterA.Level = characterB.Level;
+            characterA.ExperiencePoints = characterB.ExperiencePoints;
+            characterA.ProficiencyBonus = characterB.ProficiencyBonus;
+            characterA.Inspiration = characterB.Inspiration;
+
+
+            characterA.ArmorClass = characterB.ArmorClass;
+            characterA.CurrentArmorClass = characterB.CurrentArmorClass;
+
+
+            characterA.HitPoints = characterB.HitPoints;
+            characterA.TemporaryHitPoints = characterB.TemporaryHitPoints;
+            characterA.CurrentHitPoints = characterB.CurrentHitPoints;
+
+
+            characterA.Initiative = characterB.Initiative;
+            characterA.CurrentInitiative = characterB.CurrentInitiative;
+
+
+            characterA.Speed = characterB.Speed;
+            characterA.CurrentSpeed = characterB.CurrentSpeed;
+
+
+            characterA.UsedHitDice = characterB.UsedHitDice;
+
+
+            characterA.DeathSaveSuccess1 = characterB.DeathSaveSuccess1;
+            characterA.DeathSaveSuccess2 = characterB.DeathSaveSuccess2;
+            characterA.DeathSaveSuccess3 = characterB.DeathSaveSuccess3;
+            characterA.DeathSaveFailure1 = characterB.DeathSaveFailure1;
+            characterA.DeathSaveFailure2 = characterB.DeathSaveFailure2;
+            characterA.DeathSaveFailure3 = characterB.DeathSaveFailure3;
+
         }
     }
 }

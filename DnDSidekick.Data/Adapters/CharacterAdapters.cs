@@ -13,6 +13,58 @@ namespace DnDSidekick.Data.Adapters
     {
         public static void TransformIntoDataModel(this ICharacter character, ICharacterDataModel characterDb)
         {
+            characterDb.Id = character.Id;
+            characterDb.Name = character.Name;
+            characterDb.Class = character.Class;
+            characterDb.Race = character.Race;
+            characterDb.Background = character.Background;
+            characterDb.Alignment = character.Alignment;
+
+
+            characterDb.Level = character.Level;
+            characterDb.ExperiencePoints = character.ExperiencePoints;
+            characterDb.ProficiencyBonus = character.ProficiencyBonus;
+            characterDb.Inspiration = character.Inspiration;
+
+
+            characterDb.ArmorClass = character.ArmorClass;
+            characterDb.CurrentArmorClass = character.CurrentArmorClass;
+
+
+            characterDb.HitPoints = character.HitPoints;
+            characterDb.TemporaryHitPoints = character.TemporaryHitPoints;
+            characterDb.CurrentHitPoints = character.CurrentHitPoints;
+
+
+            characterDb.Initiative = character.Initiative;
+            characterDb.CurrentInitiative = character.CurrentInitiative;
+
+
+            characterDb.Speed = character.Speed;
+            characterDb.CurrentSpeed = character.CurrentSpeed;
+
+
+            characterDb.UsedHitDice = character.UsedHitDice;
+
+
+            characterDb.DeathSaveSuccess1 = character.DeathSaveSuccess1;
+            characterDb.DeathSaveSuccess2 = character.DeathSaveSuccess2;
+            characterDb.DeathSaveSuccess3 = character.DeathSaveSuccess3;
+            characterDb.DeathSaveFailure1 = character.DeathSaveFailure1;
+            characterDb.DeathSaveFailure2 = character.DeathSaveFailure2;
+            characterDb.DeathSaveFailure3 = character.DeathSaveFailure3;
+
+
+            int i = 0;
+
+            characterDb.Strength = character.Abilities[i++].Score;
+            characterDb.Dexterity = character.Abilities[i++].Score;
+            characterDb.Constitution = character.Abilities[i++].Score;
+            characterDb.Intelligence = character.Abilities[i++].Score;
+            characterDb.Wisdom = character.Abilities[i++].Score;
+            characterDb.Charisma = character.Abilities[i].Score;
+
+
             List<bool> characterProficiencies = new List<bool>();
             foreach (Ability ability in character.Abilities)
             {
@@ -23,41 +75,101 @@ namespace DnDSidekick.Data.Adapters
                 }
             }
 
-            int i = 0;
+            int j = 0;
 
-            characterDb.StrengthSavingThrowProficiency = characterProficiencies[i++];
-            characterDb.AthleticsProficiency = characterProficiencies[i++];
+            characterDb.StrengthSavingThrowProficiency = characterProficiencies[j++];
+            characterDb.AthleticsProficiency = characterProficiencies[j++];
 
-            characterDb.DexteritySavingThrowProficiency = characterProficiencies[i++];
-            characterDb.AcrobaticsProficiency = characterProficiencies[i++];
-            characterDb.SleightOfHandProficiency = characterProficiencies[i++];
-            characterDb.StealthProficiency = characterProficiencies[i++];
+            characterDb.DexteritySavingThrowProficiency = characterProficiencies[j++];
+            characterDb.AcrobaticsProficiency = characterProficiencies[j++];
+            characterDb.SleightOfHandProficiency = characterProficiencies[j++];
+            characterDb.StealthProficiency = characterProficiencies[j++];
 
-            characterDb.ConstitutionSavingThrowProficiency = characterProficiencies[i++];
+            characterDb.ConstitutionSavingThrowProficiency = characterProficiencies[j++];
 
-            characterDb.IntelligenceSavingThrowProficiency = characterProficiencies[i++];
-            characterDb.ArcanaProficiency = characterProficiencies[i++];
-            characterDb.HistoryProficiency = characterProficiencies[i++];
-            characterDb.InvestigationProficiency = characterProficiencies[i++];
-            characterDb.NatureProficiency = characterProficiencies[i++];
-            characterDb.ReligionProficiency = characterProficiencies[i++];
+            characterDb.IntelligenceSavingThrowProficiency = characterProficiencies[j++];
+            characterDb.ArcanaProficiency = characterProficiencies[j++];
+            characterDb.HistoryProficiency = characterProficiencies[j++];
+            characterDb.InvestigationProficiency = characterProficiencies[j++];
+            characterDb.NatureProficiency = characterProficiencies[j++];
+            characterDb.ReligionProficiency = characterProficiencies[j++];
 
-            characterDb.WisdomSavingThrowProficiency = characterProficiencies[i++];
-            characterDb.AnimalHandlingProficiency = characterProficiencies[i++];
-            characterDb.InsightProficiency = characterProficiencies[i++];
-            characterDb.MedicineProficiency = characterProficiencies[i++];
-            characterDb.PerceptionProficiency = characterProficiencies[i++];
-            characterDb.SurvivalProficiency = characterProficiencies[i++];
+            characterDb.WisdomSavingThrowProficiency = characterProficiencies[j++];
+            characterDb.AnimalHandlingProficiency = characterProficiencies[j++];
+            characterDb.InsightProficiency = characterProficiencies[j++];
+            characterDb.MedicineProficiency = characterProficiencies[j++];
+            characterDb.PerceptionProficiency = characterProficiencies[j++];
+            characterDb.SurvivalProficiency = characterProficiencies[j++];
 
-            characterDb.CharismaSavingThrowProficiency = characterProficiencies[i++];
-            characterDb.DeceptionProficiency = characterProficiencies[i++];
-            characterDb.IntimidationProficiency = characterProficiencies[i++];
-            characterDb.PerformanceProficiency = characterProficiencies[i++];
-            characterDb.PersuasionProficiency = characterProficiencies[i++];
+            characterDb.CharismaSavingThrowProficiency = characterProficiencies[j++];
+            characterDb.DeceptionProficiency = characterProficiencies[j++];
+            characterDb.IntimidationProficiency = characterProficiencies[j++];
+            characterDb.PerformanceProficiency = characterProficiencies[j++];
+            characterDb.PersuasionProficiency = characterProficiencies[j];
         }
 
         public static void TransformIntoFullCharacter(this ICharacterDataModel characterDb, ICharacter character)
         {
+            character.Id = characterDb.Id;
+            character.Name = characterDb.Name;
+            character.Class = characterDb.Class;
+            character.Race = characterDb.Race;
+            character.Background = characterDb.Background;
+            character.Alignment = characterDb.Alignment;
+
+
+            character.Level = characterDb.Level;
+            character.ExperiencePoints = characterDb.ExperiencePoints;
+            character.ProficiencyBonus = characterDb.ProficiencyBonus;
+            character.Inspiration = characterDb.Inspiration;
+
+
+            character.ArmorClass = characterDb.ArmorClass;
+            character.CurrentArmorClass = characterDb.CurrentArmorClass;
+
+
+            character.HitPoints = characterDb.HitPoints;
+            character.TemporaryHitPoints = characterDb.TemporaryHitPoints;
+            character.CurrentHitPoints = characterDb.CurrentHitPoints;
+
+
+            character.Initiative = characterDb.Initiative;
+            character.CurrentInitiative = characterDb.CurrentInitiative;
+
+
+            character.Speed = characterDb.Speed;
+            character.CurrentSpeed = characterDb.CurrentSpeed;
+
+
+            character.UsedHitDice = characterDb.UsedHitDice;
+
+
+            character.DeathSaveSuccess1 = characterDb.DeathSaveSuccess1;
+            character.DeathSaveSuccess2 = characterDb.DeathSaveSuccess2;
+            character.DeathSaveSuccess3 = characterDb.DeathSaveSuccess3;
+            character.DeathSaveFailure1 = characterDb.DeathSaveFailure1;
+            character.DeathSaveFailure2 = characterDb.DeathSaveFailure2;
+            character.DeathSaveFailure3 = characterDb.DeathSaveFailure3;
+
+
+            List<int> characterDbAbilityScores = new List<int>()
+            {
+                characterDb.Strength,
+                characterDb.Dexterity,
+                characterDb.Constitution,
+                characterDb.Intelligence,
+                characterDb.Wisdom,
+                characterDb.Charisma,
+            };
+
+            int i = 0;
+
+            foreach (Ability ability in character.Abilities)
+            {
+                ability.Score = characterDbAbilityScores[i++];
+            }
+
+
             List<bool> characterDbProficiencies = new List<bool>()
             {
                 characterDb.StrengthSavingThrowProficiency,
@@ -91,14 +203,14 @@ namespace DnDSidekick.Data.Adapters
                 characterDb.PersuasionProficiency,
             };
 
-            int i = 0;
+            int j = 0;
 
             foreach (Ability ability in character.Abilities)
             {
-                ability.SavingThrow.Proficiency = characterDbProficiencies[i++];
+                ability.SavingThrow.Proficiency = characterDbProficiencies[j++];
                 foreach (Skill skill in ability.Skills)
                 {
-                    skill.Proficiency = characterDbProficiencies[i++];
+                    skill.Proficiency = characterDbProficiencies[j++];
                 }
             }
         }

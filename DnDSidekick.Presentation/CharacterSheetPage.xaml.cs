@@ -37,7 +37,7 @@ namespace DnDSidekick.Presentation
 
         private void Test_Click(object sender, RoutedEventArgs e)
         {
-            //
+            MessageBox.Show(Character.Id.ToString());
         }
 
 
@@ -55,15 +55,17 @@ namespace DnDSidekick.Presentation
                 return;
             }
 
+            int currentId = Character.Id;
             ICharacter characterBeforeAssumedChanges;
-            if (Character.Id == 0) characterBeforeAssumedChanges = new Character();
+            if (currentId == 0) characterBeforeAssumedChanges = new Character();
             else characterBeforeAssumedChanges = ManageDb.GetCharacterFromDataBase(Character.Id);
 
             if (Character.IsIdenticalTo(characterBeforeAssumedChanges)) { MessageBox.Show("No changes have been made to this character."); }
             else
             {
+                if (currentId == 0) MessageBox.Show("Character has been saved.");
+                else MessageBox.Show("Changes have been saved.");
                 Character.Id = Character.ToDataBase();
-                MessageBox.Show("Character has been saved.");
             }
         }
 
