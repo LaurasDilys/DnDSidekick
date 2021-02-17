@@ -11,7 +11,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnCreate" Grid.Row="0" Margin="10 10 10 10" FontSize="25">Create Character</Button>
+        <Button x:Name="btnCreateOrEdit" Grid.Row="0" Margin="10 10 10 10" FontSize="25">Create or Edit Character</Button>
         <Button x:Name="btnCombat" Grid.Row="1" Margin="10 10 10 10" FontSize="25">Begin Combat</Button>
     </Grid>
 </Window>

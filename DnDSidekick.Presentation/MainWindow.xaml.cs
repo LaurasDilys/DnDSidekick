@@ -28,6 +28,12 @@ namespace DnDSidekick.Presentation
             ManageDb.GenerateInitialData();
             this.Show();
 
+            //Character sheet
+            //
+            //NumberValidation()
+            //Allow input of only certain length
+            //
+
             //Character sheet / Creature sheet
             //Changes can be made on the spot
             //For each change made, numbers between brackets are highlighted in yellow (see "Example ::: " bellow)
@@ -59,10 +65,10 @@ namespace DnDSidekick.Presentation
             //[-][0][+]
 
             btnCombat.Click += BtnCombat_Click;
-            btnCreate.Click += BtnCreate_Click;
+            btnCreateOrEdit.Click += BtnCreateOrEdit_Click;
         }
 
-        private void BtnCreate_Click(object sender, RoutedEventArgs e)
+        private void BtnCreateOrEdit_Click(object sender, RoutedEventArgs e)
         {
             CreateWindow createWindow = new CreateWindow();
             createWindow.Show();

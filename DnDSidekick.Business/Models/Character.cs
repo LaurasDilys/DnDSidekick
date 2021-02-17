@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DnDSidekick.Business.Models
 {
-    public class Character : INotifyPropertyChanged, ICreature
+    public class Character : ICharacter, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -31,11 +31,11 @@ namespace DnDSidekick.Business.Models
         }
 
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Class { get; set; }
-        public string Race { get; set; }
-        public string Background { get; set; }
-        public string Alignment { get; set; }
+        public string Name { get; set; } = "";
+        public string Class { get; set; } = "";
+        public string Race { get; set; } = "";
+        public string Background { get; set; } = "";
+        public string Alignment { get; set; } = "";
 
 
         private int level;
@@ -78,11 +78,11 @@ namespace DnDSidekick.Business.Models
                 OnPropertyChanged();
             }
         }
-        public string Inspiration { get; set; }
+        public string Inspiration { get; set; } = "";
 
 
         public int ArmorClass { get; set; }
-        public int TemporaryArmorClass { get; set; }
+        public int CurrentArmorClass { get; set; }
 
 
         public int HitPoints { get; set; } = 1;

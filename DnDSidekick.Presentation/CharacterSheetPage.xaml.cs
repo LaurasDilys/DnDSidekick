@@ -1,7 +1,9 @@
 ﻿using DnDSidekick.Business.Models;
+using DnDSidekick.Business.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -29,37 +31,27 @@ namespace DnDSidekick.Presentation
 
 
 
-
-
-            
-
-
-
-
-
             test.Click += Test_Click;
         }
 
         public Character Character { get; set; } = new Character();
 
+        private void NumberValidation(object sender, TextCompositionEventArgs e)
+        {
+            //Regex regex = new Regex("^[-+]?[0-9]+$");
+            //e.Handled = regex.IsMatch(e.Text);
+        }
 
 
-
-
-
-
-
-        
 
         private void Test_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Character.Strength.SavingThrow.Modifier.ToString());
-        }
 
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("^[-+]?[0-9]+$");
-            e.Handled = regex.IsMatch(e.Text);
+            if (Character.ChangesHaveBeenMade())
+            {
+                MessageBox.Show("Changes have been made!");
+            }
+            else MessageBox.Show("No changes");
         }
     }
 }
