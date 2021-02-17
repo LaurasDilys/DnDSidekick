@@ -1,4 +1,5 @@
-﻿using DnDSidekick.Data.Models;
+﻿using DnDSidekick.Business.Interfaces;
+using DnDSidekick.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,6 +24,7 @@ namespace DnDSidekick.Data
         public DbSet<Language> Languages { get; set; }
         public DbSet<Environ> Environs { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        //public DbSet<ICharacter> Characters { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -75,6 +77,12 @@ namespace DnDSidekick.Data
             modelBuilder.Entity<MonsterDataModel>()
                         .HasOptional<Tag>(m => m.Tag)
                         .WithMany(t => t.Monsters);
+
+
+
+            //modelBuilder.Entity<ICharacter>()
+            //            .ToTable("Characters")
+            //            .HasKey(k => k.Id);
 
 
 

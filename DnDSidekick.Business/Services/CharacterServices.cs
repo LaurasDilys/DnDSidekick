@@ -20,7 +20,7 @@ namespace DnDSidekick.Business.Services
             objectType = characterA.GetType();
 
             foreach (PropertyInfo propertyInfo in objectType.GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                                                            .Where(p => p.CanRead && (p.PropertyType == typeof(int) || p.PropertyType == typeof(string))))
+                .Where(p => p.CanRead && (p.PropertyType == typeof(int) || p.PropertyType == typeof(string) || p.PropertyType == typeof(bool))))
             {
                 var valueA = propertyInfo.GetValue(characterA);
                 var valueB = propertyInfo.GetValue(characterB);

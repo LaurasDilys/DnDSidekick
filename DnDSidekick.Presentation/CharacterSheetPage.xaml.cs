@@ -40,7 +40,7 @@ namespace DnDSidekick.Presentation
         {
             if (Character.Name == "") { MessageBox.Show("Please assign a name to this character."); }
             else if (!Character.ChangesHaveBeenMade()) { MessageBox.Show("No changes have been made to this character."); }
-            else ManageDb.Save(Character);
+            else Character.ToDataBase();
         }
 
 

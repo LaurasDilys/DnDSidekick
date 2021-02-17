@@ -71,6 +71,7 @@
     <Compile Include="Interfaces\IShared.cs" />
     <Compile Include="ManageDb.cs" />
     <Compile Include="Models\Alignment.cs" />
+    <Compile Include="Models\CharacterDataModel.cs" />
     <Compile Include="Models\Condition.cs" />
     <Compile Include="Models\DamageType.cs" />
     <Compile Include="Models\Environ.cs" />

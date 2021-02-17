@@ -19,9 +19,14 @@ namespace DnDSidekick.Data
             }
         }
 
-        public static void Save(ICharacter character)
+        public static void ToDataBase(this ICharacter character)
         {
-
+            using (var context = new DataContext())
+            {
+                int id = character.Id;
+                //
+                context.SaveChanges();
+            }
         }
     }
 }

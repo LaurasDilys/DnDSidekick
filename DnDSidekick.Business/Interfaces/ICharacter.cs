@@ -40,6 +40,17 @@ namespace DnDSidekick.Business.Interfaces
         int CurrentSpeed { get; set; }
 
 
+        int UsedHitDice { get; set; }
+
+
+        bool DeathSaveSuccess1 { get; set; }
+        bool DeathSaveSuccess2 { get; set; }
+        bool DeathSaveSuccess3 { get; set; }
+        bool DeathSaveFailure1 { get; set; }
+        bool DeathSaveFailure2 { get; set; }
+        bool DeathSaveFailure3 { get; set; }
+
+
         //Abilities
         List<Ability> Abilities { get; set; }
         Ability Strength { get; set; }
