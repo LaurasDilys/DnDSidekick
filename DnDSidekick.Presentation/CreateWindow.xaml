@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="D&amp;D Sidekick" Height="450" Width="800">
     <Grid>
-        <Frame x:Name="Main"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="btnSave" Grid.Column="7" Grid.Row="1" Width="50" VerticalAlignment="Top">Save</Button>
+        <Frame x:Name="CharacterSheet" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7"/>
     </Grid>
 </Window>

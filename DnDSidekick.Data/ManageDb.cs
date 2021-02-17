@@ -1,4 +1,5 @@
-﻿using DnDSidekick.Data.Interfaces;
+﻿using DnDSidekick.Business.Interfaces;
+using DnDSidekick.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,6 +17,11 @@ namespace DnDSidekick.Data
             {
                 var first = context.Monsters.First();
             }
+        }
+
+        public static void Save(ICharacter character)
+        {
+
         }
     }
 }

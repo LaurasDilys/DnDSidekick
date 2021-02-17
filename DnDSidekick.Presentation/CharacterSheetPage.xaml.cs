@@ -1,9 +1,9 @@
 ﻿using DnDSidekick.Business.Models;
 using DnDSidekick.Business.Services;
+using DnDSidekick.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -31,27 +31,23 @@ namespace DnDSidekick.Presentation
 
 
 
-            test.Click += Test_Click;
         }
 
         public Character Character { get; set; } = new Character();
+
+
+        public void SaveCharacter()
+        {
+            if (Character.Name == "") { MessageBox.Show("Please assign a name to this character."); }
+            else if (!Character.ChangesHaveBeenMade()) { MessageBox.Show("No changes have been made to this character."); }
+            else ManageDb.Save(Character);
+        }
+
 
         private void NumberValidation(object sender, TextCompositionEventArgs e)
         {
             //Regex regex = new Regex("^[-+]?[0-9]+$");
             //e.Handled = regex.IsMatch(e.Text);
-        }
-
-
-
-        private void Test_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (Character.ChangesHaveBeenMade())
-            {
-                MessageBox.Show("Changes have been made!");
-            }
-            else MessageBox.Show("No changes");
         }
     }
 }

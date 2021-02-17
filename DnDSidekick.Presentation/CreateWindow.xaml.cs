@@ -22,9 +22,15 @@ namespace DnDSidekick.Presentation
         public CreateWindow()
         {
             InitializeComponent();
-            Main.Content = new CharacterSheetPage();
+            CharacterSheet.Content = characterSheetPage;
+            btnSave.Click += BtnSave_Click;
         }
 
+        private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
 
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            characterSheetPage.SaveCharacter();
+        }
     }
 }
