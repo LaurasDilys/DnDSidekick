@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DnDSidekick.Data.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DnDSidekick.Data.Models
 {
-    public class CharacterDataModel
+    public class CharacterDataModel : ICharacterDataModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -51,6 +52,34 @@ namespace DnDSidekick.Data.Models
         public int Charisma { get; set; }
 
 
-
+        public bool StrengthSavingThrowProficiency { get; set; }
+        public bool AthleticsProficiency { get; set; }
+        
+        public bool DexteritySavingThrowProficiency { get; set; }
+        public bool AcrobaticsProficiency { get; set; }
+        public bool SleightOfHandProficiency { get; set; }
+        public bool StealthProficiency { get; set; }
+        
+        public bool ConstitutionSavingThrowProficiency { get; set; }
+        
+        public bool IntelligenceSavingThrowProficiency { get; set; }
+        public bool ArcanaProficiency { get; set; }
+        public bool HistoryProficiency { get; set; }
+        public bool InvestigationProficiency { get; set; }
+        public bool NatureProficiency { get; set; }
+        public bool ReligionProficiency { get; set; }
+        
+        public bool WisdomSavingThrowProficiency { get; set; }
+        public bool AnimalHandlingProficiency { get; set; }
+        public bool InsightProficiency { get; set; }
+        public bool MedicineProficiency { get; set; }
+        public bool PerceptionProficiency { get; set; }
+        public bool SurvivalProficiency { get; set; }
+        
+        public bool CharismaSavingThrowProficiency { get; set; }
+        public bool DeceptionProficiency { get; set; }
+        public bool IntimidationProficiency { get; set; }
+        public bool PerformanceProficiency { get; set; }
+        public bool PersuasionProficiency { get; set; }
     }
 }

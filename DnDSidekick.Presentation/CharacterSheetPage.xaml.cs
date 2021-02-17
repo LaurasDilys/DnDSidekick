@@ -1,6 +1,8 @@
-﻿using DnDSidekick.Business.Models;
+﻿using DnDSidekick.Business.Interfaces;
+using DnDSidekick.Business.Models;
 using DnDSidekick.Business.Services;
 using DnDSidekick.Data;
+using DnDSidekick.Presentation.Adapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,17 +32,39 @@ namespace DnDSidekick.Presentation
             DataContext = Character;
 
 
-
+            test.Click += Test_Click;
         }
+
+        private void Test_Click(object sender, RoutedEventArgs e)
+        {
+            //
+        }
+
+
+
+
 
         public Character Character { get; set; } = new Character();
 
 
         public void SaveCharacter()
         {
-            if (Character.Name == "") { MessageBox.Show("Please assign a name to this character."); }
-            else if (!Character.ChangesHaveBeenMade()) { MessageBox.Show("No changes have been made to this character."); }
-            else Character.ToDataBase();
+            if (Character.Name == "")
+            {
+                MessageBox.Show("Please assign a name to this character.");
+                return;
+            }
+
+            ICharacter characterBeforeAssumedChanges;
+            if (Character.Id == 0) characterBeforeAssumedChanges = new Character();
+            else characterBeforeAssumedChanges = ManageDb.GetCharacterFromDataBase(Character.Id);
+
+            if (Character.IsIdenticalTo(characterBeforeAssumedChanges)) { MessageBox.Show("No changes have been made to this character."); }
+            else
+            {
+                Character.Id = Character.ToDataBase();
+                MessageBox.Show("Character has been saved.");
+            }
         }
 
 

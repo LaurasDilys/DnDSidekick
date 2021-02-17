@@ -16,18 +16,14 @@ namespace DnDSidekick.Business.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Character() : this(0) { }
-
-        public Character(int id)
+        public Character()
         {
-            Id = id;
+            Id = 0;
+            Level = 1;
 
             BuildListsOfSkills();
             BuildListOfAbilities();
             SetInitialAbilityScoreValues();
-
-            if (Id == 0) Level = 1;
-            else BuildFromDataBase();
         }
 
         public int Id { get; set; }
@@ -149,11 +145,6 @@ namespace DnDSidekick.Business.Models
         public Skill Performance { get; set; } = new Skill();
         public Skill Persuasion { get; set; } = new Skill();
 
-
-        private void BuildFromDataBase()
-        {
-            throw new NotImplementedException();
-        }
 
         private void BuildListsOfSkills()
         {

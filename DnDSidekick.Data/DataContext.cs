@@ -24,7 +24,7 @@ namespace DnDSidekick.Data
         public DbSet<Language> Languages { get; set; }
         public DbSet<Environ> Environs { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        //public DbSet<ICharacter> Characters { get; set; }
+        public DbSet<CharacterDataModel> Characters { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -80,9 +80,9 @@ namespace DnDSidekick.Data
 
 
 
-            //modelBuilder.Entity<ICharacter>()
-            //            .ToTable("Characters")
-            //            .HasKey(k => k.Id);
+            modelBuilder.Entity<CharacterDataModel>()
+                        .ToTable("Characters")
+                        .HasKey(k => k.Id);
 
 
 

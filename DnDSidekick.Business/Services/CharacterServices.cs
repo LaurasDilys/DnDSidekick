@@ -11,11 +11,8 @@ namespace DnDSidekick.Business.Services
 {
     public static class CharacterServices
     {
-        public static bool ChangesHaveBeenMade(this ICharacter character)
+        public static bool IsIdenticalTo(this ICharacter characterA, ICharacter characterB)
         {
-            ICharacter characterA = character;
-            ICharacter characterB = new Character(characterA.Id);
-
             Type objectType;
             objectType = characterA.GetType();
 
@@ -24,7 +21,7 @@ namespace DnDSidekick.Business.Services
             {
                 var valueA = propertyInfo.GetValue(characterA);
                 var valueB = propertyInfo.GetValue(characterB);
-                if (!object.Equals(valueA, valueB)) return true;
+                if (!object.Equals(valueA, valueB)) return false;
             }
 
             List<int> characterAabilityScores = characterA.GetAbilityScoresForComparison();
@@ -33,7 +30,7 @@ namespace DnDSidekick.Business.Services
             {
                 int valueA = characterAabilityScores[i];
                 int valueB = characterBabilityScores[i];
-                if (!object.Equals(valueA, valueB)) return true;
+                if (!object.Equals(valueA, valueB)) return false;
             }
 
             List<bool> characterAproficiencies = characterA.GetProficienciesForComparison();
@@ -42,10 +39,10 @@ namespace DnDSidekick.Business.Services
             {
                 bool valueA = characterAproficiencies[i];
                 bool valueB = characterBproficiencies[i];
-                if (!object.Equals(valueA, valueB)) return true;
+                if (!object.Equals(valueA, valueB)) return false;
             }
 
-            return false;
+            return true;
         }
 
         public static List<int> GetAbilityScoresForComparison(this ICharacter character)

@@ -1,5 +1,8 @@
 ﻿using DnDSidekick.Business.Interfaces;
+using DnDSidekick.Business.Models;
+using DnDSidekick.Data.Adapters;
 using DnDSidekick.Data.Interfaces;
+using DnDSidekick.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,14 +22,40 @@ namespace DnDSidekick.Data
             }
         }
 
-        public static void ToDataBase(this ICharacter character)
+        public static Character GetCharacterFromDataBase(int id)
         {
             using (var context = new DataContext())
             {
-                int id = character.Id;
-                //
-                context.SaveChanges();
+                Character character = new Character();
+                ICharacterDataModel characterDb = context.Characters.Find(id);
+
+                characterDb.TransformIntoFullCharacter(character);
+
+                return character;
             }
         }
+
+        public static int ToDataBase(this ICharacter character)
+        {
+            using (var context = new DataContext())
+            {
+                ICharacterDataModel characterDb;
+                int id = character.Id;
+                if (id == 0) characterDb = new CharacterDataModel();
+                else characterDb = context.Characters.Find(id);
+
+                character.TransformIntoDataModel(characterDb); // Gali būti, kad tokiu būdu nepavyks išsaugoti pakeitimų...
+
+                if (id == 0)
+                {
+                    id = context.Characters.Count() + 1;
+                    context.Characters.Add((CharacterDataModel)characterDb);
+                }
+
+                context.SaveChanges();
+                return id;
+            }
+        }
+
     }
 }
