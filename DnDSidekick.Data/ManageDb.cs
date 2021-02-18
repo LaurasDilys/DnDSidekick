@@ -57,7 +57,7 @@ namespace DnDSidekick.Data
             }
         }
 
-        public static List<CharacterDataModel> GetAllCharactersReversed() //this List<CharacterDataModel> characters
+        public static List<CharacterDataModel> GetAllCharactersReversed()
         {
             using (var context = new DataContext())
             {
@@ -66,5 +66,15 @@ namespace DnDSidekick.Data
                 return newCharacters;
             }
         }
+
+        //public static List<MonsterDataModel> GetAllMonsters()
+        //{
+        //    using (var context = new DataContext())
+        //    {
+        //        List<CharacterDataModel> newCharacters = context.Characters.ToList();
+        //        newCharacters.Reverse();
+        //        return newCharacters;
+        //    }
+        //}
     }
 }
