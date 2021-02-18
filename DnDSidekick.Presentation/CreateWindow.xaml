@@ -30,7 +30,7 @@
 
             <ScrollViewer VerticalScrollBarVisibility="Auto"/>
 
-            <ComboBox x:Name="comboBoxCharactersList" Grid.Column="1" Grid.Row="1" Width="240" Margin="7,0,0,0">
+            <ComboBox x:Name="comboBoxCharactersList" ItemsSource="{Binding Path=AllCharacters}" Grid.Column="1" Grid.Row="1" Width="240" Margin="7,0,0,0">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

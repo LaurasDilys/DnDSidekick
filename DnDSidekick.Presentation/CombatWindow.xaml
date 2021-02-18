@@ -7,29 +7,6 @@
         mc:Ignorable="d"
         Title="D&amp;D Sidekick" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
-        </Grid.RowDefinitions>
-
-        <ToggleButton x:Name="btnClickMe" Grid.Column="2" Grid.Row="1">Make changes</ToggleButton>
-
-        <TextBox x:Name="box1" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden">Hidden1</TextBox>
-        <Label x:Name="txt1" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalContentAlignment="Center">Visible1</Label>
         
-        
-        <TextBlock x:Name="txt2" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center">Visible2</TextBlock>
-        <ComboBox x:Name="box2" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalContentAlignment="Center">Hidden2</ComboBox>
     </Grid>
 </Window>

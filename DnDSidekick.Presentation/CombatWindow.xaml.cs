@@ -23,40 +23,10 @@ namespace DnDSidekick.Presentation
         public CombatWindow()
         {
             InitializeComponent();
-            btnClickMe.Checked += BtnClickMe_Checked;
-            btnClickMe.Unchecked += BtnClickMe_Unchecked;
+            
 
-            box2.Visibility = Visibility.Hidden;
-            txt2.MouseEnter += Txt2_MouseEnter;
-            box2.MouseLeave += Box2_MouseLeave;
         }
 
-        private void Box2_MouseLeave(object sender, MouseEventArgs e)
-        {
-            box2.Visibility = Visibility.Hidden;
-            txt2.Visibility = Visibility.Visible;
-        }
-
-        private void Txt2_MouseEnter(object sender, MouseEventArgs e)
-        {
-            box2.Visibility = Visibility.Visible;
-            txt2.Visibility = Visibility.Hidden;
-        }
-
-        private void BtnClickMe_Unchecked(object sender, RoutedEventArgs e)
-        {
-            var button = (ToggleButton)sender;
-            button.Content = "Make changes";
-            box1.Visibility = Visibility.Hidden;
-            txt1.Visibility = Visibility.Visible;
-        }
-
-        private void BtnClickMe_Checked(object sender, RoutedEventArgs e)
-        {
-            var button = (ToggleButton)sender;
-            button.Content = "Save changes";
-            box1.Visibility = Visibility.Visible;
-            txt1.Visibility = Visibility.Hidden;
-        }
+        
     }
 }

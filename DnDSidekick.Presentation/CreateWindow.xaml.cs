@@ -3,7 +3,9 @@ using DnDSidekick.Data;
 using DnDSidekick.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,11 +24,15 @@ namespace DnDSidekick.Presentation
     /// </summary>
     public partial class CreateWindow : Window
     {
+        public event PropertyChangedEventHandler ListOfCharactersChanged;
+
         public CreateWindow()
         {
             InitializeComponent();
+            AllCharacters = ManageDb.GetAllCharactersReversed();
+            DataContext = this;
             CharacterSheet.Content = characterSheetPage;
-            comboBoxCharactersList.ItemsSource = allCharacters;
+            //comboBoxCharactersList.ItemsSource = AllCharacters;
             //if (allCharacters.Count > 0) characterSheetPage.EditSelected(ManageDb.LastOpenedCharacter());
 
             btnSave.Click += BtnSave_Click;
@@ -35,7 +41,17 @@ namespace DnDSidekick.Presentation
         }
 
         private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
-        public List<CharacterDataModel> allCharacters { get; set; } = ManageDb.GetAllCharactersReversed();
+
+        private List<CharacterDataModel> allCharacters;
+        public List<CharacterDataModel> AllCharacters
+        {
+            get { return allCharacters; }
+            set
+            {
+                allCharacters = value;
+                OnPropertyChanged();
+            }
+        }
 
         private void BtnEditSelected_Click(object sender, RoutedEventArgs e)
         {
@@ -46,22 +62,27 @@ namespace DnDSidekick.Presentation
                 int selectedCharacterId = selectedCharacters.Id;
                 characterSheetPage.EditSelected(selectedCharacterId);
             }
-            allCharacters = ManageDb.GetAllCharactersReversed();
-            comboBoxCharactersList.ItemsSource = allCharacters;
+            AllCharacters = ManageDb.GetAllCharactersReversed();
+            //comboBoxCharactersList.ItemsSource = AllCharacters;
         }
 
         private void BtnNewCharacter_Click(object sender, RoutedEventArgs e)
         {
             characterSheetPage.NewCharacter();
-            allCharacters = ManageDb.GetAllCharactersReversed();
-            comboBoxCharactersList.ItemsSource = allCharacters;
+            AllCharacters = ManageDb.GetAllCharactersReversed();
+            //comboBoxCharactersList.ItemsSource = AllCharacters;
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             characterSheetPage.SaveCharacter();
-            allCharacters = ManageDb.GetAllCharactersReversed();
-            comboBoxCharactersList.ItemsSource = allCharacters;
+            AllCharacters = ManageDb.GetAllCharactersReversed();
+            //comboBoxCharactersList.ItemsSource = AllCharacters;
+        }
+
+        public void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            ListOfCharactersChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
