@@ -1,4 +1,5 @@
 ﻿using DnDSidekick.Commons.Models;
+using DnDSidekick.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DnDSidekick.Data.Models
 {
-    public class MonsterDataModel
+    public class MonsterDataModel : IMonsterDataModel
     {
         public int MonsterId { get; set; }
         public string Name { get; set; }
@@ -72,11 +73,5 @@ namespace DnDSidekick.Data.Models
         public bool CanSpeak { get; set; }
         public virtual ICollection<Environ> Environs { get; set; }
         public Tag Tag { get; set; }
-
-        //public virtual ICollection<DamageType> DamageVulnerabilities { get; set; }
-        //public virtual ICollection<DamageType> DamageResistances { get; set; }
-        //public virtual ICollection<DamageType> DamageImmunities { get; set; }
-        //public virtual ICollection<Condition> ConditionImmunities { get; set; }
-
     }
 }

@@ -67,14 +67,14 @@ namespace DnDSidekick.Data
             }
         }
 
-        //public static List<MonsterDataModel> GetAllMonsters()
-        //{
-        //    using (var context = new DataContext())
-        //    {
-        //        List<CharacterDataModel> newCharacters = context.Characters.ToList();
-        //        newCharacters.Reverse();
-        //        return newCharacters;
-        //    }
-        //}
+        public static List<MonsterDataModel> GetAllMonstersExcludingCollections()
+        {
+            using (var context = new DataContext())
+            {
+                List<MonsterDataModel> monsters = context.Monsters
+                    .Include(s => s.Size).Include(t => t.Type).Include(a => a.Alignment).Include(tg => tg.Tag).ToList();
+                return monsters;
+            }
+        }
     }
 }

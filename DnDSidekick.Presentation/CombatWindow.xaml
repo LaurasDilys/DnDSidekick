@@ -52,6 +52,8 @@
 
             <Frame x:Name="CharacterSheet" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7"/>-->
 
+            <Frame x:Name="Main" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7"/>
+
         </Grid>
     </ScrollViewer>
 </Window>

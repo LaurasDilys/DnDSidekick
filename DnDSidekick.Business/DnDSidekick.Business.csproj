@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="Interfaces\ICharacter.cs" />
     <Compile Include="Interfaces\ICreature.cs" />
+    <Compile Include="Interfaces\IMonsterListModel.cs" />
     <Compile Include="Models\Ability.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\MonsterListModel.cs" />
     <Compile Include="Models\SavingThrow.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
