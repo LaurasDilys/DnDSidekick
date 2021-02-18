@@ -15,9 +15,9 @@ namespace DnDSidekick.Business.Models
         public string SizeTypeAndAlignment { get; set; }
         public int ArmorClass { get; set; }
         public int HitPoints { get; set; }
-         
+
         public string Speed { get; set; }
-         
+
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Constitution { get; set; }
@@ -27,6 +27,7 @@ namespace DnDSidekick.Business.Models
 
         public string Senses { get; set; }
         public string Tag { get; set; }
+
 
         //public int StrengthSavingThrow { get; set; }
         //public int Athletics { get; set; }
@@ -57,8 +58,8 @@ namespace DnDSidekick.Business.Models
         //public int Intimidation { get; set; }
         //public int Performance { get; set; }
         //public int Persuasion { get; set; }
-        
+
         //public int ProficiencyBonus { get; set; }
-        
+
     }
 }

@@ -11,10 +11,22 @@
     <Grid>
 
 
-        <DataGrid x:Name="MonstersList" Grid.Row="2" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+        <DataGrid x:Name="MonstersList" CanUserSortColumns="True" Grid.Row="0" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="CR" Binding="{Binding ChallengeRating}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Size and alignment" Binding="{Binding SizeTypeAndAlignment}"></DataGridTextColumn>
+                <DataGridTextColumn Header="HP" Binding="{Binding HitPoints}"></DataGridTextColumn>
+                <DataGridTextColumn Header="AC" Binding="{Binding ArmorClass}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Speed" Binding="{Binding Speed}"></DataGridTextColumn>
+                <DataGridTextColumn Header="STR" Binding="{Binding Strength}"></DataGridTextColumn>
+                <DataGridTextColumn Header="DEX" Binding="{Binding Dexterity}"></DataGridTextColumn>
+                <DataGridTextColumn Header="CON" Binding="{Binding Constitution}"></DataGridTextColumn>
+                <DataGridTextColumn Header="INT" Binding="{Binding Intelligence}"></DataGridTextColumn>
+                <DataGridTextColumn Header="WIS" Binding="{Binding Wisdom}"></DataGridTextColumn>
+                <DataGridTextColumn Header="CHA" Binding="{Binding Charisma}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Senses" Binding="{Binding Senses}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
