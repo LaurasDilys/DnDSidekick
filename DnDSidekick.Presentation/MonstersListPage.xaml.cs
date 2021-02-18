@@ -2,6 +2,7 @@
 using DnDSidekick.Presentation.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,9 +27,18 @@ namespace DnDSidekick.Presentation
         {
             InitializeComponent();
             MonstersList.ItemsSource = Monsters;
+            OrderByDescending("ChallengeRating", MonstersList);
             DataContext = this;
         }
 
         public List<MonsterListModel> Monsters { get; set; } = MonsterListServices.GetAllMonstersForList();
+
+        private void OrderByDescending(string propertyName, DataGrid list)
+        {
+            ICollectionView dataView = CollectionViewSource.GetDefaultView(list.ItemsSource);
+            dataView.SortDescriptions.Clear();
+            dataView.SortDescriptions.Add(new SortDescription(propertyName, ListSortDirection.Descending));
+            dataView.Refresh();
+        }
     }
 }

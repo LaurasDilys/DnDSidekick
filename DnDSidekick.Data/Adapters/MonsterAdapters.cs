@@ -30,12 +30,45 @@ namespace DnDSidekick.Data.Adapters
             if (monsterDb.SwimSpeed > 0) speed.Append($", swim {monsterDb.SwimSpeed} ft.");
             monster.Speed = speed.ToString();
 
+
             monster.Strength = monsterDb.Strength;
             monster.Dexterity = monsterDb.Dexterity;
             monster.Constitution = monsterDb.Constitution;
             monster.Intelligence = monsterDb.Intelligence;
             monster.Wisdom = monsterDb.Wisdom;
             monster.Charisma = monsterDb.Charisma;
+
+
+            monster.StrengthSavingThrow = monsterDb.StrengthSavingThrow;
+            monster.Athletics = monsterDb.Athletics;
+
+            monster.DexteritySavingThrow = monsterDb.DexteritySavingThrow;
+            monster.Acrobatics = monsterDb.Acrobatics;
+            monster.SleightOfHand = monsterDb.SleightOfHand;
+            monster.Stealth = monsterDb.Stealth;
+
+            monster.ConstitutionSavingThrow = monsterDb.ConstitutionSavingThrow;
+
+            monster.IntelligenceSavingThrow = monsterDb.IntelligenceSavingThrow;
+            monster.Arcana = monsterDb.Arcana;
+            monster.History = monsterDb.History;
+            monster.Investigation = monsterDb.Investigation;
+            monster.Nature = monsterDb.Nature;
+            monster.Religion = monsterDb.Religion;
+
+            monster.WisdomSavingThrow = monsterDb.WisdomSavingThrow;
+            monster.AnimalHandling = monsterDb.AnimalHandling;
+            monster.Insight = monsterDb.Insight;
+            monster.Medicine = monsterDb.Medicine;
+            monster.Perception = monsterDb.Perception;
+            monster.Survival = monsterDb.Survival;
+
+            monster.CharismaSavingThrow = monsterDb.CharismaSavingThrow;
+            monster.Deception = monsterDb.Deception;
+            monster.Intimidation = monsterDb.Intimidation;
+            monster.Performance = monsterDb.Performance;
+            monster.Persuasion = monsterDb.Persuasion;
+
 
             int i = 0;
             StringBuilder senses = new StringBuilder(); 
@@ -49,6 +82,119 @@ namespace DnDSidekick.Data.Adapters
             else monster.Tag = "";
 
             //monster.ProficiencyBonus = monsterDb.ProficiencyBonus;
+        }
+
+
+        //public static void Test()
+        //{
+        //    MonsterDataModel monsterDb = new MonsterDataModel();
+        //    MonsterDataModel monster = new MonsterDataModel();
+
+        //    monster.StrengthSavingThrow = monsterDb.StrengthSavingThrow;
+        //    monster.Athletics = monsterDb.Athletics;
+
+        //    monster.DexteritySavingThrow = monsterDb.DexteritySavingThrow;
+        //    monster.Acrobatics = monsterDb.Acrobatics;
+        //    monster.SleightOfHand = monsterDb.SleightOfHand;
+        //    monster.Stealth = monsterDb.Stealth;
+
+        //    monster.ConstitutionSavingThrow = monsterDb.ConstitutionSavingThrow;
+
+        //    monster.IntelligenceSavingThrow = monsterDb.IntelligenceSavingThrow;
+        //    monster.Arcana = monsterDb.Arcana;
+        //    monster.History = monsterDb.History;
+        //    monster.Investigation = monsterDb.Investigation;
+        //    monster.Nature = monsterDb.Nature;
+        //    monster.Religion = monsterDb.Religion;
+
+        //    monster.WisdomSavingThrow = monsterDb.WisdomSavingThrow;
+        //    monster.AnimalHandling = monsterDb.AnimalHandling;
+        //    monster.Insight = monsterDb.Insight;
+        //    monster.Medicine = monsterDb.Medicine;
+        //    monster.Perception = monsterDb.Perception;
+        //    monster.Survival = monsterDb.Survival;
+
+        //    monster.CharismaSavingThrow = monsterDb.CharismaSavingThrow;
+        //    monster.Deception = monsterDb.Deception;
+        //    monster.Intimidation = monsterDb.Intimidation;
+        //    monster.Performance = monsterDb.Performance;
+        //    monster.Persuasion = monsterDb.Persuasion;
+
+
+
+
+
+        //        monster.StrengthSavingThrow
+        //        monster.Athletics
+
+        //        monster.DexteritySavingThrow
+        //        monster.Acrobatics
+        //        monster.SleightOfHand
+        //        monster.Stealth
+
+        //        monster.ConstitutionSavingThrow
+
+        //        monster.IntelligenceSavingThrow
+        //        monster.Arcana
+        //        monster.History
+        //        monster.Investigation
+        //        monster.Nature
+        //        monster.Religion
+
+        //        monster.WisdomSavingThrow
+        //        monster.AnimalHandling
+        //        monster.Insight
+        //        monster.Medicine
+        //        monster.Perception
+        //        monster.Survival
+
+        //        monster.CharismaSavingThrow
+        //        monster.Deception
+        //        monster.Intimidation
+        //        monster.Performance
+        //        monster.Persuasion
+        //}
+
+        public static IMonsterListModel WildShapedInto(this ICharacter character, IMonsterListModel monster)
+        {
+            IMonsterListModel wildShapedCharacter = monster;
+
+            List<int> monsterProficiencies = new List<int>()
+            {
+                monster.StrengthSavingThrow,
+                monster.Athletics,
+
+                monster.DexteritySavingThrow,
+                monster.Acrobatics,
+                monster.SleightOfHand,
+                monster.Stealth,
+
+                monster.ConstitutionSavingThrow,
+
+                monster.IntelligenceSavingThrow,
+                monster.Arcana,
+                monster.History,
+                monster.Investigation,
+                monster.Nature,
+                monster.Religion,
+
+                monster.WisdomSavingThrow,
+                monster.AnimalHandling,
+                monster.Insight,
+                monster.Medicine,
+                monster.Perception,
+                monster.Survival,
+
+                monster.CharismaSavingThrow,
+                monster.Deception,
+                monster.Intimidation,
+                monster.Performance,
+                monster.Persuasion
+            };
+
+            //
+
+            return wildShapedCharacter;
         }
     }
 }
