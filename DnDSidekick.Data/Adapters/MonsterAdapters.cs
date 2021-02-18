@@ -192,8 +192,11 @@ namespace DnDSidekick.Data.Adapters
                 monster.Persuasion
             };
 
-            //
 
+
+
+            //
+            //
             return wildShapedCharacter;
         }
     }

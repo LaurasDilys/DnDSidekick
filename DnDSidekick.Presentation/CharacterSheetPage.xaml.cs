@@ -32,7 +32,7 @@ namespace DnDSidekick.Presentation
             DataContext = Character;
 
 
-            test.Click += Test_Click;
+            test0.Click += Test_Click;
         }
 
         private void Test_Click(object sender, RoutedEventArgs e)

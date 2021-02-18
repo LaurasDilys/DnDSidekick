@@ -15,10 +15,10 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="110"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -48,31 +48,33 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!--#region First Row -->
 
         <Canvas Grid.Column="1" Grid.Row="1" Width="40" Height="40" HorizontalAlignment="Center" Grid.RowSpan="3" Background="Green" />
-        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Name}" Margin="2,10,0,10" FontSize="15" Width="220" Grid.ColumnSpan="4" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Name}" Margin="2,10,0,10" FontSize="15" Width="244" Grid.ColumnSpan="4" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
         <TextBlock Grid.Column="2" Grid.Row="3" Margin="5,12,0,0" FontSize="10" Grid.ColumnSpan="3" Grid.RowSpan="2">Character Name</TextBlock>
 
-        <TextBox Grid.Column="6" Grid.Row="1" Text="{Binding Class}" Margin="2,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
-        <TextBlock Grid.Column="6" Grid.Row="2" Margin="5,0,0,0" FontSize="10">Class</TextBlock>
+        <TextBox Grid.Column="6" Grid.Row="1" Text="{Binding Class}" Margin="12,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Column="6" Grid.Row="2" Margin="15,0,0,0" FontSize="10">Class</TextBlock>
 
-        <TextBox Grid.Column="6" Grid.Row="3" Text="{Binding Race}" Margin="2,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
-        <TextBlock Grid.Column="6" Grid.Row="4" Margin="5,0,0,0" FontSize="10">Race</TextBlock>
+        <TextBox Grid.Column="6" Grid.Row="3" Text="{Binding Race}" Margin="12,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Column="6" Grid.Row="4" Margin="15,0,0,0" FontSize="10">Race</TextBlock>
 
-        <TextBox Grid.Column="7" Grid.Row="1" Text="{Binding Background}" Margin="2,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
-        <TextBlock Grid.Column="7" Grid.Row="2" Margin="5,0,0,0" FontSize="10">Background</TextBlock>
+        <TextBox Grid.Column="7" Grid.Row="1" Text="{Binding Background}" Margin="12,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Column="7" Grid.Row="2" Margin="15,0,0,0" FontSize="10">Background</TextBlock>
 
-        <TextBox Grid.Column="7" Grid.Row="3" Text="{Binding Alignment}" Margin="2,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
-        <TextBlock Grid.Column="7" Grid.Row="4" Margin="5,0,0,0" FontSize="10">Alignment</TextBlock>
+        <TextBox Grid.Column="7" Grid.Row="3" Text="{Binding Alignment}" Margin="12,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Column="7" Grid.Row="4" Margin="15,0,0,0" FontSize="10">Alignment</TextBlock>
 
-        <TextBox Grid.Column="8" Grid.Row="1" Text="{Binding Level}" PreviewTextInput="NumberValidation" Margin="2,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
-        <TextBlock Grid.Column="8" Grid.Row="2" Margin="5,0,0,0" FontSize="10">Level</TextBlock>
+        <TextBox Grid.Column="8" Grid.Row="1" Text="{Binding Level}" Margin="12,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Column="8" Grid.Row="2" Margin="15,0,0,0" FontSize="10">Level</TextBlock>
 
-        <TextBox Grid.Column="8" Grid.Row="3" Text="{Binding ExperiencePoints}" Margin="2,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
-        <TextBlock Grid.Column="8" Grid.Row="4" Margin="5,0,0,0" FontSize="10">Experience Points</TextBlock>
+        <TextBox Grid.Column="8" Grid.Row="3" Text="{Binding ExperiencePoints}" Margin="12,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Column="8" Grid.Row="4" Margin="15,0,0,0" FontSize="10">Experience Points</TextBlock>
 
+        <!--#endregion-->
 
-
+        <!--#region Left Side -->
 
         <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding ProficiencyBonus}" Width="50" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center"/>
         <Label Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="3" >Proficiency Bonus</Label>
@@ -223,30 +225,130 @@
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Persuasion</TextBlock>
         </StackPanel>
 
+        <!--#endregion-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <Button x:Name="test" Grid.Column="8" Grid.Row="5">test</Button>
+        <!--#region Hit Points to Death Saves -->
         
+        <StackPanel Margin="12,0,0,0" Grid.Column="5" Grid.Row="5" Grid.RowSpan="4">
+            <TextBlock Margin="0,10,0,3" TextAlignment="Center" FontSize="10">Max Hit Points</TextBlock>
+            <TextBox Width="70" Height="28" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+            <TextBox Width="70" Height="28" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBlock Margin="0,1,0,0" TextAlignment="Center" FontSize="10">Temporary HP</TextBlock>
+
+            <TextBlock Margin="0,28,0,3" TextAlignment="Center" FontSize="10">Current HP</TextBlock>
+            <TextBox Width="70" Height="28" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+            <Button Width="70" Height="28">Reset</Button>
+        </StackPanel>
+
+        <StackPanel Margin="12,0,0,0" Grid.Column="6" Grid.Row="5" Grid.RowSpan="4">
+            <TextBlock Margin="0,10,0,3" TextAlignment="Center" FontSize="10">Armor Class</TextBlock>
+            <TextBox Width="80" Height="28" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+            <TextBox Width="80" Height="28" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBlock Margin="0,1,0,0" TextAlignment="Center" FontSize="10">Temporary AC</TextBlock>
+
+            <TextBlock Margin="0,28,0,3" TextAlignment="Center" FontSize="10">DMG Amount</TextBlock>
+            <TextBox Width="80" Height="28" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+            <Button Width="80" Height="28">Take Damage</Button>
+        </StackPanel>
+
+        <StackPanel Margin="12,0,0,0" Grid.Column="7" Grid.Row="5" Grid.RowSpan="4">
+            <TextBlock Margin="0,10,0,3" TextAlignment="Center" FontSize="10">Initiative Bonus</TextBlock>
+            <TextBox Width="70" Height="28" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+            <TextBox Width="70" Height="28" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBlock Margin="0,1,0,0" TextAlignment="Center" FontSize="10">Current Initiative</TextBlock>
+
+            <TextBlock Margin="0,28,0,3" TextAlignment="Center" FontSize="10">Hit Dice</TextBlock>
+            <TextBox Width="80" Height="28" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Width="80" Height="52" TextAlignment="Center" VerticalContentAlignment="Top" FontSize="16"/>
+        </StackPanel>
+        <TextBlock Margin="12,34,0,0" Grid.Column="7" Grid.Row="8" TextAlignment="Center" FontSize="10">Used</TextBlock>
+
+        <StackPanel Margin="12,0,0,0" Grid.Column="8" Grid.Row="5" Grid.RowSpan="4">
+            <TextBlock Margin="0,10,0,3" TextAlignment="Center" FontSize="10">Speed</TextBlock>
+            <TextBox Width="80" Height="28" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+            <TextBox Width="80" Height="28" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBlock Margin="0,1,0,0" TextAlignment="Center" FontSize="10">Current Speed</TextBlock>
+
+            <TextBlock Margin="0,28,0,3" TextAlignment="Center" FontSize="10">Death Saves</TextBlock>
+            <Border Width="80" Height="80" BorderBrush="Gray" Grid.Column="8" Grid.Row="7" Grid.RowSpan="4" BorderThickness="1">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Margin="0,0,0,1" TextAlignment="Center" FontSize="10">Successes</TextBlock>
+                    <StackPanel Margin="0,0,0,10" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <CheckBox/>
+                        <CheckBox/>
+                        <CheckBox/>
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <CheckBox/>
+                        <CheckBox/>
+                        <CheckBox/>
+                    </StackPanel>
+                    <TextBlock Margin="0,1,0,0" TextAlignment="Center" FontSize="10">Failures</TextBlock>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <!--#endregion-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--<Button x:Name="test2" Margin="12,0,0,0" Grid.Column="5" Grid.Row="5"></Button>
+        <Button x:Name="test3" Margin="12,0,0,0" Grid.Column="5" Grid.Row="6"></Button>
+        <Button x:Name="test5" Margin="12,0,0,0" Grid.Column="5" Grid.Row="7"></Button>
+        <Button x:Name="test6" Margin="12,0,0,0" Grid.Column="5" Grid.Row="8"></Button>
+        <Button x:Name="test7" Margin="12,0,0,0" Grid.Column="5" Grid.Row="9"></Button>
+        <Button x:Name="test8" Margin="12,0,0,0" Grid.Column="5" Grid.Row="10"></Button>
+        <Button x:Name="test9" Margin="12,0,0,0" Grid.Column="5" Grid.Row="11"></Button>-->
+        <Button x:Name="test0" Margin="12,0,0,0" Grid.Column="5" Grid.Row="12"></Button>
+
+        <!--<Button Margin="12,0,0,0" Grid.Column="6" Grid.Row="5"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="6" Grid.Row="6"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="6" Grid.Row="7"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="6" Grid.Row="8"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="6" Grid.Row="9"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="6" Grid.Row="10"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="6" Grid.Row="11"></Button>-->
+        <Button Margin="12,0,0,0" Grid.Column="6" Grid.Row="12"></Button>
+
+        <!--<Button Margin="12,0,0,0" Grid.Column="7" Grid.Row="5"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="7" Grid.Row="6"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="7" Grid.Row="7"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="7" Grid.Row="8"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="7" Grid.Row="9"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="7" Grid.Row="10"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="7" Grid.Row="11"></Button>-->
+        <Button Margin="12,0,0,0" Grid.Column="7" Grid.Row="12"></Button>
+
+        <!--<Button Margin="12,0,0,0" Grid.Column="8" Grid.Row="5"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="8" Grid.Row="6"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="8" Grid.Row="7"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="8" Grid.Row="8"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="8" Grid.Row="9"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="8" Grid.Row="10"></Button>
+        <Button Margin="12,0,0,0" Grid.Column="8" Grid.Row="11"></Button>-->
+        <Button Margin="12,0,0,0" Grid.Column="8" Grid.Row="12"></Button>
+
 
     </Grid>
 </Page>
