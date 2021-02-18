@@ -44,7 +44,7 @@ namespace DnDSidekick.Data
                 if (id == 0) characterDb = new CharacterDataModel();
                 else characterDb = context.Characters.Find(id);
 
-                character.TransformIntoDataModel(characterDb); // Gali būti, kad tokiu būdu nepavyks išsaugoti pakeitimų...
+                character.TransformIntoDataModel(characterDb);
 
                 if (id == 0)
                 {
@@ -57,5 +57,12 @@ namespace DnDSidekick.Data
             }
         }
 
+        public static List<CharacterDataModel> GetAllCharacters()
+        {
+            using (var context = new DataContext())
+            {
+                return context.Characters.ToList();
+            }
+        }
     }
 }

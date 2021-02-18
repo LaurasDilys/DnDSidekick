@@ -2,7 +2,7 @@
 using DnDSidekick.Business.Models;
 using DnDSidekick.Business.Services;
 using DnDSidekick.Data;
-using DnDSidekick.Presentation.Adapters;
+using DnDSidekick.Presentation.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +46,45 @@ namespace DnDSidekick.Presentation
 
         public Character Character { get; set; } = new Character();
 
+        public void EditSelected(int id)
+        {
+            if (Character.ChangesWereMade())
+            {
+                MessageBoxResult result = MessageBox.Show("Do you want to save changes to this character?", "", MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.Yes)
+                {
+                    if (Character.Name == "")
+                    {
+                        MessageBox.Show("Please assign a name to this character.");
+                        return;
+                    }
+                    else Character.Id = Character.ToDataBase();
+                }
+                else if (result == MessageBoxResult.Cancel) return;
+            }
+            Character = ManageDb.GetCharacterFromDataBase(id);
+            DataContext = Character;
+        }
+
+        public void NewCharacter()
+        {
+            if (Character.ChangesWereMade())
+            {
+                MessageBoxResult result = MessageBox.Show("Do you want to save changes to this character?", "", MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.Yes)
+                {
+                    if (Character.Name == "")
+                    {
+                        MessageBox.Show("Please assign a name to this character.");
+                        return;
+                    }
+                    else Character.Id = Character.ToDataBase();
+                }
+                else if (result == MessageBoxResult.Cancel) return;
+            }
+            Character = new Character();
+            DataContext = Character;
+        }
 
         public void SaveCharacter()
         {
@@ -55,14 +94,10 @@ namespace DnDSidekick.Presentation
                 return;
             }
 
-            int currentId = Character.Id;
-            ICharacter characterBeforeAssumedChanges;
-            if (currentId == 0) characterBeforeAssumedChanges = new Character();
-            else characterBeforeAssumedChanges = ManageDb.GetCharacterFromDataBase(Character.Id);
-
-            if (Character.IsIdenticalTo(characterBeforeAssumedChanges)) { MessageBox.Show("No changes have been made to this character."); }
+            if (!Character.ChangesWereMade()) { MessageBox.Show("No changes have been made to this character."); }
             else
             {
+                int currentId = Character.Id;
                 if (currentId == 0) MessageBox.Show("Character has been saved.");
                 else MessageBox.Show("Changes have been saved.");
                 Character.Id = Character.ToDataBase();

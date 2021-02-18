@@ -12,11 +12,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="19"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="19"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="19"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -30,12 +30,26 @@
 
             <ScrollViewer VerticalScrollBarVisibility="Auto"/>
 
-            <Button Grid.Column="1" Grid.Row="1">Test</Button>
-            <Button Grid.Column="3" Grid.Row="1">Test</Button>
-            <Button Grid.Column="5" Grid.Row="1">Test</Button>
+            <ComboBox x:Name="comboBoxCharactersList" Grid.Column="1" Grid.Row="1" Width="240" Margin="7,0,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                            <TextBlock Text=" – Level "></TextBlock>
+                            <TextBlock Text="{Binding Level}"></TextBlock>
+                            <TextBlock Text=" – "></TextBlock>
+                            <TextBlock Text="{Binding Race}"></TextBlock>
+                            <TextBlock Text=" – "></TextBlock>
+                            <TextBlock Text="{Binding Class}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
-
-            <Button x:Name="btnSave" Grid.Column="7" Grid.Row="1" Width="50" VerticalAlignment="Top">Save</Button>
+            <Button x:Name="btnEditSelected" Grid.Column="3" Grid.Row="1" Width="99">Edit Selected</Button>
+            <Button x:Name="btnNewCharacter" Grid.Column="5" Grid.Row="1" Width="99">New Character</Button>
+            <Button x:Name="btnSave" Grid.Column="7" Grid.Row="1" Width="99">Save</Button>
+            
             <Frame x:Name="CharacterSheet" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7"/>
 
         </Grid>
