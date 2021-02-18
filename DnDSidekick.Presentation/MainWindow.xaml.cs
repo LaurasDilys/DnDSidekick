@@ -33,6 +33,7 @@ namespace DnDSidekick.Presentation
             //NumberValidation()
             //Allow input of only certain length
             //
+            //Open on sheet of last opened character
 
             //Character sheet / Creature sheet
             //Changes can be made on the spot

@@ -27,6 +27,7 @@ namespace DnDSidekick.Presentation
             InitializeComponent();
             CharacterSheet.Content = characterSheetPage;
             comboBoxCharactersList.ItemsSource = allCharacters;
+            //if (allCharacters.Count > 0) characterSheetPage.EditSelected(ManageDb.LastOpenedCharacter());
 
             btnSave.Click += BtnSave_Click;
             btnEditSelected.Click += BtnEditSelected_Click;
@@ -34,31 +35,32 @@ namespace DnDSidekick.Presentation
         }
 
         private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
-        public List<CharacterDataModel> allCharacters { get; set; } = ManageDb.GetAllCharacters();
+        public List<CharacterDataModel> allCharacters { get; set; } = ManageDb.GetAllCharactersReversed();
 
         private void BtnEditSelected_Click(object sender, RoutedEventArgs e)
         {
             int selectedItemIndex = comboBoxCharactersList.SelectedIndex;
             if (selectedItemIndex != -1)
             {
-                int selectedCharacterId = allCharacters[selectedItemIndex].Id;
+                CharacterDataModel selectedCharacters = (CharacterDataModel)comboBoxCharactersList.SelectedItem;
+                int selectedCharacterId = selectedCharacters.Id;
                 characterSheetPage.EditSelected(selectedCharacterId);
             }
-            allCharacters = ManageDb.GetAllCharacters();
+            allCharacters = ManageDb.GetAllCharactersReversed();
             comboBoxCharactersList.ItemsSource = allCharacters;
         }
 
         private void BtnNewCharacter_Click(object sender, RoutedEventArgs e)
         {
             characterSheetPage.NewCharacter();
-            allCharacters = ManageDb.GetAllCharacters();
+            allCharacters = ManageDb.GetAllCharactersReversed();
             comboBoxCharactersList.ItemsSource = allCharacters;
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             characterSheetPage.SaveCharacter();
-            allCharacters = ManageDb.GetAllCharacters();
+            allCharacters = ManageDb.GetAllCharactersReversed();
             comboBoxCharactersList.ItemsSource = allCharacters;
         }
     }
