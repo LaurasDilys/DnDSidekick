@@ -33,9 +33,9 @@ namespace DnDSidekick.Presentation
             CharacterSheet.Content = characterSheetPage;
             //if (allCharacters.Count > 0) characterSheetPage.EditSelected(ManageDb.LastOpenedCharacter());
 
-            btnSave.Click += BtnSave_Click;
             btnEditSelected.Click += BtnEditSelected_Click;
             btnNewCharacter.Click += BtnNewCharacter_Click;
+            btnSave.Click += BtnSave_Click;
         }
 
         private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
@@ -58,7 +58,7 @@ namespace DnDSidekick.Presentation
             {
                 CharacterDataModel selectedCharacters = (CharacterDataModel)comboBoxCharactersList.SelectedItem;
                 int selectedCharacterId = selectedCharacters.Id;
-                characterSheetPage.EditSelected(selectedCharacterId);
+                characterSheetPage.OpenCharacter(selectedCharacterId);
             }
             GenerateCharacterList();
         }

@@ -1,4 +1,5 @@
-﻿using DnDSidekick.Data;
+﻿using DnDSidekick.Business.Models;
+using DnDSidekick.Data;
 using DnDSidekick.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -25,20 +26,36 @@ namespace DnDSidekick.Presentation
         public CombatWindow()
         {
             InitializeComponent();
-            InitializeComponent();
             GenerateCharacterList();
             CharacterSheet.Content = characterSheetPage;
             CharSheetMinimized.Content = charSheetMinimizedPage;
             MonsterList.Content = monstersListPage;
             //CharacterTransformed.Content = 
+            charSheetMinimizedPage.Visibility = Visibility.Collapsed;
+            monstersListPage.Visibility = Visibility.Collapsed;
             //if (allCharacters.Count > 0) characterSheetPage.EditSelected(ManageDb.LastOpenedCharacter());
+
+            btnChooseCharacter.Click += BtnChooseCharacter_Click;
         }
 
+        private int selectedCharacterId { get; set; } = 0;
         private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
         private CharSheetMinimizedPage charSheetMinimizedPage { get; set; } = new CharSheetMinimizedPage();
         private MonstersListPage monstersListPage { get; set; } = new MonstersListPage();
 
         public List<CharacterDataModel> AllCharacters { get; set; }
+
+        private void BtnChooseCharacter_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedItemIndex = comboBoxCharactersList.SelectedIndex;
+            if (selectedItemIndex != -1)
+            {
+                CharacterDataModel selectedCharacters = (CharacterDataModel)comboBoxCharactersList.SelectedItem;
+                selectedCharacterId = selectedCharacters.Id;
+                characterSheetPage.OpenCharacter(selectedCharacterId);
+            }
+            GenerateCharacterList();
+        }
 
         private void GenerateCharacterList()
         {

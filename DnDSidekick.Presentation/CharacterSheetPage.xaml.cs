@@ -71,7 +71,7 @@ namespace DnDSidekick.Presentation
             }
         }
 
-        public void EditSelected(int id)
+        public void OpenCharacter(int id)
         {
             if (Character.ChangesWereMade())
             {
