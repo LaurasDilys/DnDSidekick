@@ -128,5 +128,18 @@ namespace DnDSidekick.Presentation
                 Character.Id = Character.ToDataBase();
             }
         }
+
+        public void TweakForCombat()
+        {
+            txtName.IsReadOnly = true;
+            txtClass.IsReadOnly = true;
+            txtRace.IsReadOnly = true;
+            txtBackground.IsReadOnly = true;
+            txtAlignment.IsReadOnly = true;
+            txtMaxHitPoints.IsReadOnly = true;
+            txtArmorClass.IsReadOnly = true;
+            txtInitiativeBonus.IsReadOnly = true;
+            txtSpeed.IsReadOnly = true;
+        }
     }
 }

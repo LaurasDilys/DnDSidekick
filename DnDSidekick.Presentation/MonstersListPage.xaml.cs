@@ -1,5 +1,7 @@
 ﻿using DnDSidekick.Business.Models;
 using DnDSidekick.Data;
+using DnDSidekick.Data.Adapters;
+using DnDSidekick.Data.Interfaces;
 using DnDSidekick.Data.Models;
 using DnDSidekick.Presentation.Services;
 using System;
@@ -25,17 +27,17 @@ namespace DnDSidekick.Presentation
     /// </summary>
     public partial class MonstersListPage : Page
     {
-        public MonstersListPage()
+        public MonstersListPage(Character selectedCharacter)
         {
             InitializeComponent();
-            monstersList.ItemsSource = Monsters;
-            OrderByDescending("ChallengeRating", monstersList);
+            SelectedCharacter = selectedCharacter;
             DataContext = this;
+            WildShapeOptions = PolymorphOptions.IntoWildShapeOptionsFor(SelectedCharacter);
         }
 
-        //public List<MonsterListModel> Monsters { get; set; } = MonsterListServices.GetAllMonstersForList();
-
-        private List<MonsterDataModel> Monsters { get; set; } = ManageDb.GetAllMonstersValueTypes();
+        public Character SelectedCharacter { get; set; }
+        private List<MonsterDataModel> PolymorphOptions { get; set; } = ManageDb.GetAllMonstersValueTypes();
+        private List<IMonsterDataModel> WildShapeOptions { get; set; }
 
         private void OrderByDescending(string propertyName, DataGrid list)
         {
@@ -47,10 +49,9 @@ namespace DnDSidekick.Presentation
 
         public void ShowMonsterList(string transformationType)
         {
-            if (transformationType == "WildShape")
-            {
-                //
-            }
+            if (transformationType == "Polymorph") monstersList.ItemsSource = PolymorphOptions;
+            else if (transformationType == "WildShape") monstersList.ItemsSource = WildShapeOptions;
+            OrderByDescending("ChallengeRating", monstersList);
         }
     }
 }

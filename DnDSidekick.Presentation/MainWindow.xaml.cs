@@ -36,7 +36,7 @@ namespace DnDSidekick.Presentation
             //Delete green canvas or use it – perhaps take first letter of character name and and apply a fancy D&D style font
             //Rearange XAML so that tabs don't jump from first column to second
             //
-            //Open on sheet of last opened character
+            //Reverse ability modifier and ability score positions – and IsReadOnly="True" accordingly
 
             //Character sheet / Creature sheet
             //Changes can be made on the spot

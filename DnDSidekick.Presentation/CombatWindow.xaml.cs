@@ -31,8 +31,10 @@ namespace DnDSidekick.Presentation
             {
                 NoCharacters.Visibility = Visibility.Hidden;
                 CharacterSheet.Content = characterSheetPage;
+                characterSheetPage.TweakForCombat();
                 int lastSavedCharacterId = ManageDb.GetIdOfLastSavedCharacter();
                 characterSheetPage.OpenCharacter(lastSavedCharacterId);
+                monstersListPage = new MonstersListPage(characterSheetPage.Character);
                 UpdateCharactersInAllPages();
 
                 CharSheetMinimized.Content = charSheetMinimizedPage;
@@ -56,6 +58,11 @@ namespace DnDSidekick.Presentation
             btnWildShape.Click += BtnWildShape_Click;
             charSheetMinimizedPage.FullViewRequestedEvent += ShowFullCharacterSheet;
         }
+
+        private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
+        private CharSheetMinimizedPage charSheetMinimizedPage { get; set; } = new CharSheetMinimizedPage();
+        private MonstersListPage monstersListPage { get; set; }
+        public List<CharacterDataModel> AllCharacters { get; set; }
 
         private void BtnPolymorph_Click(object sender, RoutedEventArgs e)
         {
@@ -92,11 +99,6 @@ namespace DnDSidekick.Presentation
             btnWildShape.IsChecked = false;
         }
 
-        private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
-        private CharSheetMinimizedPage charSheetMinimizedPage { get; set; } = new CharSheetMinimizedPage();
-        private MonstersListPage monstersListPage { get; set; } = new MonstersListPage();
-        public List<CharacterDataModel> AllCharacters { get; set; }
-
         private void BtnCreateCharacter_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -125,8 +127,10 @@ namespace DnDSidekick.Presentation
 
         private void UpdateCharactersInAllPages()
         {
-            charSheetMinimizedPage.CharacterMinimized = characterSheetPage.Character;
-            charSheetMinimizedPage.DataContext = charSheetMinimizedPage.CharacterMinimized;
+            charSheetMinimizedPage.SelectedCharacter = characterSheetPage.Character;
+            charSheetMinimizedPage.DataContext = charSheetMinimizedPage.SelectedCharacter;
+            //
+            monstersListPage.SelectedCharacter = characterSheetPage.Character;
             //
         }
     }

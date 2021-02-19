@@ -86,6 +86,15 @@ namespace DnDSidekick.Data
             }
         }
 
+        public static MonsterDataModel GetMonsterFromDataBase(int id)
+        {
+            using (var context = new DataContext())
+            {
+                MonsterDataModel requestedMonster = context.Monsters.Find(id);
+                return requestedMonster;
+            }
+        }
+
         public static List<MonsterDataModel> GetAllMonstersExcludingCollections()
         {
             using (var context = new DataContext())

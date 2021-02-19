@@ -26,7 +26,6 @@ namespace DnDSidekick.Presentation
         public CharSheetMinimizedPage()
         {
             InitializeComponent();
-
             btnFullView.Click += BtnFullView_Click;
         }
 
@@ -35,6 +34,6 @@ namespace DnDSidekick.Presentation
             FullViewRequestedEvent(sender, e);
         }
 
-        public Character CharacterMinimized { get; set; } = new Character();
+        public Character SelectedCharacter { get; set; } = new Character();
     }
 }

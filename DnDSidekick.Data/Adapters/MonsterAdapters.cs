@@ -12,6 +12,130 @@ namespace DnDSidekick.Data.Adapters
 {
     public static class MonsterAdapters
     {
+        public static List<IMonsterDataModel> IntoWildShapeOptionsFor(this List<MonsterDataModel> monsters, ICharacter character)
+        {
+            List<IMonsterDataModel> wildShapeOptions = new List<IMonsterDataModel>();
+
+            foreach (IMonsterDataModel monster in monsters)
+            {
+                IMonsterDataModel wildShape = new MonsterDataModel();
+                wildShape = character.WildShapedInto(monster);
+                wildShapeOptions.Add(wildShape);
+            }
+
+            return wildShapeOptions;
+        }
+
+        public static IMonsterDataModel WildShapedInto(this ICharacter character, IMonsterDataModel monster)
+        {
+            ///
+            /// <explanation of Wild Shape rules>
+            /// Your game Statistics are replaced by the Statistics of the beast,
+            /// but you retain your Intelligence, Wisdom, and Charisma scores...
+            ///
+
+            IMonsterDataModel wildShapedCharacter = ManageDb.GetMonsterFromDataBase(monster.MonsterId);
+
+            wildShapedCharacter.Intelligence = character.Intelligence.Score;
+            wildShapedCharacter.Wisdom = character.Wisdom.Score;
+            wildShapedCharacter.Charisma = character.Charisma.Score;
+
+            List<int> monsterSkillModifiers = new List<int>()
+            {
+                monster.StrengthSavingThrow,
+                monster.Athletics,
+
+                monster.DexteritySavingThrow,
+                monster.Acrobatics,
+                monster.SleightOfHand,
+                monster.Stealth,
+
+                monster.ConstitutionSavingThrow,
+
+                monster.IntelligenceSavingThrow,
+                monster.Arcana,
+                monster.History,
+                monster.Investigation,
+                monster.Nature,
+                monster.Religion,
+
+                monster.WisdomSavingThrow,
+                monster.AnimalHandling,
+                monster.Insight,
+                monster.Medicine,
+                monster.Perception,
+                monster.Survival,
+
+                monster.CharismaSavingThrow,
+                monster.Deception,
+                monster.Intimidation,
+                monster.Performance,
+                monster.Persuasion
+            };
+
+            List<int> applicableSkillModifiers = new List<int>();
+
+            /// 
+            /// You also retain all of your skill and saving throw Proficiencies,
+            /// in addition to gaining those of the creature.
+            /// If the creature has the same proficiency as you
+            /// and the bonus in its stat block is higher than yours,
+            /// use the creature's bonus instead of yours.
+            ///
+            /// Meaning, you get the higher skill modifier.
+            /// Either you gain the monsters, or you keep yours –
+            /// whichever one is HIGHER...
+            ///
+
+            int i = 0;
+            foreach (Ability ability in character.Abilities)
+            {
+                int characterSavingThrowModifier = ability.SavingThrow.Modifier;
+                applicableSkillModifiers
+                        .Add(Math.Max(characterSavingThrowModifier, monsterSkillModifiers[i++]));
+                foreach (Skill skill in ability.Skills)
+                {
+                    int characterSkillModifier = skill.Modifier;
+                    applicableSkillModifiers
+                        .Add(Math.Max(characterSkillModifier, monsterSkillModifiers[i++]));
+                }
+            }
+
+            i = 0;
+
+            wildShapedCharacter.StrengthSavingThrow = applicableSkillModifiers[i++];
+            wildShapedCharacter.Athletics = applicableSkillModifiers[i++];
+
+            wildShapedCharacter.DexteritySavingThrow = applicableSkillModifiers[i++];
+            wildShapedCharacter.Acrobatics = applicableSkillModifiers[i++];
+            wildShapedCharacter.SleightOfHand = applicableSkillModifiers[i++];
+            wildShapedCharacter.Stealth = applicableSkillModifiers[i++];
+
+            wildShapedCharacter.ConstitutionSavingThrow = applicableSkillModifiers[i++];
+
+            wildShapedCharacter.IntelligenceSavingThrow = applicableSkillModifiers[i++];
+            wildShapedCharacter.Arcana = applicableSkillModifiers[i++];
+            wildShapedCharacter.History = applicableSkillModifiers[i++];
+            wildShapedCharacter.Investigation = applicableSkillModifiers[i++];
+            wildShapedCharacter.Nature = applicableSkillModifiers[i++];
+            wildShapedCharacter.Religion = applicableSkillModifiers[i++];
+
+            wildShapedCharacter.WisdomSavingThrow = applicableSkillModifiers[i++];
+            wildShapedCharacter.AnimalHandling = applicableSkillModifiers[i++];
+            wildShapedCharacter.Insight = applicableSkillModifiers[i++];
+            wildShapedCharacter.Medicine = applicableSkillModifiers[i++];
+            wildShapedCharacter.Perception = applicableSkillModifiers[i++];
+            wildShapedCharacter.Survival = applicableSkillModifiers[i++];
+
+            wildShapedCharacter.CharismaSavingThrow = applicableSkillModifiers[i++];
+            wildShapedCharacter.Deception = applicableSkillModifiers[i++];
+            wildShapedCharacter.Intimidation = applicableSkillModifiers[i++];
+            wildShapedCharacter.Performance = applicableSkillModifiers[i++];
+            wildShapedCharacter.Persuasion = applicableSkillModifiers[i];
+
+            return wildShapedCharacter;
+        }
+
         public static void TransformIntoListModel(this IMonsterDataModel monsterDb, IMonsterListModel monster)
         {
             monster.ChallengeRating = monsterDb.ChallengeRating;
@@ -84,7 +208,6 @@ namespace DnDSidekick.Data.Adapters
             //monster.ProficiencyBonus = monsterDb.ProficiencyBonus;
         }
 
-
         //public static void Test()
         //{
         //    MonsterDataModel monsterDb = new MonsterDataModel();
@@ -154,50 +277,5 @@ namespace DnDSidekick.Data.Adapters
         //        monster.Performance
         //        monster.Persuasion
         //}
-
-        public static IMonsterListModel WildShapedInto(this ICharacter character, IMonsterListModel monster)
-        {
-            IMonsterListModel wildShapedCharacter = monster;
-
-            List<int> monsterProficiencies = new List<int>()
-            {
-                monster.StrengthSavingThrow,
-                monster.Athletics,
-
-                monster.DexteritySavingThrow,
-                monster.Acrobatics,
-                monster.SleightOfHand,
-                monster.Stealth,
-
-                monster.ConstitutionSavingThrow,
-
-                monster.IntelligenceSavingThrow,
-                monster.Arcana,
-                monster.History,
-                monster.Investigation,
-                monster.Nature,
-                monster.Religion,
-
-                monster.WisdomSavingThrow,
-                monster.AnimalHandling,
-                monster.Insight,
-                monster.Medicine,
-                monster.Perception,
-                monster.Survival,
-
-                monster.CharismaSavingThrow,
-                monster.Deception,
-                monster.Intimidation,
-                monster.Performance,
-                monster.Persuasion
-            };
-
-
-
-
-            //
-            //
-            return wildShapedCharacter;
-        }
     }
 }
