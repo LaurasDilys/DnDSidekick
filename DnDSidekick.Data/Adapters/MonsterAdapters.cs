@@ -26,20 +26,8 @@ namespace DnDSidekick.Data.Adapters
             return wildShapeOptions;
         }
 
-        public static IMonsterDataModel WildShapedInto(this ICharacter character, IMonsterDataModel monster)
+        public static List<int> GetSkillModifiersValues(this IMonsterDataModel monster)
         {
-            ///
-            /// <explanation of Wild Shape rules>
-            /// Your game Statistics are replaced by the Statistics of the beast,
-            /// but you retain your Intelligence, Wisdom, and Charisma scores...
-            ///
-
-            IMonsterDataModel wildShapedCharacter = ManageDb.GetMonsterFromDataBase(monster.MonsterId);
-
-            wildShapedCharacter.Intelligence = character.Intelligence.Score;
-            wildShapedCharacter.Wisdom = character.Wisdom.Score;
-            wildShapedCharacter.Charisma = character.Charisma.Score;
-
             List<int> monsterSkillModifiers = new List<int>()
             {
                 monster.StrengthSavingThrow,
@@ -72,6 +60,25 @@ namespace DnDSidekick.Data.Adapters
                 monster.Performance,
                 monster.Persuasion
             };
+
+            return monsterSkillModifiers;
+        }
+
+        public static IMonsterDataModel WildShapedInto(this ICharacter character, IMonsterDataModel monster)
+        {
+            ///
+            /// <explanation of Wild Shape rules>
+            /// Your game Statistics are replaced by the Statistics of the beast,
+            /// but you retain your Intelligence, Wisdom, and Charisma scores...
+            ///
+
+            IMonsterDataModel wildShapedCharacter = ManageDb.GetMonsterFromDataBase(monster.MonsterId);
+
+            wildShapedCharacter.Intelligence = character.Intelligence.Score;
+            wildShapedCharacter.Wisdom = character.Wisdom.Score;
+            wildShapedCharacter.Charisma = character.Charisma.Score;
+
+            List<int> monsterSkillModifiers = monster.GetSkillModifiersValues();
 
             List<int> applicableSkillModifiers = new List<int>();
 

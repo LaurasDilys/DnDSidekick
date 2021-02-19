@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DnDSidekick.Presentation"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="800"
       Title="MonstersListPage">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -17,10 +17,29 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="600"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="580"/>
             </Grid.RowDefinitions>
 
-            <DataGrid Grid.Column="1" Grid.Row="0" x:Name="monstersList" CanUserSortColumns="True" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox Margin="0,0,15,0" Width="175" Height="30" TextAlignment="Center" VerticalContentAlignment="Center">Search by name</TextBox>
+                <Button Margin="0,0,75,0" Width="75">Search</Button>
+                <Button x:Name="btnTransform" Width="265">Choose a creature</Button>
+                <ComboBox Width="175" ItemsSource="{Binding Path=SelectedCharacter.Intelligence.Skills}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Modifier}"/>
+                                <TextBlock Text="{Binding Passive}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            
+            <DataGrid Grid.Column="1" Grid.Row="3" x:Name="monstersList" CanUserSortColumns="True" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="CR" Binding="{Binding ChallengeRating}"/>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>

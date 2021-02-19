@@ -31,8 +31,22 @@ namespace DnDSidekick.Presentation
         {
             InitializeComponent();
             SelectedCharacter = selectedCharacter;
-            DataContext = this;
             WildShapeOptions = PolymorphOptions.IntoWildShapeOptionsFor(SelectedCharacter);
+            DataContext = this;
+
+            btnTransform.IsEnabled = false;
+            monstersList.SelectionChanged += MonstersList_SelectionChanged;
+        }
+
+        private void MonstersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int selectedItemIndex = monstersList.SelectedIndex;
+            if (selectedItemIndex != -1)
+            {
+                MonsterDataModel selectedMonster = (MonsterDataModel)monstersList.SelectedItem;
+                btnTransform.Content = $"Transform into {selectedMonster.Name}";
+                if (!btnTransform.IsEnabled) btnTransform.IsEnabled = true;
+            }
         }
 
         public Character SelectedCharacter { get; set; }

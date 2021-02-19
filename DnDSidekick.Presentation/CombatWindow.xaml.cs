@@ -52,8 +52,11 @@ namespace DnDSidekick.Presentation
                 btnWildShape.IsEnabled = false;
             }
 
+            comboBoxCharactersList.SelectionChanged += ComboBoxCharactersList_SelectedIndexChanged;
             btnCreateCharacter.Click += BtnCreateCharacter_Click;
-            btnChooseCharacter.Click += BtnChooseCharacter_Click;
+            //btnChooseCharacter.Click += BtnChooseCharacter_Click;
+            btnChooseCharacter.IsEnabled = false;
+            //
             btnPolymorph.Click += BtnPolymorph_Click;
             btnWildShape.Click += BtnWildShape_Click;
             charSheetMinimizedPage.FullViewRequestedEvent += ShowFullCharacterSheet;
@@ -62,13 +65,31 @@ namespace DnDSidekick.Presentation
         private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
         private CharSheetMinimizedPage charSheetMinimizedPage { get; set; } = new CharSheetMinimizedPage();
         private MonstersListPage monstersListPage { get; set; }
-        public List<CharacterDataModel> AllCharacters { get; set; }
+        private List<CharacterDataModel> AllCharacters { get; set; }
+
+        private void ComboBoxCharactersList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedItemIndex = comboBoxCharactersList.SelectedIndex;
+            if (selectedItemIndex != -1)
+            {
+                CharacterDataModel selectedCharacter = (CharacterDataModel)comboBoxCharactersList.SelectedItem;
+                int selectedCharacterId = selectedCharacter.Id;
+                if (selectedCharacterId != characterSheetPage.Character.Id)
+                {
+                    characterSheetPage.OpenCharacter(selectedCharacterId);
+                    GenerateCharacterList();
+                    UpdateCharactersInAllPages();
+                }
+            }
+        }
 
         private void BtnPolymorph_Click(object sender, RoutedEventArgs e)
         {
             btnWildShape.IsChecked = false;
             ShowCharSheetMinimized();
             ShowMonsterList("Polymorph");
+            monstersListPage.btnTransform.Content = "Choose a creature";
+            monstersListPage.btnTransform.IsEnabled = false;
         }
 
         private void BtnWildShape_Click(object sender, RoutedEventArgs e)
@@ -76,6 +97,7 @@ namespace DnDSidekick.Presentation
             btnPolymorph.IsChecked = false;
             ShowCharSheetMinimized();
             ShowMonsterList("WildShape");
+            monstersListPage.btnTransform.IsEnabled = false;
         }
 
         private void ShowMonsterList(string transformationType)
@@ -106,18 +128,18 @@ namespace DnDSidekick.Presentation
             createWindow.Show();
         }
 
-        private void BtnChooseCharacter_Click(object sender, RoutedEventArgs e)
-        {
-            int selectedItemIndex = comboBoxCharactersList.SelectedIndex;
-            if (selectedItemIndex != -1)
-            {
-                CharacterDataModel selectedCharacters = (CharacterDataModel)comboBoxCharactersList.SelectedItem;
-                int selectedCharacterId = selectedCharacters.Id;
-                characterSheetPage.OpenCharacter(selectedCharacterId);
-            }
-            GenerateCharacterList();
-            UpdateCharactersInAllPages();
-        }
+        //private void BtnChooseCharacter_Click(object sender, RoutedEventArgs e)
+        //{
+        //    int selectedItemIndex = comboBoxCharactersList.SelectedIndex;
+        //    if (selectedItemIndex != -1)
+        //    {
+        //        CharacterDataModel selectedCharacter = (CharacterDataModel)comboBoxCharactersList.SelectedItem;
+        //        int selectedCharacterId = selectedCharacter.Id;
+        //        characterSheetPage.OpenCharacter(selectedCharacterId);
+        //    }
+        //    GenerateCharacterList();
+        //    UpdateCharactersInAllPages();
+        //}
 
         private void GenerateCharacterList()
         {
