@@ -10,8 +10,9 @@
 
     <Grid>
 
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-        <DataGrid x:Name="monstersList" CanUserSortColumns="True" CanUserResizeColumns="False" CanUserReorderColumns="False" Grid.Row="0" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+            <DataGrid x:Name="monstersList" CanUserSortColumns="True" CanUserResizeColumns="False" CanUserReorderColumns="False" Grid.Row="0" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="CR" Binding="{Binding ChallengeRating}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
@@ -30,6 +31,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        </ScrollViewer>
 
     </Grid>
 </Page>

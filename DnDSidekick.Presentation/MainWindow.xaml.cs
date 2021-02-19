@@ -32,6 +32,7 @@ namespace DnDSidekick.Presentation
             //
             //NumberValidation()
             //Allow input of only certain length
+            //if (allCharacters.Count > 0) characterSheetPage.EditSelected(ManageDb.LastOpenedCharacter());
             //Delete green canvas or use it – perhaps take first letter of character name and and apply a fancy D&D style font
             //Rearange XAML so that tabs don't jump from first column to second
             //

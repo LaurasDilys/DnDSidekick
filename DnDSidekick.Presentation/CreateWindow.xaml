@@ -23,6 +23,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -49,9 +50,8 @@
             <Button x:Name="btnEditSelected" Grid.Column="3" Grid.Row="1" Width="99">Edit Selected</Button>
             <Button x:Name="btnNewCharacter" Grid.Column="5" Grid.Row="1" Width="99">New Character</Button>
             <Button x:Name="btnSave" Grid.Column="7" Grid.Row="1" Width="99">Save</Button>
-            
-            <Frame x:Name="CharacterSheet" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7"/>
 
+            <Frame x:Name="CharacterSheet" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="7"/>
         </Grid>
     </ScrollViewer>
 </Window>

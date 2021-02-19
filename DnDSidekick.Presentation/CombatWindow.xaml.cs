@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DnDSidekick.Data;
+using DnDSidekick.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +25,25 @@ namespace DnDSidekick.Presentation
         public CombatWindow()
         {
             InitializeComponent();
-            Main.Content = monstersListPage;
-
+            InitializeComponent();
+            GenerateCharacterList();
+            CharacterSheet.Content = characterSheetPage;
+            CharSheetMinimized.Content = charSheetMinimizedPage;
+            MonsterList.Content = monstersListPage;
+            //CharacterTransformed.Content = 
+            //if (allCharacters.Count > 0) characterSheetPage.EditSelected(ManageDb.LastOpenedCharacter());
         }
 
+        private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
+        private CharSheetMinimizedPage charSheetMinimizedPage { get; set; } = new CharSheetMinimizedPage();
         private MonstersListPage monstersListPage { get; set; } = new MonstersListPage();
+
+        public List<CharacterDataModel> AllCharacters { get; set; }
+
+        private void GenerateCharacterList()
+        {
+            AllCharacters = ManageDb.GetAllCharactersReversed();
+            comboBoxCharactersList.ItemsSource = AllCharacters;
+        }
     }
 }

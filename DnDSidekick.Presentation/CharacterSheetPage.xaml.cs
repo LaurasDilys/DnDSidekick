@@ -36,7 +36,6 @@ namespace DnDSidekick.Presentation
         }
 
         public Character Character { get; set; } = new Character();
-        public Dictionary<string, int> PassiveSkills { get; set; } = new Dictionary<string, int>();
 
         private void NumberValidation(object sender, TextCompositionEventArgs e)
         {

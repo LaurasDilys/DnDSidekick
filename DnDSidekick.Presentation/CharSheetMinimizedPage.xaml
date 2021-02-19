@@ -1,0 +1,46 @@
+﻿<Page x:Class="DnDSidekick.Presentation.CharSheetMinimizedPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DnDSidekick.Presentation"
+      mc:Ignorable="d" 
+      d:DesignHeight="60" d:DesignWidth="800"
+      Title="CharSheetMinimizedPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="73"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Gray" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="4" BorderThickness="2"></Border>
+        
+        <Canvas Grid.Column="1" Grid.Row="1" Margin="11,0,11,0" Width="48" Height="30" HorizontalAlignment="Center" Grid.RowSpan="3" Background="Red" />
+        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Name}" Margin="2,15,0,0" Width="236" Grid.ColumnSpan="4" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Column="2" Grid.Row="3" Margin="5,1,0,0" FontSize="10" Grid.ColumnSpan="3" Grid.RowSpan="2">Character Name</TextBlock>
+
+        <TextBox Grid.Column="6" Grid.Row="1" Grid.RowSpan="2" Margin="0,15,0,0" Text="{Binding CurrentHitPoints}" Width="80" TextAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Column="6" Grid.Row="3" Margin="0,1,0,0" TextAlignment="Center" FontSize="10">Current Hit Points</TextBlock>
+        
+        <TextBox Grid.Column="7" Grid.Row="1" Grid.RowSpan="2" Margin="0,15,0,0" Text="{Binding CurrentInitiative}" Width="80" TextAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Column="7" Grid.Row="3" Margin="0,1,0,0" TextAlignment="Center" FontSize="10">Current Initiative</TextBlock>
+
+        <Button x:Name="btnFullView" Grid.Column="8" Grid.Row="1" Grid.RowSpan="3" Margin="0,15,0,15" Width="80" VerticalContentAlignment="Center">Full View</Button>
+
+    </Grid>
+</Page>
