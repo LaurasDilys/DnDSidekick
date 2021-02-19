@@ -50,6 +50,9 @@ namespace DnDSidekick.Business.Interfaces
         bool DeathSaveFailure2 { get; set; }
         bool DeathSaveFailure3 { get; set; }
 
+        string Traits { get; set; }
+        string Notes { get; set; }
+
 
         //Abilities
         List<Ability> Abilities { get; set; }

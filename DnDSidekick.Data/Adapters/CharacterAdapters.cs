@@ -55,6 +55,10 @@ namespace DnDSidekick.Data.Adapters
             characterDb.DeathSaveFailure3 = character.DeathSaveFailure3;
 
 
+            characterDb.Traits = character.Traits;
+            characterDb.Notes = character.Notes;
+
+
             int i = 0;
 
             characterDb.Strength = character.Abilities[i++].Score;
@@ -150,6 +154,10 @@ namespace DnDSidekick.Data.Adapters
             character.DeathSaveFailure1 = characterDb.DeathSaveFailure1;
             character.DeathSaveFailure2 = characterDb.DeathSaveFailure2;
             character.DeathSaveFailure3 = characterDb.DeathSaveFailure3;
+
+
+            character.Traits = characterDb.Traits;
+            character.Notes = characterDb.Notes;
 
 
             List<int> characterDbAbilityScores = new List<int>()

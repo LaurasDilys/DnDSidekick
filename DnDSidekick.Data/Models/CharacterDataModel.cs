@@ -44,6 +44,10 @@ namespace DnDSidekick.Data.Models
         public bool DeathSaveFailure3 { get; set; }
 
 
+        public string Traits { get; set; }
+        public string Notes { get; set; }
+
+
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Constitution { get; set; }

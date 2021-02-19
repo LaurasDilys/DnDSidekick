@@ -30,21 +30,10 @@ namespace DnDSidekick.Presentation
         {
             InitializeComponent();
             DataContext = Character;
-
-
-            test0.Click += Test_Click;
         }
-
-        private void Test_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(Character.Id.ToString());
-        }
-
-
-
-
 
         public Character Character { get; set; } = new Character();
+        public Dictionary<string, int> PassiveSkills { get; set; } = new Dictionary<string, int>();
 
         public void EditSelected(int id)
         {
@@ -103,7 +92,6 @@ namespace DnDSidekick.Presentation
                 Character.Id = Character.ToDataBase();
             }
         }
-
 
         private void NumberValidation(object sender, TextCompositionEventArgs e)
         {

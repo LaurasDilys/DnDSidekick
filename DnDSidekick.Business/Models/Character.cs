@@ -105,6 +105,9 @@ namespace DnDSidekick.Business.Models
         public bool DeathSaveFailure3 { get; set; }
 
 
+        public string Traits { get; set; }
+        public string Notes { get; set; }
+
 
         //Abilities
         public List<Ability> Abilities { get; set; } = new List<Ability>();

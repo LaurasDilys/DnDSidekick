@@ -26,8 +26,8 @@ namespace DnDSidekick.Presentation
         public MonstersListPage()
         {
             InitializeComponent();
-            MonstersList.ItemsSource = Monsters;
-            OrderByDescending("ChallengeRating", MonstersList);
+            monstersList.ItemsSource = Monsters;
+            OrderByDescending("ChallengeRating", monstersList);
             DataContext = this;
         }
 

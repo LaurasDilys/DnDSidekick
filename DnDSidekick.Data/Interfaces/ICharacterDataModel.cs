@@ -50,6 +50,10 @@ namespace DnDSidekick.Data.Interfaces
         bool DeathSaveFailure3 { get; set; }
 
 
+        string Traits { get; set; }
+        string Notes { get; set; }
+
+
         int Strength { get; set; }
         int Dexterity { get; set; }
         int Constitution { get; set; }
