@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DnDSidekick.Business.Interfaces
 {
-    public interface IMonsterListModel
+    public interface IMonsterViewModel
     {
         double ChallengeRating { get; set; }
         int MonsterId { get; set; }

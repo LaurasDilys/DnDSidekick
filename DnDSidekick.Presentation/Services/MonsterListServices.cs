@@ -14,13 +14,13 @@ namespace DnDSidekick.Presentation.Services
 {
     public static class MonsterListServices
     {
-        public static List<MonsterListModel> GetAllMonstersForList()
+        public static List<MonsterViewModel> GetAllMonstersForList()
         {
             List<MonsterDataModel> monstersDb = ManageDb.GetAllMonstersExcludingCollections();
-            List<MonsterListModel> monstersList = new List<MonsterListModel>();
+            List<MonsterViewModel> monstersList = new List<MonsterViewModel>();
             foreach (MonsterDataModel monsterDb in monstersDb)
             {
-                monstersList.Add(new MonsterListModel());
+                monstersList.Add(new MonsterViewModel());
                 monsterDb.TransformIntoListModel(monstersList.Last());
             }
             return monstersList;

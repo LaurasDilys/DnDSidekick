@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace DnDSidekick.Business.Models
 {
-    public class MonsterListModel : IMonsterListModel
+    public class MonsterViewModel : IMonsterViewModel
     {
+        public MonsterViewModel()
+        {
+            GenerateSkillsList();
+        }
+
         public double ChallengeRating { get; set; }
         public int MonsterId { get; set; }
         public string Name { get; set; }
@@ -61,5 +66,9 @@ namespace DnDSidekick.Business.Models
 
         public int ProficiencyBonus { get; set; }
 
+        private void GenerateSkillsList()
+        {
+
+        }
     }
 }

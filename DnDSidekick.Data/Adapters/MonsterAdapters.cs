@@ -143,7 +143,7 @@ namespace DnDSidekick.Data.Adapters
             return wildShapedCharacter;
         }
 
-        public static void TransformIntoListModel(this IMonsterDataModel monsterDb, IMonsterListModel monster)
+        public static void TransformIntoListModel(this IMonsterDataModel monsterDb, IMonsterViewModel monster)
         {
             monster.ChallengeRating = monsterDb.ChallengeRating;
 
