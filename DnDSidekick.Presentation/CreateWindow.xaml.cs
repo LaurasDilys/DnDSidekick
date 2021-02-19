@@ -24,14 +24,15 @@ namespace DnDSidekick.Presentation
     /// </summary>
     public partial class CreateWindow : Window
     {
-        public event PropertyChangedEventHandler ListOfCharactersChanged;
+        //public event PropertyChangedEventHandler ListOfCharactersChanged;
 
         public CreateWindow()
         {
             InitializeComponent();
             GenerateCharacterList();
             CharacterSheet.Content = characterSheetPage;
-            //if (allCharacters.Count > 0) characterSheetPage.EditSelected(ManageDb.LastOpenedCharacter());
+            int lastSavedCharacterId = ManageDb.GetIdOfLastSavedCharacter();
+            if (lastSavedCharacterId != 0) characterSheetPage.OpenCharacter(lastSavedCharacterId);
 
             btnEditSelected.Click += BtnEditSelected_Click;
             btnNewCharacter.Click += BtnNewCharacter_Click;
@@ -47,7 +48,7 @@ namespace DnDSidekick.Presentation
             set
             {
                 allCharacters = value;
-                OnPropertyChanged();
+                //OnPropertyChanged();
             }
         }
 
@@ -56,9 +57,9 @@ namespace DnDSidekick.Presentation
             int selectedItemIndex = comboBoxCharactersList.SelectedIndex;
             if (selectedItemIndex != -1)
             {
-                CharacterDataModel selectedCharacters = (CharacterDataModel)comboBoxCharactersList.SelectedItem;
-                int selectedCharacterId = selectedCharacters.Id;
-                characterSheetPage.OpenCharacter(selectedCharacterId);
+                CharacterDataModel selectedCharacter = (CharacterDataModel)comboBoxCharactersList.SelectedItem;
+                int selectedId = selectedCharacter.Id;
+                characterSheetPage.OpenCharacter(selectedId);
             }
             GenerateCharacterList();
         }
@@ -81,11 +82,9 @@ namespace DnDSidekick.Presentation
             comboBoxCharactersList.ItemsSource = AllCharacters;
         }
 
-        public void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            ListOfCharactersChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-
+        //public void OnPropertyChanged([CallerMemberName] string name = null)
+        //{
+        //    ListOfCharactersChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        //}
     }
 }

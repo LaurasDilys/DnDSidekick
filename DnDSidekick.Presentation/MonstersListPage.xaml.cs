@@ -1,4 +1,6 @@
 ﻿using DnDSidekick.Business.Models;
+using DnDSidekick.Data;
+using DnDSidekick.Data.Models;
 using DnDSidekick.Presentation.Services;
 using System;
 using System.Collections.Generic;
@@ -31,7 +33,9 @@ namespace DnDSidekick.Presentation
             DataContext = this;
         }
 
-        public List<MonsterListModel> Monsters { get; set; } = MonsterListServices.GetAllMonstersForList();
+        //public List<MonsterListModel> Monsters { get; set; } = MonsterListServices.GetAllMonstersForList();
+
+        private List<MonsterDataModel> Monsters { get; set; } = ManageDb.GetAllMonstersValueTypes();
 
         private void OrderByDescending(string propertyName, DataGrid list)
         {
@@ -39,6 +43,14 @@ namespace DnDSidekick.Presentation
             dataView.SortDescriptions.Clear();
             dataView.SortDescriptions.Add(new SortDescription(propertyName, ListSortDirection.Descending));
             dataView.Refresh();
+        }
+
+        public void ShowMonsterList(string transformationType)
+        {
+            if (transformationType == "WildShape")
+            {
+                //
+            }
         }
     }
 }

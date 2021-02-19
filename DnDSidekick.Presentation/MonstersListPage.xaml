@@ -8,30 +8,39 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MonstersListPage">
 
-    <Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid ScrollViewer.CanContentScroll="True">
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <DataGrid x:Name="monstersList" CanUserSortColumns="True" CanUserResizeColumns="False" CanUserReorderColumns="False" Grid.Row="0" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="CR" Binding="{Binding ChallengeRating}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Size and alignment" Binding="{Binding SizeTypeAndAlignment}"></DataGridTextColumn>
-                <DataGridTextColumn Header="HP" Binding="{Binding HitPoints}"></DataGridTextColumn>
-                <DataGridTextColumn Header="AC" Binding="{Binding ArmorClass}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Speed" Binding="{Binding Speed}"></DataGridTextColumn>
-                <DataGridTextColumn Header="STR" Binding="{Binding Strength}"></DataGridTextColumn>
-                <DataGridTextColumn Header="DEX" Binding="{Binding Dexterity}"></DataGridTextColumn>
-                <DataGridTextColumn Header="CON" Binding="{Binding Constitution}"></DataGridTextColumn>
-                <DataGridTextColumn Header="INT" Binding="{Binding Intelligence}"></DataGridTextColumn>
-                <DataGridTextColumn Header="WIS" Binding="{Binding Wisdom}"></DataGridTextColumn>
-                <DataGridTextColumn Header="CHA" Binding="{Binding Charisma}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Senses" Binding="{Binding Senses}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        </ScrollViewer>
-
-    </Grid>
+            <DataGrid Grid.Column="1" Grid.Row="0" x:Name="monstersList" CanUserSortColumns="True" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="CR" Binding="{Binding ChallengeRating}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="HP" Binding="{Binding HitPoints}"/>
+                    <DataGridTextColumn Header="AC" Binding="{Binding ArmorClass}"/>
+                    <DataGridTextColumn Header="STR" Binding="{Binding Strength}"/>
+                    <DataGridTextColumn Header="DEX" Binding="{Binding Dexterity}"/>
+                    <DataGridTextColumn Header="CON" Binding="{Binding Constitution}"/>
+                    <DataGridTextColumn Header="Speed" Binding="{Binding WalkSpeed}"/>
+                    <DataGridTextColumn Header="Burrow" Binding="{Binding BurrowSpeed}"/>
+                    <DataGridTextColumn Header="Climb" Binding="{Binding ClimbSpeed}"/>
+                    <DataGridTextColumn Header="Fly" Binding="{Binding FlySpeed}"/>
+                    <DataGridTextColumn Header="Swim" Binding="{Binding SwimSpeed}"/>
+                    <DataGridTextColumn Header="Blindsight" Binding="{Binding Blindsight}"/>
+                    <DataGridTextColumn Header="Darkvision" Binding="{Binding Darkvision}"/>
+                    <DataGridTextColumn Header="Tremorsense" Binding="{Binding Tremorsense}"/>
+                    <DataGridTextColumn Header="Truesight" Binding="{Binding Truesight}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </ScrollViewer>
 </Page>

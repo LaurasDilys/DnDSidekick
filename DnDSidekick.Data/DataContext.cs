@@ -25,6 +25,7 @@ namespace DnDSidekick.Data
         public DbSet<Environ> Environs { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<CharacterDataModel> Characters { get; set; }
+        public DbSet<CharacterSave> CharacterSaveHistory { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -84,43 +85,9 @@ namespace DnDSidekick.Data
                         .ToTable("Characters")
                         .HasKey(k => k.Id);
 
-
-
-            // Fluent API examples
-            //modelBuilder.Entity<Course>()
-            //            .Property(p => p.Price)
-            //            .HasPrecision(9, 2);
-
-            //modelBuilder.Entity<Dormitory>()
-            //            .HasKey(k => k.LocationId)
-            //            .Property(p => p.Price)
-            //            .HasPrecision(9, 2);
-
-            //modelBuilder.Entity<Person>()
-            //            .ToTable("Persons")
-            //            .Property(p => p.FirstName)
-            //            .HasMaxLength(150)
-            //            .IsRequired();
-
-            //modelBuilder.Entity<Person>()
-            //            .Property(p => p.LastName)
-            //            .HasMaxLength(150)
-            //            .IsRequired();
-
-            //modelBuilder.Entity<Profession>()
-            //            .Property(p => p.Text)
-            //            .HasMaxLength(150)
-            //            .IsRequired();
-
-            //modelBuilder.Entity<Profession>()
-            //            .Property(p => p.TextLt)
-            //            .HasMaxLength(150)
-            //            .IsRequired();
-
-            //modelBuilder.Entity<Student>()
-            //            .HasOptional(d => d.Dormitory)
-            //            .WithMany(s => s.Students)
-            //            .HasForeignKey(fk => fk.DormitoryId);
+            modelBuilder.Entity<CharacterSave>()
+                        .ToTable("CharacterSaveHistory")
+                        .HasKey(k => k.Id);
         }
     }
 }

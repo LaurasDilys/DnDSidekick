@@ -51,9 +51,28 @@ namespace DnDSidekick.Data
                     id = context.Characters.Count() + 1;
                     context.Characters.Add((CharacterDataModel)characterDb);
                 }
-
                 context.SaveChanges();
+                UpdateCharacterSaveHistory(id);
                 return id;
+            }
+        }
+
+        private static void UpdateCharacterSaveHistory(int id)
+        {
+            using (var context = new DataContext())
+            {
+                context.CharacterSaveHistory.Add(new CharacterSave { CharacterId = id });
+                context.SaveChanges();
+            }
+        }
+
+        public static int GetIdOfLastSavedCharacter()
+        {
+            using (var context = new DataContext())
+            {
+                List<CharacterSave> characterSaveHistory = context.CharacterSaveHistory.ToList();
+                if (characterSaveHistory.Count == 0) return 0;
+                else return characterSaveHistory.Last().CharacterId;
             }
         }
 
@@ -73,6 +92,15 @@ namespace DnDSidekick.Data
             {
                 List<MonsterDataModel> monsters = context.Monsters
                     .Include(s => s.Size).Include(t => t.Type).Include(a => a.Alignment).Include(tg => tg.Tag).ToList();
+                return monsters;
+            }
+        }
+
+        public static List<MonsterDataModel> GetAllMonstersValueTypes()
+        {
+            using (var context = new DataContext())
+            {
+                List<MonsterDataModel> monsters = context.Monsters.ToList();
                 return monsters;
             }
         }

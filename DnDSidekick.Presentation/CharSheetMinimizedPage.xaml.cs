@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DnDSidekick.Business.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace DnDSidekick.Presentation
     /// </summary>
     public partial class CharSheetMinimizedPage : Page
     {
+        public event RoutedEventHandler FullViewRequestedEvent;
+
         public CharSheetMinimizedPage()
         {
             InitializeComponent();
+
+            btnFullView.Click += BtnFullView_Click;
         }
+
+        private void BtnFullView_Click(object sender, RoutedEventArgs e)
+        {
+            FullViewRequestedEvent(sender, e);
+        }
+
+        public Character CharacterMinimized { get; set; } = new Character();
     }
 }

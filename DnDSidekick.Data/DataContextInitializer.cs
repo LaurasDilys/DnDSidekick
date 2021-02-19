@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DnDSidekick.Data
 {
-    public class DataContextInitializer : DropCreateDatabaseAlways<DataContext>
+    public class DataContextInitializer : CreateDatabaseIfNotExists<DataContext>
     {
         protected override void Seed(DataContext context)
         {

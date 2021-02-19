@@ -23,13 +23,25 @@ namespace DnDSidekick.Business.Models
             SetInitialAbilityScoreValues();
 
             Id = 0;
+            Name = "";
             Level = 1;
             HitPoints = 1;
             CurrentHitPoints = 1;
         }
 
         public int Id { get; set; }
-        public string Name { get; set; } = "";
+
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string Class { get; set; } = "";
         public string Race { get; set; } = "";
         public string Background { get; set; } = "";
@@ -130,7 +142,17 @@ namespace DnDSidekick.Business.Models
 
 
         public int Initiative { get; set; }
-        public int CurrentInitiative { get; set; }
+
+        private int currentInitiative;
+        public int CurrentInitiative
+        {
+            get { return currentInitiative; }
+            set
+            {
+                currentInitiative = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         public int Speed { get; set; }

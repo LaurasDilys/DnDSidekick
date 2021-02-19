@@ -18,11 +18,12 @@ namespace DnDSidekick.Commons.Services
             return value;
         }
 
-        public static int NumberFrom(string text)
-        {
-            int number = 0;
-            if (Int32.TryParse(string.Concat(text.Where(char.IsDigit)), out number)) return number;
-            throw new FormatException();
-        } //Perhaps rename: ExtractDigitsFrom()
+
+        //public static int ExtractDigitsFrom(string text)
+        //{
+        //    int number = 0;
+        //    if (Int32.TryParse(string.Concat(text.Where(char.IsDigit)), out number)) return number;
+        //    throw new FormatException();
+        //}
     }
 }
