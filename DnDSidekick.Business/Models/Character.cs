@@ -18,12 +18,14 @@ namespace DnDSidekick.Business.Models
 
         public Character()
         {
-            Id = 0;
-            Level = 1;
-
             BuildListsOfSkills();
             BuildListOfAbilities();
             SetInitialAbilityScoreValues();
+
+            Id = 0;
+            Level = 1;
+            HitPoints = 1;
+            CurrentHitPoints = 1;
         }
 
         public int Id { get; set; }
@@ -43,8 +45,8 @@ namespace DnDSidekick.Business.Models
                 level = value.Between(StaticValues.MinLevel, StaticValues.MaxLevel);
                 ProficiencyBonus = StaticValues.ProfBonusFromLvl[level];
                 int xp = StaticValues.XPfromLvl[level];
-                if (ExperiencePoints < xp) ExperiencePoints = xp;
-                else if (level != 20 && ExperiencePoints >= StaticValues.XPfromLvl[level + 1]) ExperiencePoints = xp;
+                if (ExperiencePoints < xp || (level != 20 && ExperiencePoints >= StaticValues.XPfromLvl[level + 1]))
+                    ExperiencePoints = xp;
                 OnPropertyChanged();
             }
         }
@@ -77,13 +79,54 @@ namespace DnDSidekick.Business.Models
         public string Inspiration { get; set; } = "";
 
 
-        public int ArmorClass { get; set; }
+        private int armorClass;
+        public int ArmorClass
+        {
+            get { return armorClass; }
+            set
+            {
+                if (value < 0) { armorClass = 0; }
+                else { armorClass = value; }
+                OnPropertyChanged();
+            }
+        }
         public int CurrentArmorClass { get; set; }
 
 
-        public int HitPoints { get; set; } = 1;
-        public int TemporaryHitPoints { get; set; }
-        public int CurrentHitPoints { get; set; }
+        private int hitPoints;
+        public int HitPoints
+        {
+            get { return hitPoints; }
+            set
+            {
+                if (value < 0) { hitPoints = 0; }
+                else { hitPoints = value; }
+                OnPropertyChanged();
+            }
+        }
+
+        private int temporaryHitPoints;
+        public int TemporaryHitPoints
+        {
+            get { return temporaryHitPoints; }
+            set
+            {
+                if (value < 0) { temporaryHitPoints = 0; }
+                else { temporaryHitPoints = value; }
+                OnPropertyChanged();
+            }
+        }
+
+        private int currentHitPoints;
+        public int CurrentHitPoints
+        {
+            get { return currentHitPoints; }
+            set
+            {
+                currentHitPoints = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         public int Initiative { get; set; }

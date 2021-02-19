@@ -30,10 +30,47 @@ namespace DnDSidekick.Presentation
         {
             InitializeComponent();
             DataContext = Character;
+
+            btnFullHealth.Click += BtnFullHealth_Click;
+            btnTakeDamage.Click += BtnTakeDamage_Click;
         }
 
         public Character Character { get; set; } = new Character();
         public Dictionary<string, int> PassiveSkills { get; set; } = new Dictionary<string, int>();
+
+        private void NumberValidation(object sender, TextCompositionEventArgs e)
+        {
+            //Regex regex = new Regex("^[-+]?[0-9]+$");
+            //e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void BtnFullHealth_Click(object sender, RoutedEventArgs e)
+        {
+            Character.CurrentHitPoints = Character.HitPoints;
+        }
+
+        private void BtnTakeDamage_Click(object sender, RoutedEventArgs e)
+        {
+            string text = txtDamageAmount.Text;
+            double damageAmount = 0;
+            if (!text.Contains(',') && double.TryParse(text, out damageAmount) && damageAmount > 0 && (damageAmount % 1 == 0))
+            {
+                DicreaseHitPoints((int)damageAmount);
+                txtDamageAmount.Text = "";
+            }
+            else MessageBox.Show("Please enter a positive integer as damage amount.");
+        }
+
+        public void DicreaseHitPoints(int damageAmount)
+        {
+            if (Character.TemporaryHitPoints > damageAmount) Character.TemporaryHitPoints -= damageAmount;
+            else
+            {
+                damageAmount -= Character.TemporaryHitPoints;
+                Character.TemporaryHitPoints = 0;
+                Character.CurrentHitPoints -= damageAmount;
+            }
+        }
 
         public void EditSelected(int id)
         {
@@ -91,12 +128,6 @@ namespace DnDSidekick.Presentation
                 else MessageBox.Show("Changes have been saved.");
                 Character.Id = Character.ToDataBase();
             }
-        }
-
-        private void NumberValidation(object sender, TextCompositionEventArgs e)
-        {
-            //Regex regex = new Regex("^[-+]?[0-9]+$");
-            //e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
