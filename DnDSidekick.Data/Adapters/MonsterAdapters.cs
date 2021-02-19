@@ -26,44 +26,6 @@ namespace DnDSidekick.Data.Adapters
             return wildShapeOptions;
         }
 
-        public static List<int> GetSkillModifiersValues(this IMonsterDataModel monster)
-        {
-            List<int> monsterSkillModifiers = new List<int>()
-            {
-                monster.StrengthSavingThrow,
-                monster.Athletics,
-
-                monster.DexteritySavingThrow,
-                monster.Acrobatics,
-                monster.SleightOfHand,
-                monster.Stealth,
-
-                monster.ConstitutionSavingThrow,
-
-                monster.IntelligenceSavingThrow,
-                monster.Arcana,
-                monster.History,
-                monster.Investigation,
-                monster.Nature,
-                monster.Religion,
-
-                monster.WisdomSavingThrow,
-                monster.AnimalHandling,
-                monster.Insight,
-                monster.Medicine,
-                monster.Perception,
-                monster.Survival,
-
-                monster.CharismaSavingThrow,
-                monster.Deception,
-                monster.Intimidation,
-                monster.Performance,
-                monster.Persuasion
-            };
-
-            return monsterSkillModifiers;
-        }
-
         public static IMonsterDataModel WildShapedInto(this ICharacter character, IMonsterDataModel monster)
         {
             ///
@@ -143,15 +105,15 @@ namespace DnDSidekick.Data.Adapters
             return wildShapedCharacter;
         }
 
-        public static void TransformIntoListModel(this IMonsterDataModel monsterDb, IMonsterViewModel monster)
+        public static void TransformIntoViewModel(this IMonsterDataModel monsterDb, IMonsterViewModel monsterVm)
         {
-            monster.ChallengeRating = monsterDb.ChallengeRating;
+            monsterVm.ChallengeRating = monsterDb.ChallengeRating;
 
-            monster.MonsterId = monsterDb.MonsterId;
-            monster.Name = monsterDb.Name;
-            monster.SizeTypeAndAlignment = $"{monsterDb.Size.Name} {monsterDb.Type.Name.ToLower()}, {monsterDb.Alignment.Name.ToLower()}";
-            monster.ArmorClass = monsterDb.ArmorClass;
-            monster.HitPoints = monsterDb.HitPoints;
+            monsterVm.MonsterId = monsterDb.MonsterId;
+            monsterVm.Name = monsterDb.Name;
+            monsterVm.SizeTypeAndAlignment = $"{monsterDb.Size.Name} {monsterDb.Type.Name.ToLower()}, {monsterDb.Alignment.Name.ToLower()}";
+            monsterVm.ArmorClass = monsterDb.ArmorClass;
+            monsterVm.HitPoints = monsterDb.HitPoints;
 
             StringBuilder speed = new StringBuilder();
             speed.Append($"{monsterDb.WalkSpeed} ft.");
@@ -159,46 +121,47 @@ namespace DnDSidekick.Data.Adapters
             if (monsterDb.ClimbSpeed > 0) speed.Append($", climb {monsterDb.ClimbSpeed} ft.");
             if (monsterDb.FlySpeed > 0) speed.Append($", fly {monsterDb.FlySpeed} ft.");
             if (monsterDb.SwimSpeed > 0) speed.Append($", swim {monsterDb.SwimSpeed} ft.");
-            monster.Speed = speed.ToString();
+            monsterVm.Speed = speed.ToString();
+
+            monsterVm.Strength = monsterDb.Strength;
+            monsterVm.Dexterity = monsterDb.Dexterity;
+            monsterVm.Constitution = monsterDb.Constitution;
+            monsterVm.Intelligence = monsterDb.Intelligence;
+            monsterVm.Wisdom = monsterDb.Wisdom;
+            monsterVm.Charisma = monsterDb.Charisma;
+
+            monsterVm.GetSkillValuesFrom(monsterDb);
 
 
-            monster.Strength = monsterDb.Strength;
-            monster.Dexterity = monsterDb.Dexterity;
-            monster.Constitution = monsterDb.Constitution;
-            monster.Intelligence = monsterDb.Intelligence;
-            monster.Wisdom = monsterDb.Wisdom;
-            monster.Charisma = monsterDb.Charisma;
+            //monsterVm.StrengthSavingThrow = monsterDb.StrengthSavingThrow;
+            //monsterVm.Athletics = monsterDb.Athletics;
 
+            //monsterVm.DexteritySavingThrow = monsterDb.DexteritySavingThrow;
+            //monsterVm.Acrobatics = monsterDb.Acrobatics;
+            //monsterVm.SleightOfHand = monsterDb.SleightOfHand;
+            //monsterVm.Stealth = monsterDb.Stealth;
 
-            monster.StrengthSavingThrow = monsterDb.StrengthSavingThrow;
-            monster.Athletics = monsterDb.Athletics;
+            //monsterVm.ConstitutionSavingThrow = monsterDb.ConstitutionSavingThrow;
 
-            monster.DexteritySavingThrow = monsterDb.DexteritySavingThrow;
-            monster.Acrobatics = monsterDb.Acrobatics;
-            monster.SleightOfHand = monsterDb.SleightOfHand;
-            monster.Stealth = monsterDb.Stealth;
+            //monsterVm.IntelligenceSavingThrow = monsterDb.IntelligenceSavingThrow;
+            //monsterVm.Arcana = monsterDb.Arcana;
+            //monsterVm.History = monsterDb.History;
+            //monsterVm.Investigation = monsterDb.Investigation;
+            //monsterVm.Nature = monsterDb.Nature;
+            //monsterVm.Religion = monsterDb.Religion;
 
-            monster.ConstitutionSavingThrow = monsterDb.ConstitutionSavingThrow;
+            //monsterVm.WisdomSavingThrow = monsterDb.WisdomSavingThrow;
+            //monsterVm.AnimalHandling = monsterDb.AnimalHandling;
+            //monsterVm.Insight = monsterDb.Insight;
+            //monsterVm.Medicine = monsterDb.Medicine;
+            //monsterVm.Perception = monsterDb.Perception;
+            //monsterVm.Survival = monsterDb.Survival;
 
-            monster.IntelligenceSavingThrow = monsterDb.IntelligenceSavingThrow;
-            monster.Arcana = monsterDb.Arcana;
-            monster.History = monsterDb.History;
-            monster.Investigation = monsterDb.Investigation;
-            monster.Nature = monsterDb.Nature;
-            monster.Religion = monsterDb.Religion;
-
-            monster.WisdomSavingThrow = monsterDb.WisdomSavingThrow;
-            monster.AnimalHandling = monsterDb.AnimalHandling;
-            monster.Insight = monsterDb.Insight;
-            monster.Medicine = monsterDb.Medicine;
-            monster.Perception = monsterDb.Perception;
-            monster.Survival = monsterDb.Survival;
-
-            monster.CharismaSavingThrow = monsterDb.CharismaSavingThrow;
-            monster.Deception = monsterDb.Deception;
-            monster.Intimidation = monsterDb.Intimidation;
-            monster.Performance = monsterDb.Performance;
-            monster.Persuasion = monsterDb.Persuasion;
+            //monsterVm.CharismaSavingThrow = monsterDb.CharismaSavingThrow;
+            //monsterVm.Deception = monsterDb.Deception;
+            //monsterVm.Intimidation = monsterDb.Intimidation;
+            //monsterVm.Performance = monsterDb.Performance;
+            //monsterVm.Persuasion = monsterDb.Persuasion;
 
 
             int i = 0;
@@ -207,12 +170,63 @@ namespace DnDSidekick.Data.Adapters
             if (monsterDb.Darkvision > 0) senses.Append(string.Format("{1}Darkvision {0} ft.", monsterDb.Darkvision, i++ > 0 ? ", " : ""));
             if (monsterDb.Tremorsense > 0) senses.Append(string.Format("{1}Tremorsense {0} ft.", monsterDb.Tremorsense, i++ > 0 ? ", " : ""));
             if (monsterDb.Truesight > 0) senses.Append(string.Format("{1}Truesight {0} ft.", monsterDb.Truesight, i > 0 ? ", " : ""));
-            monster.Senses = senses.ToString();
+            monsterVm.Senses = senses.ToString();
 
-            if (monsterDb.Tag != null) monster.Tag = monsterDb.Tag.Name;
-            else monster.Tag = "";
+            if (monsterDb.Tag != null) monsterVm.Tag = monsterDb.Tag.Name;
+            else monsterVm.Tag = "";
 
             //monster.ProficiencyBonus = monsterDb.ProficiencyBonus;
+        }
+
+        private static void GetSkillValuesFrom(this IMonsterViewModel monster, IMonsterDataModel monsterDb)
+        {
+            List<int> monsterDbSkillModifiers = monsterDb.GetSkillModifiersValues();
+
+            int i = 0;
+            foreach (SkillViewModel skill in monster.StrengthSkills) skill.Modifier = monsterDbSkillModifiers[i++];
+            foreach (SkillViewModel skill in monster.DexteritySkills) skill.Modifier = monsterDbSkillModifiers[i++];
+            foreach (SkillViewModel skill in monster.ConstitutionSkills) skill.Modifier = monsterDbSkillModifiers[i++];
+            foreach (SkillViewModel skill in monster.IntelligenceSkills) skill.Modifier = monsterDbSkillModifiers[i++];
+            foreach (SkillViewModel skill in monster.WisdomSkills) skill.Modifier = monsterDbSkillModifiers[i++];
+            foreach (SkillViewModel skill in monster.CharismaSkills) skill.Modifier = monsterDbSkillModifiers[i++];
+        }
+
+        private static List<int> GetSkillModifiersValues(this IMonsterDataModel monsterDb)
+        {
+            List<int> monsterSkillModifiers = new List<int>()
+            {
+                monsterDb.StrengthSavingThrow,
+                monsterDb.Athletics,
+
+                monsterDb.DexteritySavingThrow,
+                monsterDb.Acrobatics,
+                monsterDb.SleightOfHand,
+                monsterDb.Stealth,
+
+                monsterDb.ConstitutionSavingThrow,
+
+                monsterDb.IntelligenceSavingThrow,
+                monsterDb.Arcana,
+                monsterDb.History,
+                monsterDb.Investigation,
+                monsterDb.Nature,
+                monsterDb.Religion,
+
+                monsterDb.WisdomSavingThrow,
+                monsterDb.AnimalHandling,
+                monsterDb.Insight,
+                monsterDb.Medicine,
+                monsterDb.Perception,
+                monsterDb.Survival,
+
+                monsterDb.CharismaSavingThrow,
+                monsterDb.Deception,
+                monsterDb.Intimidation,
+                monsterDb.Performance,
+                monsterDb.Persuasion
+            };
+
+            return monsterSkillModifiers;
         }
 
         //public static void Test()

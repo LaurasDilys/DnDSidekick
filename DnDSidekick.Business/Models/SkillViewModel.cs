@@ -8,6 +8,11 @@ namespace DnDSidekick.Business.Models
 {
     public class SkillViewModel
     {
+        public SkillViewModel(string skillName)
+        {
+            SkillName = skillName;
+        }
+
         public string SkillName { get; set; }
 
         private int modifier;

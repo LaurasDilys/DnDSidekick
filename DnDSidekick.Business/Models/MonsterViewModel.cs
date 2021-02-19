@@ -34,41 +34,79 @@ namespace DnDSidekick.Business.Models
         public string Tag { get; set; }
 
 
-        public int StrengthSavingThrow { get; set; }
-        public int Athletics { get; set; }
+        //public int StrengthSavingThrow { get; set; }
+        //public int Athletics { get; set; }
 
-        public int DexteritySavingThrow { get; set; }
-        public int Acrobatics { get; set; }
-        public int SleightOfHand { get; set; }
-        public int Stealth { get; set; }
+        //public int DexteritySavingThrow { get; set; }
+        //public int Acrobatics { get; set; }
+        //public int SleightOfHand { get; set; }
+        //public int Stealth { get; set; }
         
-        public int ConstitutionSavingThrow { get; set; }
+        //public int ConstitutionSavingThrow { get; set; }
 
-        public int IntelligenceSavingThrow { get; set; }
-        public int Arcana { get; set; }
-        public int History { get; set; }
-        public int Investigation { get; set; }
-        public int Nature { get; set; }
-        public int Religion { get; set; }
+        //public int IntelligenceSavingThrow { get; set; }
+        //public int Arcana { get; set; }
+        //public int History { get; set; }
+        //public int Investigation { get; set; }
+        //public int Nature { get; set; }
+        //public int Religion { get; set; }
 
-        public int WisdomSavingThrow { get; set; }
-        public int AnimalHandling { get; set; }
-        public int Insight { get; set; }
-        public int Medicine { get; set; }
-        public int Perception { get; set; }
-        public int Survival { get; set; }
+        //public int WisdomSavingThrow { get; set; }
+        //public int AnimalHandling { get; set; }
+        //public int Insight { get; set; }
+        //public int Medicine { get; set; }
+        //public int Perception { get; set; }
+        //public int Survival { get; set; }
 
-        public int CharismaSavingThrow { get; set; }
-        public int Deception { get; set; }
-        public int Intimidation { get; set; }
-        public int Performance { get; set; }
-        public int Persuasion { get; set; }
+        //public int CharismaSavingThrow { get; set; }
+        //public int Deception { get; set; }
+        //public int Intimidation { get; set; }
+        //public int Performance { get; set; }
+        //public int Persuasion { get; set; }
+
 
         public int ProficiencyBonus { get; set; }
 
+
+        public List<SkillViewModel> StrengthSkills { get; set; }
+        public List<SkillViewModel> DexteritySkills { get; set; }
+        public List<SkillViewModel> ConstitutionSkills { get; set; }
+        public List<SkillViewModel> IntelligenceSkills { get; set; }
+        public List<SkillViewModel> WisdomSkills { get; set; }
+        public List<SkillViewModel> CharismaSkills { get; set; }
+
+
         private void GenerateSkillsList()
         {
+            StrengthSkills.Add(new SkillViewModel("Saving Throw"));
+            StrengthSkills.Add(new SkillViewModel("Athletics"));
 
+            DexteritySkills.Add(new SkillViewModel("Saving Throw"));
+            DexteritySkills.Add(new SkillViewModel("Acrobatics"));
+            DexteritySkills.Add(new SkillViewModel("Sleight of Hand"));
+            DexteritySkills.Add(new SkillViewModel("Stealth"));
+
+            ConstitutionSkills.Add(new SkillViewModel("Saving Throw"));
+
+            IntelligenceSkills.Add(new SkillViewModel("Saving Throw"));
+            IntelligenceSkills.Add(new SkillViewModel("Arcana"));
+            IntelligenceSkills.Add(new SkillViewModel("History"));
+            IntelligenceSkills.Add(new SkillViewModel("Investigation"));
+            IntelligenceSkills.Add(new SkillViewModel("Nature"));
+            IntelligenceSkills.Add(new SkillViewModel("Religion"));
+
+            WisdomSkills.Add(new SkillViewModel("Saving Throw"));
+            WisdomSkills.Add(new SkillViewModel("Animal Handling"));
+            WisdomSkills.Add(new SkillViewModel("Insight"));
+            WisdomSkills.Add(new SkillViewModel("Medicine"));
+            WisdomSkills.Add(new SkillViewModel("Perception"));
+            WisdomSkills.Add(new SkillViewModel("Survival"));
+
+            CharismaSkills.Add(new SkillViewModel("Saving Throw"));
+            CharismaSkills.Add(new SkillViewModel("Deception"));
+            CharismaSkills.Add(new SkillViewModel("Intimidation"));
+            CharismaSkills.Add(new SkillViewModel("Performance"));
+            CharismaSkills.Add(new SkillViewModel("Persuasion"));
         }
     }
 }
