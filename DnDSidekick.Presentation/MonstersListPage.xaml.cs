@@ -58,7 +58,10 @@ namespace DnDSidekick.Presentation
             if (selectedItemIndex != -1)
             {
                 MonsterDataModel selectedMonster = (MonsterDataModel)monstersList.SelectedItem;
-                btnTransform.Content = $"Transform into {selectedMonster.Name}";
+                string transformationType;
+                if (monstersList.ItemsSource == PolymorphOptions) transformationType = "Polymorph";
+                else transformationType = "Wild Shape";
+                btnTransform.Content = $"{transformationType} into {selectedMonster.Name}";
                 if (!btnTransform.IsEnabled) btnTransform.IsEnabled = true;
             }
         }
@@ -80,6 +83,7 @@ namespace DnDSidekick.Presentation
             if (transformationType == "Polymorph") monstersList.ItemsSource = PolymorphOptions;
             else if (transformationType == "WildShape") monstersList.ItemsSource = WildShapeOptions;
             OrderByDescending("ChallengeRating", monstersList);
+            btnTransform.Content = "Choose a creature";
         }
     }
 }

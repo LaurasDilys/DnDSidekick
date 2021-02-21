@@ -29,7 +29,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="680"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -49,9 +49,6 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Button x:Name="btnChooseCharacter" Grid.Column="4" Grid.Row="1" Width="99">
-                <TextBlock TextAlignment="Center">Choose<LineBreak/>Character</TextBlock>
-            </Button>
             <ToggleButton x:Name="btnPolymorph" Grid.Column="6" Grid.Row="1" Width="99">
                 <TextBlock TextAlignment="Center">Polymorph<LineBreak/>Options</TextBlock>
             </ToggleButton>

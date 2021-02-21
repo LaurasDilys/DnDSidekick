@@ -102,7 +102,18 @@ namespace DnDSidekick.Business.Models
                 OnPropertyChanged();
             }
         }
-        public int CurrentArmorClass { get; set; }
+
+        private int currentArmorClass;
+        public int CurrentArmorClass
+        {
+            get { return currentArmorClass; }
+            set
+            {
+                if (value < 0) { currentArmorClass = 0; }
+                else { currentArmorClass = value; }
+                OnPropertyChanged();
+            }
+        }
 
 
         private int hitPoints;

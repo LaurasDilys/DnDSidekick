@@ -44,42 +44,83 @@ namespace DnDSidekick.Presentation
                 charSheetMinimizedPage.Visibility = Visibility.Collapsed;
                 MonsterList.Content = monstersListPage;
                 monstersListPage.Visibility = Visibility.Collapsed;
-                //TransformedCharacter.Content = 
-                //
+                TransformedCharacter.Content = transformationPage;
+                transformationPage.Visibility = Visibility.Collapsed;
             }
             else
             {
-                comboBoxCharactersList.IsEnabled = false;
-                btnChooseCharacter.IsEnabled = false;
-                btnPolymorph.IsEnabled = false;
-                btnWildShape.IsEnabled = false;
+                DisableCombatWindowControls();
             }
 
             comboBoxCharactersList.SelectionChanged += ComboBoxCharactersList_SelectedIndexChanged;
             btnCreateCharacter.Click += BtnCreateCharacter_Click;
-            //btnChooseCharacter.Click += BtnChooseCharacter_Click;
-            btnChooseCharacter.IsEnabled = false;
-            //
             btnPolymorph.Click += BtnPolymorph_Click;
             btnWildShape.Click += BtnWildShape_Click;
+
             charSheetMinimizedPage.FullViewRequestedEvent += ShowFullCharacterSheet;
             monstersListPage.TransformationRequestedEvent += TransformCharacter;
+            transformationPage.CancelTransformationEvent += CancelTransformation;
+
+
+            transformationPage.CurrentArmorClassChangedEvent += CurrentArmorClassChanged;
+        }
+        private void CurrentArmorClassChanged(int newArmorClass)
+        {
+            characterSheetPage.Character.CurrentArmorClass = newArmorClass;
+        }
+
+        private void CancelTransformation(int excessDamage)
+        {
+            EnableCombatWindowControls();
+            charSheetMinimizedPage.btnFullView.IsEnabled = true;
+            transformationPage.Visibility = Visibility.Collapsed;
+            monstersListPage.Visibility = Visibility.Visible;
+
+            if (excessDamage >= 0)
+            {
+                characterSheetPage.DicreaseHitPoints(excessDamage);
+                ShowFullCharacterSheet();
+            }
+        }
+
+        private void DisableCombatWindowControls()
+        {
+            comboBoxCharactersList.IsEnabled = false;
+            btnPolymorph.IsEnabled = false;
+            btnWildShape.IsEnabled = false;
+        }
+
+        private void EnableCombatWindowControls()
+        {
+            comboBoxCharactersList.IsEnabled = true;
+            btnPolymorph.IsEnabled = true;
+            btnWildShape.IsEnabled = true;
+        }
+
+        private void PrepareScreenForTransformation()
+        {
+            monstersListPage.Visibility = Visibility.Collapsed;
+            DisableCombatWindowControls();
+            charSheetMinimizedPage.btnFullView.IsEnabled = false;
         }
 
         private void TransformCharacter(int monsterId)
         {
-            monstersListPage.Visibility = Visibility.Collapsed;
+            PrepareScreenForTransformation();
+
             ICharacter character = characterSheetPage.Character;
             IMonsterDataModel selectedMonster = ManageDb.GetMonsterFromDataBase(monsterId);
-            if (btnPolymorph.IsChecked == true) transformedCharacterPage = new TransformedCharacterPage(selectedMonster, character.CurrentArmorClass);
-            else transformedCharacterPage = new TransformedCharacterPage(character.WildShapedInto(selectedMonster), character.CurrentArmorClass);
-            TransformedCharacter.Content = transformedCharacterPage;
+
+            if (btnPolymorph.IsChecked == true) transformationPage.LoadContent(selectedMonster, character.CurrentArmorClass);
+            else transformationPage.LoadContent(character.WildShapedInto(selectedMonster), character.CurrentArmorClass);
+
+            transformationPage.Visibility = Visibility.Visible;
         }
 
         private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
         private CharSheetMinimizedPage charSheetMinimizedPage { get; set; } = new CharSheetMinimizedPage();
         private MonstersListPage monstersListPage { get; set; }
-        private TransformedCharacterPage transformedCharacterPage { get; set; }
+        private TransformedCharacterPage transformationPage { get; set; } = new TransformedCharacterPage();
         private List<CharacterDataModel> AllCharacters { get; set; }
 
         private void ComboBoxCharactersList_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,19 +141,27 @@ namespace DnDSidekick.Presentation
 
         private void BtnPolymorph_Click(object sender, RoutedEventArgs e)
         {
-            btnWildShape.IsChecked = false;
-            ShowCharSheetMinimized();
-            ShowMonsterList("Polymorph");
-            monstersListPage.btnTransform.Content = "Choose a creature";
-            monstersListPage.btnTransform.IsEnabled = false;
+            if (btnPolymorph.IsChecked == true)
+            {
+                btnWildShape.IsChecked = false;
+                ShowCharSheetMinimized();
+                ShowMonsterList("Polymorph");
+                monstersListPage.btnTransform.Content = "Choose a creature";
+                monstersListPage.btnTransform.IsEnabled = false;
+            }
+            else btnPolymorph.IsChecked = true;
         }
 
         private void BtnWildShape_Click(object sender, RoutedEventArgs e)
         {
-            btnPolymorph.IsChecked = false;
-            ShowCharSheetMinimized();
-            ShowMonsterList("WildShape");
-            monstersListPage.btnTransform.IsEnabled = false;
+            if (btnWildShape.IsChecked == true)
+            {
+                btnPolymorph.IsChecked = false;
+                ShowCharSheetMinimized();
+                ShowMonsterList("WildShape");
+                monstersListPage.btnTransform.IsEnabled = false;
+            }
+            else btnWildShape.IsChecked = true;
         }
 
         private void ShowMonsterList(string transformationType)
@@ -143,19 +192,6 @@ namespace DnDSidekick.Presentation
             createWindow.Show();
         }
 
-        //private void BtnChooseCharacter_Click(object sender, RoutedEventArgs e)
-        //{
-        //    int selectedItemIndex = comboBoxCharactersList.SelectedIndex;
-        //    if (selectedItemIndex != -1)
-        //    {
-        //        CharacterDataModel selectedCharacter = (CharacterDataModel)comboBoxCharactersList.SelectedItem;
-        //        int selectedCharacterId = selectedCharacter.Id;
-        //        characterSheetPage.OpenCharacter(selectedCharacterId);
-        //    }
-        //    GenerateCharacterList();
-        //    UpdateCharactersInAllPages();
-        //}
-
         private void GenerateCharacterList()
         {
             AllCharacters = ManageDb.GetAllCharactersReversed();
@@ -166,9 +202,7 @@ namespace DnDSidekick.Presentation
         {
             charSheetMinimizedPage.SelectedCharacter = characterSheetPage.Character;
             charSheetMinimizedPage.DataContext = charSheetMinimizedPage.SelectedCharacter;
-            //
             monstersListPage.SelectedCharacter = characterSheetPage.Character;
-            //
         }
     }
 }
