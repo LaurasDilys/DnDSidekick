@@ -63,19 +63,31 @@ namespace DnDSidekick.Presentation
         private void BtnHeal_Click(object sender, RoutedEventArgs e)
         {
             int hitPointAmount = GetHitPointAmount();
-            CurrentHP += hitPointAmount;
-            if (CurrentHP > TransformedCharacter.HitPoints) CurrentHP = TransformedCharacter.HitPoints;
-            DataContext = null;
-            DataContext = this;
+            if (hitPointAmount > 0)
+            {
+                CurrentHP += hitPointAmount;
+                if (CurrentHP > TransformedCharacter.HitPoints) CurrentHP = TransformedCharacter.HitPoints;
+                DataContext = null;
+                DataContext = this;
+            }
         }
 
         private void BtnTakeDamage_Click(object sender, RoutedEventArgs e)
         {
             int hitPointAmount = GetHitPointAmount();
-            CurrentHP -= hitPointAmount;
-            if (CurrentHP <= 0) CancelTransformationEvent(-CurrentHP);
-            DataContext = null;
-            DataContext = this;
+            if (hitPointAmount > 0)
+            {
+                CurrentHP -= hitPointAmount;
+                if (CurrentHP <= 0)
+                {
+                    string excessDamage = "";
+                    if (CurrentHP < 0) excessDamage = $" The excess damage ({-CurrentHP}) was carried over to your normal form.";
+                    MessageBox.Show($"The {TransformedCharacter.Name} has droped to 0 hit points.{excessDamage}");
+                    CancelTransformationEvent(-CurrentHP);
+                }
+                DataContext = null;
+                DataContext = this;
+            }
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)

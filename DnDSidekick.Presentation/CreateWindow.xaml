@@ -11,18 +11,12 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="19"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="19"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="19"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="790"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -31,27 +25,34 @@
 
             <ScrollViewer VerticalScrollBarVisibility="Auto"/>
 
-            <ComboBox x:Name="comboBoxCharactersList" Grid.Column="1" Grid.Row="1" Width="240" Margin="7,0,0,0">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"></TextBlock>
-                            <TextBlock Text=" – Level "></TextBlock>
-                            <TextBlock Text="{Binding Level}"></TextBlock>
-                            <TextBlock Text=" – "></TextBlock>
-                            <TextBlock Text="{Binding Race}"></TextBlock>
-                            <TextBlock Text=" – "></TextBlock>
-                            <TextBlock Text="{Binding Class}"></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Height="40" Orientation="Horizontal">
+                <StackPanel Width="240" Margin="0,0,75,0">
+                    <TextBlock Margin="0,1,0,1" HorizontalAlignment="Center">Choose Character</TextBlock>
+                    <ComboBox x:Name="comboBoxCharactersList">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}"></TextBlock>
+                                    <TextBlock Text=" – Level "></TextBlock>
+                                    <TextBlock Text="{Binding Level}"></TextBlock>
+                                    <TextBlock Text=" – "></TextBlock>
+                                    <TextBlock Text="{Binding Race}"></TextBlock>
+                                    <TextBlock Text=" – "></TextBlock>
+                                    <TextBlock Text="{Binding Class}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <ToggleButton x:Name="btnNewCharacter" Width="100" Margin="0,0,15,0">
+                    <TextBlock TextAlignment="Center">New<LineBreak/>Character</TextBlock>
+                </ToggleButton>
+                <ToggleButton x:Name="btnSave" Width="100">
+                    <TextBlock TextAlignment="Center">Save</TextBlock>
+                </ToggleButton>
+            </StackPanel>
 
-            <Button x:Name="btnEditSelected" Grid.Column="3" Grid.Row="1" Width="99">Edit Selected</Button>
-            <Button x:Name="btnNewCharacter" Grid.Column="5" Grid.Row="1" Width="99">New Character</Button>
-            <Button x:Name="btnSave" Grid.Column="7" Grid.Row="1" Width="99">Save</Button>
-
-            <Frame x:Name="CharacterSheet" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="7"/>
+            <Frame x:Name="CharacterSheet" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
         </Grid>
     </ScrollViewer>
 </Window>
