@@ -105,7 +105,7 @@ namespace DnDSidekick.Data.Adapters
             return wildShapedCharacter;
         }
 
-        public static void TransformIntoViewModel(this IMonsterDataModel monsterDb, IMonsterViewModel monsterVm)
+        public static void IntoViewModel(this IMonsterDataModel monsterDb, IMonsterViewModel monsterVm)
         {
             monsterVm.ChallengeRating = monsterDb.ChallengeRating;
 
@@ -123,12 +123,12 @@ namespace DnDSidekick.Data.Adapters
             if (monsterDb.SwimSpeed > 0) speed.Append($", swim {monsterDb.SwimSpeed} ft.");
             monsterVm.Speed = speed.ToString();
 
-            monsterVm.Strength = monsterDb.Strength;
-            monsterVm.Dexterity = monsterDb.Dexterity;
-            monsterVm.Constitution = monsterDb.Constitution;
-            monsterVm.Intelligence = monsterDb.Intelligence;
-            monsterVm.Wisdom = monsterDb.Wisdom;
-            monsterVm.Charisma = monsterDb.Charisma;
+            monsterVm.StrengthScore = monsterDb.Strength;
+            monsterVm.DexterityScore = monsterDb.Dexterity;
+            monsterVm.ConstitutionScore = monsterDb.Constitution;
+            monsterVm.IntelligenceScore = monsterDb.Intelligence;
+            monsterVm.WisdomScore = monsterDb.Wisdom;
+            monsterVm.CharismaScore = monsterDb.Charisma;
 
             monsterVm.GetSkillValuesFrom(monsterDb);
 
@@ -164,18 +164,51 @@ namespace DnDSidekick.Data.Adapters
             //monsterVm.Persuasion = monsterDb.Persuasion;
 
 
-            int i = 0;
+            int s = 0;
             StringBuilder senses = new StringBuilder(); 
-            if (monsterDb.Blindsight > 0) senses.Append(string.Format("{1}Blindsight {0} ft.", monsterDb.Blindsight, i++ > 0 ? ", " : ""));
-            if (monsterDb.Darkvision > 0) senses.Append(string.Format("{1}Darkvision {0} ft.", monsterDb.Darkvision, i++ > 0 ? ", " : ""));
-            if (monsterDb.Tremorsense > 0) senses.Append(string.Format("{1}Tremorsense {0} ft.", monsterDb.Tremorsense, i++ > 0 ? ", " : ""));
-            if (monsterDb.Truesight > 0) senses.Append(string.Format("{1}Truesight {0} ft.", monsterDb.Truesight, i > 0 ? ", " : ""));
+            if (monsterDb.Blindsight > 0) senses.Append(string.Format("{1}Blindsight {0} ft.", monsterDb.Blindsight, s++ > 0 ? ", " : ""));
+            if (monsterDb.Darkvision > 0) senses.Append(string.Format("{1}Darkvision {0} ft.", monsterDb.Darkvision, s++ > 0 ? ", " : ""));
+            if (monsterDb.Tremorsense > 0) senses.Append(string.Format("{1}Tremorsense {0} ft.", monsterDb.Tremorsense, s++ > 0 ? ", " : ""));
+            if (monsterDb.Truesight > 0) senses.Append(string.Format("{1}Truesight {0} ft.", monsterDb.Truesight, s > 0 ? ", " : ""));
             monsterVm.Senses = senses.ToString();
+
+
+            StringBuilder traits = new StringBuilder();
+            List<Trait> traitsList = monsterDb.Traits.ToList();
+            if (traitsList.Count == 0) traits.Append("--");
+            else if (traitsList.Count == 1) traits.Append(traitsList.First());
+            else for (int t = 0; t < traitsList.Count; t++) traits.Append(string.Format("{0}{1}",
+                traitsList[t].Name, t == traitsList.Count - 1 ? "" : ", "));
+            monsterVm.Traits = traits.ToString();
+
+
+            StringBuilder languages = new StringBuilder();
+            List<Language> languagesList = monsterDb.Languages.ToList();
+            if (languagesList.Count == 0) languages.Append("--");
+            else
+            {
+                if (!monsterDb.CanSpeak) for (int i = 0; i < languagesList.Count; i++) languages.Append(string.Format("{0}{1}",
+                languagesList[i].Name, i == languagesList.Count - 1 ? "" : ", "));
+                else
+                {
+                    languages.Append($"The {monsterDb.Name} understands ");
+                    for (int i = 0; i < languagesList.Count; i++)
+                    {
+                        languages.Append(languagesList[i].Name);
+                             if (i == languagesList.Count - 3) languages.Append(", ");
+                        else if (i == languagesList.Count - 2) languages.Append(" and ");
+                        else if (i == languagesList.Count - 1) languages.Append(" ");
+                        languages.Append(string.Format("but can't speak {0}", languagesList.Count == 1 ? "it" : "them"));
+                    }
+                }
+            }
+            monsterVm.Languages = languages.ToString();
+
 
             if (monsterDb.Tag != null) monsterVm.Tag = monsterDb.Tag.Name;
             else monsterVm.Tag = "";
 
-            //monster.ProficiencyBonus = monsterDb.ProficiencyBonus;
+            //monsterVm.ProficiencyBonus = monsterDb.ProficiencyBonus;
         }
 
         private static void GetSkillValuesFrom(this IMonsterViewModel monster, IMonsterDataModel monsterDb)

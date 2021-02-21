@@ -1,4 +1,5 @@
 ﻿using DnDSidekick.Business.Interfaces;
+using DnDSidekick.Commons.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +24,83 @@ namespace DnDSidekick.Business.Models
 
         public string Speed { get; set; }
 
-        public int Strength { get; set; }
-        public int Dexterity { get; set; }
-        public int Constitution { get; set; }
-        public int Intelligence { get; set; }
-        public int Wisdom { get; set; }
-        public int Charisma { get; set; }
+
+        private int strengthScore;
+        public int StrengthScore
+        {
+            get { return strengthScore; }
+            set
+            {
+                strengthScore = value;
+                StrengthModifier = strengthScore.ModifierText();
+            }
+        }
+        public string StrengthModifier { get; set; }
+
+        private int dexterityScore;
+        public int DexterityScore
+        {
+            get { return dexterityScore; }
+            set
+            {
+                dexterityScore = value;
+                DexterityModifier = dexterityScore.ModifierText();
+            }
+        }
+        public string DexterityModifier { get; set; }
+
+        private int constitutionScore;
+        public int ConstitutionScore
+        {
+            get { return constitutionScore; }
+            set
+            {
+                constitutionScore = value;
+                ConstitutionModifier = constitutionScore.ModifierText();
+            }
+        }
+        public string ConstitutionModifier { get; set; }
+
+        private int intelligenceScore;
+        public int IntelligenceScore
+        {
+            get { return intelligenceScore; }
+            set
+            {
+                intelligenceScore = value;
+                IntelligenceModifier = intelligenceScore.ModifierText();
+            }
+        }
+        public string IntelligenceModifier { get; set; }
+
+        private int wisdomScore;
+        public int WisdomScore
+        {
+            get { return wisdomScore; }
+            set
+            {
+                wisdomScore = value;
+                WisdomModifier = wisdomScore.ModifierText();
+            }
+        }
+        public string WisdomModifier { get; set; }
+
+        private int charismaScore;
+        public int CharismaScore
+        {
+            get { return charismaScore; }
+            set
+            {
+                charismaScore = value;
+                CharismaModifier = charismaScore.ModifierText();
+            }
+        }
+        public string CharismaModifier { get; set; }
+
 
         public string Senses { get; set; }
+        public string Traits { get; set; }
+        public string Languages { get; set; }
         public string Tag { get; set; }
 
 
@@ -65,7 +135,7 @@ namespace DnDSidekick.Business.Models
         //public int Persuasion { get; set; }
 
 
-        public int ProficiencyBonus { get; set; }
+        //public int ProficiencyBonus { get; set; }
 
 
         public List<SkillViewModel> StrengthSkills { get; set; }

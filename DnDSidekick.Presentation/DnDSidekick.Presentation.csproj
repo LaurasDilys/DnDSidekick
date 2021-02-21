@@ -73,6 +73,9 @@
     </Compile>
     <Compile Include="Services\CharacterCreationServices.cs" />
     <Compile Include="Services\MonsterListServices.cs" />
+    <Compile Include="TransformedCharacterPage.xaml.cs">
+      <DependentUpon>TransformedCharacterPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="CharacterSheetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +115,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MonstersListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransformedCharacterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

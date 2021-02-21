@@ -18,14 +18,22 @@ namespace DnDSidekick.Business.Interfaces
 
         string Speed { get; set; }
 
-        int Strength { get; set; }
-        int Dexterity { get; set; }
-        int Constitution { get; set; }
-        int Intelligence { get; set; }
-        int Wisdom { get; set; }
-        int Charisma { get; set; }
+        int StrengthScore { get; set; }
+        string StrengthModifier { get; set; }
+        int DexterityScore { get; set; }
+        string DexterityModifier { get; set; }
+        int ConstitutionScore { get; set; }
+        string ConstitutionModifier { get; set; }
+        int IntelligenceScore { get; set; }
+        string IntelligenceModifier { get; set; }
+        int WisdomScore { get; set; }
+        string WisdomModifier { get; set; }
+        int CharismaScore { get; set; }
+        string CharismaModifier { get; set; }
 
         string Senses { get; set; }
+        string Traits { get; set; }
+        string Languages { get; set; }
         string Tag { get; set; }
 
         //int StrengthSavingThrow { get; set; }
@@ -58,7 +66,7 @@ namespace DnDSidekick.Business.Interfaces
         //int Performance { get; set; }
         //int Persuasion { get; set; }
 
-        int ProficiencyBonus { get; set; }
+        //int ProficiencyBonus { get; set; }
 
         List<SkillViewModel> StrengthSkills { get; set; }
         List<SkillViewModel> DexteritySkills { get; set; }
