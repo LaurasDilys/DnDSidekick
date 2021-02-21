@@ -198,8 +198,8 @@ namespace DnDSidekick.Data.Adapters
                              if (i == languagesList.Count - 3) languages.Append(", ");
                         else if (i == languagesList.Count - 2) languages.Append(" and ");
                         else if (i == languagesList.Count - 1) languages.Append(" ");
-                        languages.Append(string.Format("but can't speak {0}", languagesList.Count == 1 ? "it" : "them"));
                     }
+                    languages.Append(string.Format("but can't speak {0}", languagesList.Count == 1 ? "it" : "them"));
                 }
             }
             monsterVm.Languages = languages.ToString();

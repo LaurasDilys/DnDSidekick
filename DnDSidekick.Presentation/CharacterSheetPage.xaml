@@ -36,15 +36,6 @@
             <RowDefinition Height="105"/>
             <RowDefinition Height="105"/>
             <RowDefinition Height="105"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -81,11 +72,37 @@
         <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding Inspiration}" Width="50" Margin="0,0,0,10" TextAlignment="Center" VerticalContentAlignment="Center"/>
         <Label Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3" Margin="0,0,0,10">Inspiration</Label>
         
-        <StackPanel Grid.Column="1" Grid.Row="7" Grid.RowSpan="8">
-            <TextBox Text="{Binding Strength.Modifier}" Width="50" IsReadOnly="True" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
-            <TextBox Text="{Binding Strength.Score}" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
+        <StackPanel Grid.Column="1" Grid.Row="7">
+            <TextBox Text="{Binding Strength.Score}" Width="50" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
+            <TextBox Text="{Binding Strength.Modifier}" IsReadOnly="True" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
             <Label FontSize="10" HorizontalAlignment="Center">Strength</Label>
         </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="8">
+            <TextBox Text="{Binding Dexterity.Score}" Width="50" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
+            <TextBox Text="{Binding Dexterity.Modifier}" IsReadOnly="True" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label FontSize="10" HorizontalAlignment="Center">Dexterity</Label>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="9">
+            <TextBox Text="{Binding Constitution.Score}" Width="50" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
+            <TextBox Text="{Binding Constitution.Modifier}" IsReadOnly="True" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label FontSize="10" HorizontalAlignment="Center">Constitution</Label>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="10">
+            <TextBox Text="{Binding Intelligence.Score}" Width="50" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
+            <TextBox Text="{Binding Intelligence.Modifier}" IsReadOnly="True" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label FontSize="10" HorizontalAlignment="Center">Intelligence</Label>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="11">
+            <TextBox Text="{Binding Wisdom.Score}" Width="50" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
+            <TextBox Text="{Binding Wisdom.Modifier}" IsReadOnly="True" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label FontSize="10" HorizontalAlignment="Center">Wisdom</Label>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="12">
+            <TextBox Text="{Binding Charisma.Score}" Width="50" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
+            <TextBox Text="{Binding Charisma.Modifier}" IsReadOnly="True" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label FontSize="10" HorizontalAlignment="Center">Charisma</Label>
+        </StackPanel>
+        
         <StackPanel Grid.Column="2" Grid.Row="7" Margin="5,5,0,0">
             <CheckBox Height="16" IsChecked="{Binding Strength.SavingThrow.Proficiency}"/>
             <CheckBox Height="16" IsChecked="{Binding Athletics.Proficiency}"/>
@@ -98,12 +115,7 @@
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Saving Throw</TextBlock>
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Athletics</TextBlock>
         </StackPanel>
-
-        <StackPanel Grid.Column="1" Grid.Row="8" Grid.RowSpan="8">
-            <TextBox Text="{Binding Dexterity.Modifier}" Width="50" IsReadOnly="True" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
-            <TextBox Text="{Binding Dexterity.Score}" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
-            <Label FontSize="10" HorizontalAlignment="Center">Dexterity</Label>
-        </StackPanel>
+        
         <StackPanel Grid.Column="2" Grid.Row="8" Margin="5,5,0,0">
             <CheckBox Height="16" IsChecked="{Binding Dexterity.SavingThrow.Proficiency}"/>
             <CheckBox Height="16" IsChecked="{Binding Acrobatics.Proficiency}"/>
@@ -122,12 +134,7 @@
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Sleight of Hand</TextBlock>
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Stealth</TextBlock>
         </StackPanel>
-
-        <StackPanel Grid.Column="1" Grid.Row="9" Grid.RowSpan="8">
-            <TextBox Text="{Binding Constitution.Modifier}" Width="50" IsReadOnly="True" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
-            <TextBox Text="{Binding Constitution.Score}" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
-            <Label FontSize="10" HorizontalAlignment="Center">Constitution</Label>
-        </StackPanel>
+        
         <StackPanel Grid.Column="2" Grid.Row="9" Margin="5,5,0,0">
             <CheckBox Height="16" IsChecked="{Binding Constitution.SavingThrow.Proficiency}"/>
         </StackPanel>
@@ -138,11 +145,6 @@
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Saving Throw</TextBlock>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="10" Grid.RowSpan="8">
-            <TextBox Text="{Binding Intelligence.Modifier}" Width="50" IsReadOnly="True" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
-            <TextBox Text="{Binding Intelligence.Score}" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
-            <Label FontSize="10" HorizontalAlignment="Center">Intelligence</Label>
-        </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="10" Margin="5,5,0,0">
             <CheckBox Height="16" IsChecked="{Binding Intelligence.SavingThrow.Proficiency}"/>
             <CheckBox Height="16" IsChecked="{Binding Arcana.Proficiency}"/>
@@ -159,7 +161,7 @@
             <TextBlock Height="16" Width="16" FontSize="10" TextAlignment="Center" Text="{Binding Nature.Modifier}"/>
             <TextBlock Height="16" Width="16" FontSize="10" TextAlignment="Center" Text="{Binding Religion.Modifier}"/>
         </StackPanel>
-        <StackPanel Grid.Column="4" Grid.Row="10" Margin="0,5,0,0">
+        <StackPanel Grid.Column="4" Grid.Row="10">
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Saving Throw</TextBlock>
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Arcana</TextBlock>
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">History</TextBlock>
@@ -168,11 +170,6 @@
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Religion</TextBlock>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="11" Grid.RowSpan="8">
-            <TextBox Text="{Binding Wisdom.Modifier}" Width="50" IsReadOnly="True" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
-            <TextBox Text="{Binding Wisdom.Score}" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
-            <Label FontSize="10" HorizontalAlignment="Center">Wisdom</Label>
-        </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="11" Margin="5,5,0,0">
             <CheckBox Height="16" IsChecked="{Binding Wisdom.SavingThrow.Proficiency}"/>
             <CheckBox Height="16" IsChecked="{Binding AnimalHandling.Proficiency}"/>
@@ -198,11 +195,6 @@
             <TextBlock FontSize="10" Height="16" Width="120" HorizontalAlignment="Left">Survival</TextBlock>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="12" Grid.RowSpan="8">
-            <TextBox Text="{Binding Charisma.Modifier}" Width="50" IsReadOnly="True" FontSize="15" Margin="0,5,0,0" TextAlignment="Center"/>
-            <TextBox Text="{Binding Charisma.Score}" FontSize="20" Width="50" Height="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
-            <Label FontSize="10" HorizontalAlignment="Center">Charisma</Label>
-        </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="12" Margin="5,5,0,0">
             <CheckBox Height="16" IsChecked="{Binding Charisma.SavingThrow.Proficiency}"/>
             <CheckBox Height="16" IsChecked="{Binding Deception.Proficiency}"/>

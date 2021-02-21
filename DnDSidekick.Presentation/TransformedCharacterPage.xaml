@@ -31,7 +31,7 @@
         <!--#region Left Side -->
         
         <StackPanel Grid.Column="1" Grid.Row="2">
-            <TextBlock Text="{Binding TransformedCharacter.Name}" Margin="10,10,5,0" FontSize="15" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding TransformedCharacter.Name}" Margin="10,15,5,0" FontSize="15" FontWeight="DemiBold"/>
             <TextBlock Text="{Binding TransformedCharacter.SizeTypeAndAlignment}" Margin="10,5,5,15"/>
         </StackPanel>
 

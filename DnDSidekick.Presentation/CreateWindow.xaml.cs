@@ -24,8 +24,6 @@ namespace DnDSidekick.Presentation
     /// </summary>
     public partial class CreateWindow : Window
     {
-        //public event PropertyChangedEventHandler ListOfCharactersChanged;
-
         public CreateWindow()
         {
             InitializeComponent();
@@ -34,34 +32,28 @@ namespace DnDSidekick.Presentation
             int lastSavedCharacterId = ManageDb.GetIdOfLastSavedCharacter();
             if (lastSavedCharacterId != 0) characterSheetPage.OpenCharacter(lastSavedCharacterId);
 
-            btnEditSelected.Click += BtnEditSelected_Click;
+            comboBoxCharactersList.SelectionChanged += ComboBoxCharactersList_SelectedIndexChanged;
             btnNewCharacter.Click += BtnNewCharacter_Click;
             btnSave.Click += BtnSave_Click;
         }
 
         private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
 
-        private List<CharacterDataModel> allCharacters;
-        public List<CharacterDataModel> AllCharacters
-        {
-            get { return allCharacters; }
-            set
-            {
-                allCharacters = value;
-                //OnPropertyChanged();
-            }
-        }
+        public List<CharacterDataModel> AllCharacters { get; set; }
 
-        private void BtnEditSelected_Click(object sender, RoutedEventArgs e)
+        private void ComboBoxCharactersList_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedItemIndex = comboBoxCharactersList.SelectedIndex;
             if (selectedItemIndex != -1)
             {
                 CharacterDataModel selectedCharacter = (CharacterDataModel)comboBoxCharactersList.SelectedItem;
-                int selectedId = selectedCharacter.Id;
-                characterSheetPage.OpenCharacter(selectedId);
+                int selectedCharacterId = selectedCharacter.Id;
+                if (selectedCharacterId != characterSheetPage.Character.Id)
+                {
+                    characterSheetPage.OpenCharacter(selectedCharacterId);
+                    GenerateCharacterList();
+                }
             }
-            GenerateCharacterList();
         }
 
         private void BtnNewCharacter_Click(object sender, RoutedEventArgs e)
@@ -81,10 +73,5 @@ namespace DnDSidekick.Presentation
             AllCharacters = ManageDb.GetAllCharactersReversed();
             comboBoxCharactersList.ItemsSource = AllCharacters;
         }
-
-        //public void OnPropertyChanged([CallerMemberName] string name = null)
-        //{
-        //    ListOfCharactersChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        //}
     }
 }

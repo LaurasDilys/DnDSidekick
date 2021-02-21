@@ -32,13 +32,13 @@ namespace DnDSidekick.Presentation
             GenerateCharacterList();
             if (AllCharacters.Count > 0)
             {
-                NoCharacters.Visibility = Visibility.Hidden;
+                NoCharacters.Visibility = Visibility.Collapsed;
                 CharacterSheet.Content = characterSheetPage;
                 characterSheetPage.TweakForCombat();
                 int lastSavedCharacterId = ManageDb.GetIdOfLastSavedCharacter();
                 characterSheetPage.OpenCharacter(lastSavedCharacterId);
                 monstersListPage = new MonstersListPage(characterSheetPage.Character);
-                UpdateCharactersInAllPages();
+                InitializeInformationInAllPages();
 
                 CharSheetMinimized.Content = charSheetMinimizedPage;
                 charSheetMinimizedPage.Visibility = Visibility.Collapsed;
@@ -146,8 +146,6 @@ namespace DnDSidekick.Presentation
                 btnWildShape.IsChecked = false;
                 ShowCharSheetMinimized();
                 ShowMonsterList("Polymorph");
-                monstersListPage.btnTransform.Content = "Choose a creature";
-                monstersListPage.btnTransform.IsEnabled = false;
             }
             else btnPolymorph.IsChecked = true;
         }
@@ -159,7 +157,6 @@ namespace DnDSidekick.Presentation
                 btnPolymorph.IsChecked = false;
                 ShowCharSheetMinimized();
                 ShowMonsterList("WildShape");
-                monstersListPage.btnTransform.IsEnabled = false;
             }
             else btnWildShape.IsChecked = true;
         }
@@ -198,11 +195,20 @@ namespace DnDSidekick.Presentation
             comboBoxCharactersList.ItemsSource = AllCharacters;
         }
 
+        private void InitializeInformationInAllPages()
+        {
+            charSheetMinimizedPage.SelectedCharacter = characterSheetPage.Character;
+            charSheetMinimizedPage.DataContext = charSheetMinimizedPage.SelectedCharacter;
+            monstersListPage.InitializeInformation(characterSheetPage.Character);
+        }
+
         private void UpdateCharactersInAllPages()
         {
             charSheetMinimizedPage.SelectedCharacter = characterSheetPage.Character;
             charSheetMinimizedPage.DataContext = charSheetMinimizedPage.SelectedCharacter;
-            monstersListPage.SelectedCharacter = characterSheetPage.Character;
+            monstersListPage.InitializeInformation(characterSheetPage.Character);
+            if (btnPolymorph.IsChecked == true) monstersListPage.ShowMonsterList("Polymorph");
+            else if (btnWildShape.IsChecked == true) monstersListPage.ShowMonsterList("WildShape");
         }
     }
 }

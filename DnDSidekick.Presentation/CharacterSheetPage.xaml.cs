@@ -37,12 +37,6 @@ namespace DnDSidekick.Presentation
 
         public Character Character { get; set; } = new Character();
 
-        private void NumberValidation(object sender, TextCompositionEventArgs e)
-        {
-            //Regex regex = new Regex("^[-+]?[0-9]+$");
-            //e.Handled = regex.IsMatch(e.Text);
-        }
-
         private void BtnFullHealth_Click(object sender, RoutedEventArgs e)
         {
             Character.CurrentHitPoints = Character.HitPoints;

@@ -32,9 +32,7 @@ namespace DnDSidekick.Presentation
         public MonstersListPage(Character selectedCharacter)
         {
             InitializeComponent();
-            SelectedCharacter = selectedCharacter;
-            WildShapeOptions = PolymorphOptions.IntoWildShapeOptionsFor(SelectedCharacter);
-            DataContext = this;
+            InitializeInformation(selectedCharacter);
 
             btnTransform.IsEnabled = false;
             monstersList.SelectionChanged += MonstersList_SelectionChanged;
@@ -67,7 +65,7 @@ namespace DnDSidekick.Presentation
         }
 
         public Character SelectedCharacter { get; set; }
-        private List<MonsterDataModel> PolymorphOptions { get; set; } = ManageDb.GetAllMonstersValueTypes();
+        private List<MonsterDataModel> PolymorphOptions { get; set; }
         private List<IMonsterDataModel> WildShapeOptions { get; set; }
 
         private void OrderByDescending(string propertyName, DataGrid list)
@@ -84,6 +82,15 @@ namespace DnDSidekick.Presentation
             else if (transformationType == "WildShape") monstersList.ItemsSource = WildShapeOptions;
             OrderByDescending("ChallengeRating", monstersList);
             btnTransform.Content = "Choose a creature";
+            btnTransform.IsEnabled = false;
+        }
+
+        public void InitializeInformation(Character selectedCharacter)
+        {
+            SelectedCharacter = selectedCharacter;
+            PolymorphOptions = ManageDb.GetAllMonstersValueTypes();
+            WildShapeOptions = PolymorphOptions.IntoWildShapeOptionsFor(SelectedCharacter);
+            DataContext = this;
         }
     }
 }

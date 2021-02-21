@@ -5,65 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnDSidekick.Presentation"
         mc:Ignorable="d"
-        Title="D&amp;D Sidekick" Height="800" Width="800">
+        Title="D&amp;D Sidekick" Height="800" Width="1000">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid ScrollViewer.CanContentScroll="True">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="19"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="19"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="19"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="900"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="5"/>
+                <RowDefinition Height="0"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="680"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <ComboBox x:Name="comboBoxCharactersList" Grid.Column="2" Grid.Row="1" Width="240" Margin="7,0,0,0">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"></TextBlock>
-                            <TextBlock Text=" – Level "></TextBlock>
-                            <TextBlock Text="{Binding Level}"></TextBlock>
-                            <TextBlock Text=" – "></TextBlock>
-                            <TextBlock Text="{Binding Race}"></TextBlock>
-                            <TextBlock Text=" – "></TextBlock>
-                            <TextBlock Text="{Binding Class}"></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Height="40" Orientation="Horizontal">
+                <StackPanel Width="240" Margin="0,0,75,0">
+                    <TextBlock Margin="0,1,0,1" HorizontalAlignment="Center">Choose Character</TextBlock>
+                    <ComboBox x:Name="comboBoxCharactersList">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}"></TextBlock>
+                                    <TextBlock Text=" – Level "></TextBlock>
+                                    <TextBlock Text="{Binding Level}"></TextBlock>
+                                    <TextBlock Text=" – "></TextBlock>
+                                    <TextBlock Text="{Binding Race}"></TextBlock>
+                                    <TextBlock Text=" – "></TextBlock>
+                                    <TextBlock Text="{Binding Class}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <ToggleButton x:Name="btnPolymorph" Width="100" Margin="0,0,15,0">
+                    <TextBlock TextAlignment="Center">Polymorph<LineBreak/>Options</TextBlock>
+                </ToggleButton>
+                <ToggleButton x:Name="btnWildShape" Width="100">
+                    <TextBlock TextAlignment="Center">Wild Shape<LineBreak/>Options</TextBlock>
+                </ToggleButton>
+            </StackPanel>
 
-            <ToggleButton x:Name="btnPolymorph" Grid.Column="6" Grid.Row="1" Width="99">
-                <TextBlock TextAlignment="Center">Polymorph<LineBreak/>Options</TextBlock>
-            </ToggleButton>
-            <ToggleButton x:Name="btnWildShape" Grid.Column="8" Grid.Row="1" Width="99">
-                <TextBlock TextAlignment="Center">Wild Shape<LineBreak/>Options</TextBlock>
-            </ToggleButton>
 
-            <Frame x:Name="CharacterSheet" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="7"/>
-            <Frame x:Name="CharSheetMinimized" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="7"/>
-            <Frame x:Name="MonsterList" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="9"/>
-            <Frame x:Name="TransformedCharacter" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="9"/>
 
-            <StackPanel x:Name="NoCharacters" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="8">
-                <TextBlock HorizontalAlignment="Center">There are no saved characters</TextBlock>
-                <Button x:Name="btnCreateCharacter">Create Character</Button>
+
+
+            <Frame x:Name="CharacterSheet" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
+            <Frame x:Name="CharSheetMinimized" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
+            <Frame x:Name="MonsterList" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="5"/>
+            <Frame x:Name="TransformedCharacter" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="5"/>
+
+            <StackPanel x:Name="NoCharacters" Grid.Column="1" Grid.Row="5">
+                <TextBlock Margin="0,200,0,20" FontSize="15" HorizontalAlignment="Center">There are no saved characters</TextBlock>
+                <Button Width="200" Height="30" x:Name="btnCreateCharacter">Create Character</Button>
             </StackPanel>
         </Grid>
     </ScrollViewer>

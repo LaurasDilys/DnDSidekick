@@ -8,10 +8,12 @@
         Title="D&amp;D Sidekick" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnCreateOrEdit" Grid.Row="0" Margin="10 10 10 10" FontSize="25">Create or Edit Character</Button>
-        <Button x:Name="btnCombat" Grid.Row="1" Margin="10 10 10 10" FontSize="25">Begin Combat</Button>
+        <Button Width="300" Height="70" x:Name="btnCreateOrEdit" Grid.Row="1" Margin="10 10 10 10" FontSize="25">Create or Edit Character</Button>
+        <Button Width="300" Height="70" x:Name="btnCombat" Grid.Row="2" Margin="10 10 10 10" FontSize="25">Begin Combat</Button>
     </Grid>
 </Window>
