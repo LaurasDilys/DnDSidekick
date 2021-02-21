@@ -28,9 +28,11 @@
 
         <Border BorderBrush="Gray" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2" BorderThickness="2"/>
 
+        <!--#region Left Side -->
+        
         <StackPanel Grid.Column="1" Grid.Row="2">
-            <TextBlock Text="{Binding Name}" Margin="10,10,5,0" FontSize="15" FontWeight="DemiBold">Name</TextBlock>
-            <TextBlock Text="{Binding SizeTypeAndAlignment}" Margin="10,5,5,15">Size type, alignment</TextBlock>
+            <TextBlock Text="{Binding TransformedCharacter.Name}" Margin="10,10,5,0" FontSize="15" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding TransformedCharacter.SizeTypeAndAlignment}" Margin="10,5,5,15"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="3">
@@ -38,15 +40,15 @@
                 <StackPanel>
                     <StackPanel Margin="10,0,5,0" Orientation="Horizontal">
                         <TextBlock FontWeight="DemiBold" Margin="0,0,5,0">Hit Points</TextBlock>
-                        <TextBlock x:Name="txtCurrentHitPoints" Margin="0,0,5,0">-0</TextBlock>
+                        <TextBlock Text="{Binding CurrentHP}" Margin="0,0,5,0"/>
                         <TextBlock Margin="0,0,5,0">/</TextBlock>
-                        <TextBlock Text="{Binding HitPoints}" Margin="0,0,5,0">000</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.HitPoints}" Margin="0,0,5,0"/>
                     </StackPanel>
                     <StackPanel Margin="10,5,5,0" Orientation="Horizontal">
                         <Button x:Name="btnHeal" Width="45">
                             <TextBlock TextAlignment="Center">Heal</TextBlock>
                         </Button>
-                        <TextBox x:Name="txtHitPointAmount" Width="45"/>
+                        <TextBox x:Name="txtHitPointAmount" Width="45" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                         <Button x:Name="btnTakeDamage" Width="45">
                             <TextBlock TextAlignment="Center">Take<LineBreak/>DMG</TextBlock>
                         </Button>
@@ -55,16 +57,16 @@
                 <StackPanel>
                     <StackPanel Margin="10,0,5,0" Orientation="Horizontal">
                         <TextBlock FontWeight="DemiBold" Margin="0,0,5,0">Armor Class</TextBlock>
-                        <TextBlock Text="{Binding ArmorClass}" Margin="0,0,5,0">00</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.ArmorClass}" Margin="0,0,5,0"/>
                     </StackPanel>
                     <StackPanel Margin="10,5,5,0" Orientation="Horizontal">
                         <TextBlock FontWeight="DemiBold" Margin="0,0,5,0">Current AC</TextBlock>
-                        <TextBox x:Name="txtCurrentArmorClass" Margin="0,0,5,0" Width="24" HorizontalContentAlignment="Center">-0</TextBox>
+                        <TextBox Text="{Binding CurrentAC}" Margin="0,0,5,0" Width="24" HorizontalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Margin="10,5,5,0" Orientation="Horizontal">
                         <TextBlock FontWeight="DemiBold" Margin="0,0,5,0">Speed</TextBlock>
                         <StackPanel Width="100">
-                            <TextBlock Text="{Binding Speed}" Margin="0,0,5,0" TextWrapping="Wrap">00 ft., climb 00 ft.</TextBlock>
+                            <TextBlock Text="{Binding TransformedCharacter.Speed}" Margin="0,0,5,0" TextWrapping="Wrap"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -74,46 +76,160 @@
                 <StackPanel Margin="10,5,5,0" Orientation="Horizontal">
                     <TextBlock FontWeight="DemiBold" Margin="0,0,5,0">Senses</TextBlock>
                     <StackPanel Width="244">
-                        <TextBlock Text="{Binding Senses}" Margin="0,0,5,0" TextWrapping="Wrap">The Giant Elk understands Common, Elvish and Sylvan but can't speak them</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.Senses}" Margin="0,0,5,0" TextWrapping="Wrap"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="10,5,5,0" Orientation="Horizontal">
                     <TextBlock FontWeight="DemiBold" Margin="0,0,5,0">Traits</TextBlock>
                     <StackPanel Width="252">
-                        <TextBlock Text="{Binding Traits}" Margin="0,0,5,0" TextWrapping="Wrap">The Giant Elk understands Common, Elvish and Sylvan but can't speak them</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.Traits}" Margin="0,0,5,0" TextWrapping="Wrap"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="10,5,5,0" Orientation="Horizontal">
                     <TextBlock FontWeight="DemiBold" Margin="0,0,5,0">Languages</TextBlock>
                     <StackPanel Width="222">
-                        <TextBlock Text="{Binding Languages}" Margin="0,0,5,0" TextWrapping="Wrap">The Giant Elk understands Common, Elvish and Sylvan but can't speak them</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.Languages}" Margin="0,0,5,0" TextWrapping="Wrap"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="10,5,5,0" Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontWeight="DemiBold" Margin="0,0,5,0">Challenge Rating</TextBlock>
-                        <TextBlock Text="{Binding ChallengeRating}">-0</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.ChallengeRating}"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Margin="0,10,0,0" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2">
+        <!--#endregion-->
+        
+        <!--#region Right Side -->
+        
+        <StackPanel Margin="0,15,0,5" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Center">
             <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
                 <StackPanel Width="60">
                     <TextBlock FontWeight="DemiBold" HorizontalAlignment="Center">STR</TextBlock>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock>[</TextBlock>
-                        <TextBlock Text="{Binding StrengthScore}">00</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.StrengthScore}"/>
                         <TextBlock Margin="0,0,5,0">]</TextBlock>
-                        <TextBlock Text="{Binding StrengthModifier}" FontWeight="DemiBold">+0</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.StrengthModifier}" FontWeight="DemiBold"/>
                     </StackPanel>
                 </StackPanel>
-                <ComboBox Width="234" Height="20" ItemsSource="{Binding Path=StrengthSkills}">
+                <ComboBox Width="234" Height="25" ItemsSource="{Binding Path=TransformedCharacter.StrengthSkills}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Modifier}"/>
+                                <TextBlock Text="{Binding ModifierText}" Width="30" TextAlignment="Center"/>
+                                <TextBlock Text="{Binding SkillName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                <StackPanel Width="60">
+                    <TextBlock FontWeight="DemiBold" HorizontalAlignment="Center">DEX</TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock>[</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.DexterityScore}"/>
+                        <TextBlock Margin="0,0,5,0">]</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.DexterityModifier}" FontWeight="DemiBold"/>
+                    </StackPanel>
+                </StackPanel>
+                <ComboBox Width="234" Height="25" ItemsSource="{Binding Path=TransformedCharacter.DexteritySkills}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding ModifierText}" Width="30" TextAlignment="Center"/>
+                                <TextBlock Text="{Binding SkillName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                <StackPanel Width="60">
+                    <TextBlock FontWeight="DemiBold" HorizontalAlignment="Center">CON</TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock>[</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.ConstitutionScore}"/>
+                        <TextBlock Margin="0,0,5,0">]</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.ConstitutionModifier}" FontWeight="DemiBold"/>
+                    </StackPanel>
+                </StackPanel>
+                <ComboBox Width="234" Height="25" ItemsSource="{Binding Path=TransformedCharacter.ConstitutionSkills}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding ModifierText}" Width="30" TextAlignment="Center"/>
+                                <TextBlock Text="{Binding SkillName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                <StackPanel Width="60">
+                    <TextBlock FontWeight="DemiBold" HorizontalAlignment="Center">INT</TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock>[</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.IntelligenceScore}"/>
+                        <TextBlock Margin="0,0,5,0">]</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.IntelligenceModifier}" FontWeight="DemiBold"/>
+                    </StackPanel>
+                </StackPanel>
+                <ComboBox Width="234" Height="25" ItemsSource="{Binding Path=TransformedCharacter.IntelligenceSkills}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding ModifierText}" Width="30" TextAlignment="Center"/>
+                                <TextBlock Text="{Binding SkillName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                <StackPanel Width="60">
+                    <TextBlock FontWeight="DemiBold" HorizontalAlignment="Center">WIS</TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock>[</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.WisdomScore}"/>
+                        <TextBlock Margin="0,0,5,0">]</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.WisdomModifier}" FontWeight="DemiBold"/>
+                    </StackPanel>
+                </StackPanel>
+                <ComboBox Width="234" Height="25" ItemsSource="{Binding Path=TransformedCharacter.WisdomSkills}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding ModifierText}" Width="30" TextAlignment="Center"/>
+                                <TextBlock Text="{Binding SkillName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                <StackPanel Width="60">
+                    <TextBlock FontWeight="DemiBold" HorizontalAlignment="Center">CHA</TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock>[</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.CharismaScore}"/>
+                        <TextBlock Margin="0,0,5,0">]</TextBlock>
+                        <TextBlock Text="{Binding TransformedCharacter.CharismaModifier}" FontWeight="DemiBold"/>
+                    </StackPanel>
+                </StackPanel>
+                <ComboBox Width="234" Height="25" ItemsSource="{Binding Path=TransformedCharacter.CharismaSkills}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding ModifierText}" Width="30" TextAlignment="Center"/>
                                 <TextBlock Text="{Binding SkillName}"/>
                             </StackPanel>
                         </DataTemplate>
@@ -125,6 +241,7 @@
 
         </StackPanel>
 
+        <!--#endregion-->
 
     </Grid>
 </Page>

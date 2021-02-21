@@ -1,5 +1,8 @@
-﻿using DnDSidekick.Business.Models;
+﻿using DnDSidekick.Business.Interfaces;
+using DnDSidekick.Business.Models;
 using DnDSidekick.Data;
+using DnDSidekick.Data.Adapters;
+using DnDSidekick.Data.Interfaces;
 using DnDSidekick.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -41,7 +44,7 @@ namespace DnDSidekick.Presentation
                 charSheetMinimizedPage.Visibility = Visibility.Collapsed;
                 MonsterList.Content = monstersListPage;
                 monstersListPage.Visibility = Visibility.Collapsed;
-                //CharacterTransformed.Content = 
+                //TransformedCharacter.Content = 
                 //
             }
             else
@@ -60,11 +63,23 @@ namespace DnDSidekick.Presentation
             btnPolymorph.Click += BtnPolymorph_Click;
             btnWildShape.Click += BtnWildShape_Click;
             charSheetMinimizedPage.FullViewRequestedEvent += ShowFullCharacterSheet;
+            monstersListPage.TransformationRequestedEvent += TransformCharacter;
+        }
+
+        private void TransformCharacter(int monsterId)
+        {
+            monstersListPage.Visibility = Visibility.Collapsed;
+            ICharacter character = characterSheetPage.Character;
+            IMonsterDataModel selectedMonster = ManageDb.GetMonsterFromDataBase(monsterId);
+            if (btnPolymorph.IsChecked == true) transformedCharacterPage = new TransformedCharacterPage(selectedMonster, character.CurrentArmorClass);
+            else transformedCharacterPage = new TransformedCharacterPage(character.WildShapedInto(selectedMonster), character.CurrentArmorClass);
+            TransformedCharacter.Content = transformedCharacterPage;
         }
 
         private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
         private CharSheetMinimizedPage charSheetMinimizedPage { get; set; } = new CharSheetMinimizedPage();
         private MonstersListPage monstersListPage { get; set; }
+        private TransformedCharacterPage transformedCharacterPage { get; set; }
         private List<CharacterDataModel> AllCharacters { get; set; }
 
         private void ComboBoxCharactersList_SelectedIndexChanged(object sender, EventArgs e)
@@ -112,7 +127,7 @@ namespace DnDSidekick.Presentation
             charSheetMinimizedPage.Visibility = Visibility.Visible;
         }
 
-        private void ShowFullCharacterSheet(object sender, RoutedEventArgs e)
+        private void ShowFullCharacterSheet()
         {
             monstersListPage.Visibility = Visibility.Collapsed;
             charSheetMinimizedPage.Visibility = Visibility.Collapsed;

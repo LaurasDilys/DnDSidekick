@@ -21,7 +21,7 @@ namespace DnDSidekick.Presentation
     /// </summary>
     public partial class CharSheetMinimizedPage : Page
     {
-        public event RoutedEventHandler FullViewRequestedEvent;
+        public event Action FullViewRequestedEvent;
 
         public CharSheetMinimizedPage()
         {
@@ -31,7 +31,7 @@ namespace DnDSidekick.Presentation
 
         private void BtnFullView_Click(object sender, RoutedEventArgs e)
         {
-            FullViewRequestedEvent(sender, e);
+            FullViewRequestedEvent();
         }
 
         public Character SelectedCharacter { get; set; } = new Character();

@@ -111,7 +111,7 @@ namespace DnDSidekick.Business.Models
         //public int Acrobatics { get; set; }
         //public int SleightOfHand { get; set; }
         //public int Stealth { get; set; }
-        
+
         //public int ConstitutionSavingThrow { get; set; }
 
         //public int IntelligenceSavingThrow { get; set; }
@@ -138,12 +138,12 @@ namespace DnDSidekick.Business.Models
         //public int ProficiencyBonus { get; set; }
 
 
-        public List<SkillViewModel> StrengthSkills { get; set; }
-        public List<SkillViewModel> DexteritySkills { get; set; }
-        public List<SkillViewModel> ConstitutionSkills { get; set; }
-        public List<SkillViewModel> IntelligenceSkills { get; set; }
-        public List<SkillViewModel> WisdomSkills { get; set; }
-        public List<SkillViewModel> CharismaSkills { get; set; }
+        public List<SkillViewModel> StrengthSkills { get; set; } = new List<SkillViewModel>();
+        public List<SkillViewModel> DexteritySkills { get; set; } = new List<SkillViewModel>();
+        public List<SkillViewModel> ConstitutionSkills { get; set; } = new List<SkillViewModel>();
+        public List<SkillViewModel> IntelligenceSkills { get; set; } = new List<SkillViewModel>();
+        public List<SkillViewModel> WisdomSkills { get; set; } = new List<SkillViewModel>();
+        public List<SkillViewModel> CharismaSkills { get; set; } = new List<SkillViewModel>();
 
 
         private void GenerateSkillsList()

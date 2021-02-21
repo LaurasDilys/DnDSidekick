@@ -24,12 +24,17 @@ namespace DnDSidekick.Presentation
     /// </summary>
     public partial class TransformedCharacterPage : Page
     {
-        public TransformedCharacterPage(IMonsterDataModel transformedDb)
+        public TransformedCharacterPage(IMonsterDataModel transformedDb, int currentAC)
         {
-            transformedDb.IntoViewModel(TransformedCharacter);
             InitializeComponent();
+            transformedDb.IntoViewModel(TransformedCharacter);
+            CurrentAC = currentAC;
+            CurrentHP = TransformedCharacter.HitPoints;
+            DataContext = this;
         }
 
         public IMonsterViewModel TransformedCharacter { get; set; } = new MonsterViewModel();
+        public int CurrentHP { get; set; }
+        public int CurrentAC { get; set; }
     }
 }

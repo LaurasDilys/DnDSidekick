@@ -164,19 +164,19 @@ namespace DnDSidekick.Data.Adapters
             //monsterVm.Persuasion = monsterDb.Persuasion;
 
 
-            int s = 0;
-            StringBuilder senses = new StringBuilder(); 
-            if (monsterDb.Blindsight > 0) senses.Append(string.Format("{1}Blindsight {0} ft.", monsterDb.Blindsight, s++ > 0 ? ", " : ""));
-            if (monsterDb.Darkvision > 0) senses.Append(string.Format("{1}Darkvision {0} ft.", monsterDb.Darkvision, s++ > 0 ? ", " : ""));
-            if (monsterDb.Tremorsense > 0) senses.Append(string.Format("{1}Tremorsense {0} ft.", monsterDb.Tremorsense, s++ > 0 ? ", " : ""));
-            if (monsterDb.Truesight > 0) senses.Append(string.Format("{1}Truesight {0} ft.", monsterDb.Truesight, s > 0 ? ", " : ""));
+            StringBuilder senses = new StringBuilder();
+            if (monsterDb.Blindsight > 0) senses.Append($"Blindsight {monsterDb.Blindsight} ft., ");
+            if (monsterDb.Darkvision > 0) senses.Append($"Darkvision {monsterDb.Darkvision} ft., ");
+            if (monsterDb.Tremorsense > 0) senses.Append($"Tremorsense {monsterDb.Tremorsense} ft., ");
+            if (monsterDb.Truesight > 0) senses.Append($"Truesight {monsterDb.Truesight} ft., ");
+            senses.Append($"Passive Perception {monsterDb.Perception + 10}");
             monsterVm.Senses = senses.ToString();
 
 
             StringBuilder traits = new StringBuilder();
             List<Trait> traitsList = monsterDb.Traits.ToList();
             if (traitsList.Count == 0) traits.Append("--");
-            else if (traitsList.Count == 1) traits.Append(traitsList.First());
+            else if (traitsList.Count == 1) traits.Append(traitsList.First().Name);
             else for (int t = 0; t < traitsList.Count; t++) traits.Append(string.Format("{0}{1}",
                 traitsList[t].Name, t == traitsList.Count - 1 ? "" : ", "));
             monsterVm.Traits = traits.ToString();
@@ -187,7 +187,7 @@ namespace DnDSidekick.Data.Adapters
             if (languagesList.Count == 0) languages.Append("--");
             else
             {
-                if (!monsterDb.CanSpeak) for (int i = 0; i < languagesList.Count; i++) languages.Append(string.Format("{0}{1}",
+                if (monsterDb.CanSpeak) for (int i = 0; i < languagesList.Count; i++) languages.Append(string.Format("{0}{1}",
                 languagesList[i].Name, i == languagesList.Count - 1 ? "" : ", "));
                 else
                 {

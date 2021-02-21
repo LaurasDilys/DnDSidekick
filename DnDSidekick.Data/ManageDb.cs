@@ -90,7 +90,10 @@ namespace DnDSidekick.Data
         {
             using (var context = new DataContext())
             {
-                MonsterDataModel requestedMonster = context.Monsters.Find(id);
+                MonsterDataModel requestedMonster = context.Monsters
+                    .Include(s => s.Size).Include(t => t.Type).Include(a => a.Alignment)
+                    .Include(tr => tr.Traits).Include(l => l.Languages).Include(e => e.Environs).Include(tg => tg.Tag)
+                    .Where(m => m.MonsterId == id).FirstOrDefault<MonsterDataModel>();
                 return requestedMonster;
             }
         }

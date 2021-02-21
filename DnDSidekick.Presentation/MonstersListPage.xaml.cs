@@ -27,6 +27,8 @@ namespace DnDSidekick.Presentation
     /// </summary>
     public partial class MonstersListPage : Page
     {
+        public event Action<int> TransformationRequestedEvent;
+
         public MonstersListPage(Character selectedCharacter)
         {
             InitializeComponent();
@@ -36,6 +38,18 @@ namespace DnDSidekick.Presentation
 
             btnTransform.IsEnabled = false;
             monstersList.SelectionChanged += MonstersList_SelectionChanged;
+            btnTransform.Click += BtnTransform_Click;
+        }
+
+        private void BtnTransform_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedItemIndex = monstersList.SelectedIndex;
+            if (selectedItemIndex != -1)
+            {
+                MonsterDataModel selectedMonster = (MonsterDataModel)monstersList.SelectedItem;
+                int selectedMonsterId = selectedMonster.MonsterId;
+                TransformationRequestedEvent(selectedMonsterId);
+            }
         }
 
         private void MonstersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
