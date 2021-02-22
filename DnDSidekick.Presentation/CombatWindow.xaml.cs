@@ -30,18 +30,24 @@ namespace DnDSidekick.Presentation
         {
             InitializeComponent();
             GenerateCharacterList();
-            if (AllCharacters.Count > 0) InitialView();
-            else DisableCombatWindowControls();
 
-            comboBoxCharactersList.SelectionChanged += ComboBoxCharactersList_SelectedIndexChanged;
-            btnCreateCharacter.Click += BtnCreateCharacter_Click;
-            btnPolymorph.Click += BtnPolymorph_Click;
-            btnWildShape.Click += BtnWildShape_Click;
+            if (AllCharacters.Count == 0)
+            {
+                DisableCombatWindowControls();
+                btnCreateCharacter.Click += BtnCreateCharacter_Click;
+            }
+            else
+            {
+                InitialView();
+                comboBoxCharactersList.SelectionChanged += ComboBoxCharactersList_SelectedIndexChanged;
+                btnPolymorph.Click += BtnPolymorph_Click;
+                btnWildShape.Click += BtnWildShape_Click;
 
-            charSheetMinimizedPage.FullViewRequestedEvent += ShowFullCharacterSheet;
-            monstersListPage.TransformationRequestedEvent += TransformCharacter;
-            transformationPage.CancelTransformationEvent += CancelTransformation;
-            transformationPage.CurrentArmorClassChangedEvent += CurrentArmorClassChanged;
+                charSheetMinimizedPage.FullViewRequestedEvent += ShowFullCharacterSheet;
+                monstersListPage.TransformationRequestedEvent += TransformCharacter;
+                transformationPage.CancelTransformationEvent += CancelTransformation;
+                transformationPage.CurrentArmorClassChangedEvent += CurrentArmorClassChanged;
+            }
         }
 
         private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
