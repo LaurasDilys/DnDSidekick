@@ -38,6 +38,21 @@ namespace DnDSidekick.Presentation
             btnTakeDamage.Click += BtnTakeDamage_Click;
         }
 
+        public IMonsterViewModel TransformedCharacter { get; set; } = new MonsterViewModel();
+
+        public int CurrentHP { get; set; }
+
+        private int currentAC;
+        public int CurrentAC
+        {
+            get { return currentAC; }
+            set
+            {
+                currentAC = value;
+                CurrentArmorClassChangedEvent(currentAC);
+            }
+        }
+
         public void LoadContent(IMonsterDataModel transformedDb, int currentAC)
         {
             transformedDb.IntoViewModel(TransformedCharacter);
@@ -94,21 +109,6 @@ namespace DnDSidekick.Presentation
         {
             CancelTransformationEvent(-1);
             txtHitPointAmount.Text = "";
-        }
-
-        public IMonsterViewModel TransformedCharacter { get; set; } = new MonsterViewModel();
-
-        public int CurrentHP { get; set; }
-        
-        private int currentAC;
-        public int CurrentAC
-        {
-            get { return currentAC; }
-            set
-            {
-                currentAC = value;
-                CurrentArmorClassChangedEvent(currentAC);
-            }
         }
     }
 }

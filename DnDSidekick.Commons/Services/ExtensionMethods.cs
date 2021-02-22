@@ -24,13 +24,5 @@ namespace DnDSidekick.Commons.Services
             { value = max; }
             return value;
         }
-
-
-        //public static int ExtractDigitsFrom(string text)
-        //{
-        //    int number = 0;
-        //    if (Int32.TryParse(string.Concat(text.Where(char.IsDigit)), out number)) return number;
-        //    throw new FormatException();
-        //}
     }
 }

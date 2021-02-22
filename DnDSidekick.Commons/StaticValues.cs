@@ -12,7 +12,7 @@ namespace DnDSidekick.Commons
         public static int MinScore { get; } = 0;
         public static int MaxScore { get; } = 30;
 
-        public static int InitialAbilityScoreValue { get; set; } = 0;
+        public static int InitialAbilityScoreValue { get; set; } = 10;
 
 
                             // Level, Experience Points

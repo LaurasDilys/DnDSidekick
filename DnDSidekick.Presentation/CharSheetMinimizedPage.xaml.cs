@@ -29,11 +29,11 @@ namespace DnDSidekick.Presentation
             btnFullView.Click += BtnFullView_Click;
         }
 
+        public Character SelectedCharacter { get; set; } = new Character();
+
         private void BtnFullView_Click(object sender, RoutedEventArgs e)
         {
             FullViewRequestedEvent();
         }
-
-        public Character SelectedCharacter { get; set; } = new Character();
     }
 }

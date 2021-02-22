@@ -44,12 +44,12 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                 </StackPanel>
-                <ToggleButton x:Name="btnNewCharacter" Width="100" Margin="0,0,15,0">
+                <Button x:Name="btnNewCharacter" Width="100" Margin="0,0,15,0">
                     <TextBlock TextAlignment="Center">New<LineBreak/>Character</TextBlock>
-                </ToggleButton>
-                <ToggleButton x:Name="btnSave" Width="100">
+                </Button>
+                <Button x:Name="btnSave" Width="100">
                     <TextBlock TextAlignment="Center">Save</TextBlock>
-                </ToggleButton>
+                </Button>
             </StackPanel>
 
             <Frame x:Name="CharacterSheet" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3"/>

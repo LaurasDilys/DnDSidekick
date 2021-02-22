@@ -1,6 +1,5 @@
 ﻿using DnDSidekick.Business.Interfaces;
 using DnDSidekick.Commons;
-using DnDSidekick.Commons.Models;
 using DnDSidekick.Commons.Services;
 using System;
 using System.Collections.Generic;
@@ -38,9 +37,22 @@ namespace DnDSidekick.Business.Models
             set
             {
                 name = value;
+                if (name.Length > 0) FirstLetter = name[0];
                 OnPropertyChanged();
             }
         }
+
+        private char firstLetter;
+        public char FirstLetter
+        {
+            get { return firstLetter; }
+            set
+            {
+                firstLetter = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public string Class { get; set; } = "";
         public string Race { get; set; } = "";

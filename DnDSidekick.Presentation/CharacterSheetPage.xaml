@@ -41,10 +41,10 @@
 
         <!--#region First Row -->
 
-        <Canvas Grid.Column="1" Grid.Row="1" Width="40" Height="40" HorizontalAlignment="Center" Grid.RowSpan="3" Background="Green" />
+        <TextBox Text="{Binding FirstLetter}" IsReadOnly="True" FontSize="30" Grid.Column="1" Grid.Row="1" Width="40" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.RowSpan="3" FontFamily="Old English Text MT"/>
         <TextBox x:Name="txtName" Grid.Column="2" Grid.Row="1" Text="{Binding Name}" Margin="2,10,0,10" FontSize="15" Width="236" Grid.ColumnSpan="4" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
         <TextBlock Grid.Column="2" Grid.Row="3" Margin="5,12,0,0" FontSize="10" Grid.ColumnSpan="3" Grid.RowSpan="2">Character Name</TextBlock>
-
+        
         <TextBox x:Name="txtClass" Grid.Column="6" Grid.Row="1" Text="{Binding Class}" Margin="12,0,0,0" TextAlignment="Left" VerticalContentAlignment="Center"/>
         <TextBlock Grid.Column="6" Grid.Row="2" Margin="15,0,0,0" FontSize="10">Class</TextBlock>
 

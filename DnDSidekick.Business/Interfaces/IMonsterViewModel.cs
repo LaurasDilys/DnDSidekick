@@ -36,38 +36,6 @@ namespace DnDSidekick.Business.Interfaces
         string Languages { get; set; }
         string Tag { get; set; }
 
-        //int StrengthSavingThrow { get; set; }
-        //int Athletics { get; set; }
-
-        //int DexteritySavingThrow { get; set; }
-        //int Acrobatics { get; set; }
-        //int SleightOfHand { get; set; }
-        //int Stealth { get; set; }
-
-        //int ConstitutionSavingThrow { get; set; }
-
-        //int IntelligenceSavingThrow { get; set; }
-        //int Arcana { get; set; }
-        //int History { get; set; }
-        //int Investigation { get; set; }
-        //int Nature { get; set; }
-        //int Religion { get; set; }
-
-        //int WisdomSavingThrow { get; set; }
-        //int AnimalHandling { get; set; }
-        //int Insight { get; set; }
-        //int Medicine { get; set; }
-        //int Perception { get; set; }
-        //int Survival { get; set; }
-
-        //int CharismaSavingThrow { get; set; }
-        //int Deception { get; set; }
-        //int Intimidation { get; set; }
-        //int Performance { get; set; }
-        //int Persuasion { get; set; }
-
-        //int ProficiencyBonus { get; set; }
-
         List<SkillViewModel> StrengthSkills { get; set; }
         List<SkillViewModel> DexteritySkills { get; set; }
         List<SkillViewModel> ConstitutionSkills { get; set; }

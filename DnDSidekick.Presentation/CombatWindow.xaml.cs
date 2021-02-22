@@ -30,27 +30,8 @@ namespace DnDSidekick.Presentation
         {
             InitializeComponent();
             GenerateCharacterList();
-            if (AllCharacters.Count > 0)
-            {
-                NoCharacters.Visibility = Visibility.Collapsed;
-                CharacterSheet.Content = characterSheetPage;
-                characterSheetPage.TweakForCombat();
-                int lastSavedCharacterId = ManageDb.GetIdOfLastSavedCharacter();
-                characterSheetPage.OpenCharacter(lastSavedCharacterId);
-                monstersListPage = new MonstersListPage(characterSheetPage.Character);
-                InitializeInformationInAllPages();
-
-                CharSheetMinimized.Content = charSheetMinimizedPage;
-                charSheetMinimizedPage.Visibility = Visibility.Collapsed;
-                MonsterList.Content = monstersListPage;
-                monstersListPage.Visibility = Visibility.Collapsed;
-                TransformedCharacter.Content = transformationPage;
-                transformationPage.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                DisableCombatWindowControls();
-            }
+            if (AllCharacters.Count > 0) InitialView();
+            else DisableCombatWindowControls();
 
             comboBoxCharactersList.SelectionChanged += ComboBoxCharactersList_SelectedIndexChanged;
             btnCreateCharacter.Click += BtnCreateCharacter_Click;
@@ -60,10 +41,33 @@ namespace DnDSidekick.Presentation
             charSheetMinimizedPage.FullViewRequestedEvent += ShowFullCharacterSheet;
             monstersListPage.TransformationRequestedEvent += TransformCharacter;
             transformationPage.CancelTransformationEvent += CancelTransformation;
-
-
             transformationPage.CurrentArmorClassChangedEvent += CurrentArmorClassChanged;
         }
+
+        private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
+        private CharSheetMinimizedPage charSheetMinimizedPage { get; set; } = new CharSheetMinimizedPage();
+        private MonstersListPage monstersListPage { get; set; }
+        private TransformedCharacterPage transformationPage { get; set; } = new TransformedCharacterPage();
+        private List<CharacterDataModel> AllCharacters { get; set; }
+
+        private void InitialView()
+        {
+            NoCharacters.Visibility = Visibility.Collapsed;
+            CharacterSheet.Content = characterSheetPage;
+            characterSheetPage.TweakForCombat();
+            int lastSavedCharacterId = ManageDb.GetIdOfLastSavedCharacter();
+            characterSheetPage.OpenCharacter(lastSavedCharacterId);
+            monstersListPage = new MonstersListPage(characterSheetPage.Character);
+            InitializeInformationInAllPages();
+
+            CharSheetMinimized.Content = charSheetMinimizedPage;
+            charSheetMinimizedPage.Visibility = Visibility.Collapsed;
+            MonsterList.Content = monstersListPage;
+            monstersListPage.Visibility = Visibility.Collapsed;
+            TransformedCharacter.Content = transformationPage;
+            transformationPage.Visibility = Visibility.Collapsed;
+        }
+
         private void CurrentArmorClassChanged(int newArmorClass)
         {
             characterSheetPage.Character.CurrentArmorClass = newArmorClass;
@@ -116,12 +120,6 @@ namespace DnDSidekick.Presentation
 
             transformationPage.Visibility = Visibility.Visible;
         }
-
-        private CharacterSheetPage characterSheetPage { get; set; } = new CharacterSheetPage();
-        private CharSheetMinimizedPage charSheetMinimizedPage { get; set; } = new CharSheetMinimizedPage();
-        private MonstersListPage monstersListPage { get; set; }
-        private TransformedCharacterPage transformationPage { get; set; } = new TransformedCharacterPage();
-        private List<CharacterDataModel> AllCharacters { get; set; }
 
         private void ComboBoxCharactersList_SelectedIndexChanged(object sender, EventArgs e)
         {

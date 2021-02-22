@@ -133,37 +133,6 @@ namespace DnDSidekick.Data.Adapters
             monsterVm.GetSkillValuesFrom(monsterDb);
 
 
-            //monsterVm.StrengthSavingThrow = monsterDb.StrengthSavingThrow;
-            //monsterVm.Athletics = monsterDb.Athletics;
-
-            //monsterVm.DexteritySavingThrow = monsterDb.DexteritySavingThrow;
-            //monsterVm.Acrobatics = monsterDb.Acrobatics;
-            //monsterVm.SleightOfHand = monsterDb.SleightOfHand;
-            //monsterVm.Stealth = monsterDb.Stealth;
-
-            //monsterVm.ConstitutionSavingThrow = monsterDb.ConstitutionSavingThrow;
-
-            //monsterVm.IntelligenceSavingThrow = monsterDb.IntelligenceSavingThrow;
-            //monsterVm.Arcana = monsterDb.Arcana;
-            //monsterVm.History = monsterDb.History;
-            //monsterVm.Investigation = monsterDb.Investigation;
-            //monsterVm.Nature = monsterDb.Nature;
-            //monsterVm.Religion = monsterDb.Religion;
-
-            //monsterVm.WisdomSavingThrow = monsterDb.WisdomSavingThrow;
-            //monsterVm.AnimalHandling = monsterDb.AnimalHandling;
-            //monsterVm.Insight = monsterDb.Insight;
-            //monsterVm.Medicine = monsterDb.Medicine;
-            //monsterVm.Perception = monsterDb.Perception;
-            //monsterVm.Survival = monsterDb.Survival;
-
-            //monsterVm.CharismaSavingThrow = monsterDb.CharismaSavingThrow;
-            //monsterVm.Deception = monsterDb.Deception;
-            //monsterVm.Intimidation = monsterDb.Intimidation;
-            //monsterVm.Performance = monsterDb.Performance;
-            //monsterVm.Persuasion = monsterDb.Persuasion;
-
-
             StringBuilder senses = new StringBuilder();
             if (monsterDb.Blindsight > 0) senses.Append($"Blindsight {monsterDb.Blindsight} ft., ");
             if (monsterDb.Darkvision > 0) senses.Append($"Darkvision {monsterDb.Darkvision} ft., ");
@@ -207,8 +176,6 @@ namespace DnDSidekick.Data.Adapters
 
             if (monsterDb.Tag != null) monsterVm.Tag = monsterDb.Tag.Name;
             else monsterVm.Tag = "";
-
-            //monsterVm.ProficiencyBonus = monsterDb.ProficiencyBonus;
         }
 
         private static void GetSkillValuesFrom(this IMonsterViewModel monster, IMonsterDataModel monsterDb)
@@ -261,75 +228,5 @@ namespace DnDSidekick.Data.Adapters
 
             return monsterSkillModifiers;
         }
-
-        //public static void Test()
-        //{
-        //    MonsterDataModel monsterDb = new MonsterDataModel();
-        //    MonsterDataModel monster = new MonsterDataModel();
-
-        //    monster.StrengthSavingThrow = monsterDb.StrengthSavingThrow;
-        //    monster.Athletics = monsterDb.Athletics;
-
-        //    monster.DexteritySavingThrow = monsterDb.DexteritySavingThrow;
-        //    monster.Acrobatics = monsterDb.Acrobatics;
-        //    monster.SleightOfHand = monsterDb.SleightOfHand;
-        //    monster.Stealth = monsterDb.Stealth;
-
-        //    monster.ConstitutionSavingThrow = monsterDb.ConstitutionSavingThrow;
-
-        //    monster.IntelligenceSavingThrow = monsterDb.IntelligenceSavingThrow;
-        //    monster.Arcana = monsterDb.Arcana;
-        //    monster.History = monsterDb.History;
-        //    monster.Investigation = monsterDb.Investigation;
-        //    monster.Nature = monsterDb.Nature;
-        //    monster.Religion = monsterDb.Religion;
-
-        //    monster.WisdomSavingThrow = monsterDb.WisdomSavingThrow;
-        //    monster.AnimalHandling = monsterDb.AnimalHandling;
-        //    monster.Insight = monsterDb.Insight;
-        //    monster.Medicine = monsterDb.Medicine;
-        //    monster.Perception = monsterDb.Perception;
-        //    monster.Survival = monsterDb.Survival;
-
-        //    monster.CharismaSavingThrow = monsterDb.CharismaSavingThrow;
-        //    monster.Deception = monsterDb.Deception;
-        //    monster.Intimidation = monsterDb.Intimidation;
-        //    monster.Performance = monsterDb.Performance;
-        //    monster.Persuasion = monsterDb.Persuasion;
-
-
-
-
-
-        //        monster.StrengthSavingThrow
-        //        monster.Athletics
-
-        //        monster.DexteritySavingThrow
-        //        monster.Acrobatics
-        //        monster.SleightOfHand
-        //        monster.Stealth
-
-        //        monster.ConstitutionSavingThrow
-
-        //        monster.IntelligenceSavingThrow
-        //        monster.Arcana
-        //        monster.History
-        //        monster.Investigation
-        //        monster.Nature
-        //        monster.Religion
-
-        //        monster.WisdomSavingThrow
-        //        monster.AnimalHandling
-        //        monster.Insight
-        //        monster.Medicine
-        //        monster.Perception
-        //        monster.Survival
-
-        //        monster.CharismaSavingThrow
-        //        monster.Deception
-        //        monster.Intimidation
-        //        monster.Performance
-        //        monster.Persuasion
-        //}
     }
 }

@@ -87,7 +87,6 @@
     <Compile Include="Models\Trait.cs" />
     <Compile Include="Models\CreatureType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModelToDataAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
